@@ -21,6 +21,8 @@ Bundler.require(*Rails.groups)
 module AuthenticateMe
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    # TODO: remove this when csrf is setup
+    # config.action_controller.allow_forgery_protection = false
     config.load_defaults 7.0
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,

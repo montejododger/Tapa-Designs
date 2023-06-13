@@ -1,14 +1,17 @@
 class Api::UsersController < ApplicationController
 
   wrap_parameters include: User.attribute_names + ['password']
+  # wrap_parameters include: User.attribute_names + ['password', 'first_name', 'last_name']
+  before_action :require_logged_out
 
   def create
     @user = User.new(user_params)
     if @user.save
       login!(@user)
-      render json: @user
+      render :show
+      # render json: @user
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: @user.errors.full_messages , status: 422
     end
   end
 
@@ -17,6 +20,7 @@ class Api::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :password)
+    # params.require(:user).permit(:email, :username, :password, :first_name, :last_name)
   end
 
 end
