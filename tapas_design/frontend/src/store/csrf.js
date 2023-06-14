@@ -22,6 +22,11 @@ export const csrfFetch = async (url, options = {}) => {
     }
 
     const res = await fetch(url, options);
+    
+    if (!res.ok) {
+        throw new Error(`Network response was not ok, status: ${res.status}`);
+    }
+
     return res;
 };
 
