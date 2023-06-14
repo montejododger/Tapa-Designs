@@ -7,6 +7,7 @@ import App from "./App";
 import configureStore from "./store/index";
 import { csrfFetch, restoreSession } from "./store/csrf";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer";
+import * as sessionActions from './store/session'
 
 //testing
 // TODO: take out after production
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== "production") {
     window.loginUser = loginUser;
     window.logoutUser = logoutUser;
     window.csrfFetch = csrfFetch;
+    window.sessionActions = sessionActions
     //window.
 }
 

@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import usersReducer from "./usersReducer";
+import session from './session' 
 
 // Import your individual reducers here:
 // import session from './session'
@@ -19,7 +20,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const rootReducer = combineReducers({
-    users: usersReducer,
+    session,
+    users: usersReducer
     // Add your reducer functions here:
     // session,
     // cart,
