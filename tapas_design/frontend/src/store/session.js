@@ -20,27 +20,42 @@ export const removeCurrentUser = () => {
     };
 };
 
-//
-// THUNK ACTION
-export const login = (user) => async (dispatch) => {
-    const { email, password } = user;
-    const res = await csrfFetch("/api/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-    });
-
-    if (res.ok) {
-        const { user } = await res.json();
-        dispatch(setCurrentUser(user));
-        return null;
-    } else {
-        const error = await res.json();
-        return error;
-    }
+const storeCSRFToken = (response) => {
+    const csrfToken = response.headers.get("X-CSRF-Token");
+    if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 };
 
-const initialState = { user: null };
+const storeCurrentUser = (user) => {
+    if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
+    else sessionStorage.removeItem("currentUser");
+};
+
+// THUNK ACTIONS
+export const login =
+    ({ email, password }) =>
+    async (dispatch) => {
+        const res = await csrfFetch("/api/session", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await res.json();
+        storeCurrentUser(data.user);
+        dispatch(setCurrentUser(data.user));
+        return res;
+    };
+
+export const restoreSession = () => async (dispatch) => {
+    const res = await csrfFetch(`/api/session`);
+    storeCSRFToken(res);
+    const data = await res.json();
+    storeCurrentUser(data.user);
+    dispatch(setCurrentUser(data.user));
+    return res;
+};
+
+const initialState = {
+    user: JSON.parse(sessionStorage.getItem("currentUser")),
+};
 
 const sessionReducer = (state = initialState, action) => {
     switch (action.type) {

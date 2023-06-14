@@ -5,9 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import configureStore from "./store/index";
-import { csrfFetch, restoreSession } from "./store/csrf";
+import { csrfFetch } from "./store/csrf";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer";
-import * as sessionActions from './store/session'
+import * as sessionActions from "./store/session";
 
 //testing
 // TODO: take out after production
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
     window.loginUser = loginUser;
     window.logoutUser = logoutUser;
     window.csrfFetch = csrfFetch;
-    window.sessionActions = sessionActions
+    window.sessionActions = sessionActions;
     //window.
 }
 
@@ -42,11 +42,13 @@ const renderApplication = () => {
     );
 };
 
-if (sessionStorage.getItem("X-CSRF-Token") === null) {
-    restoreSession().then(renderApplication);
+if (
+    sessionStorage.getItem("currentUser") === null ||
+    sessionStorage.getItem("X-CSRF-Token") === null
+) {
+    store.dispatch(sessionActions.restoreSession()).then(renderApplication);
 } else {
     renderApplication();
 }
-
 // we get our csrf token and potentianlly a current user before initializing our app
 // restoreSession().then(initializeApp);
