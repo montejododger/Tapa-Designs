@@ -17,25 +17,25 @@ class User < ApplicationRecord
     user && user.authenticate(password) ? user : nil
   end
 
-  def ensure_session_token
-    self.session_token ||= generate_unique_session_token
-  end
-
+  
   def reset_session_token!
     self.session_token = generate_unique_session_token
     self.save!
     self.session_token
   end
-
+  
   private
-
+  
   def generate_unique_session_token
     while true
       token = SecureRandom.urlsafe_base64
       return token unless User.exists?(session_token: token)
     end
   end
-
+  
+  def ensure_session_token
+    self.session_token ||= generate_unique_session_token
+  end
 
 end
 
