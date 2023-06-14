@@ -5,9 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import configureStore from "./store/index";
-
-// import restoreSession from "../../../csrf"; // this route will change
-// import { createUser, loginUser, logoutUser } from "../usersReducers";
+import { csrfFetch, restoreSession } from "./store/csrf";
+import { createUser, loginUser, logoutUser } from "./store/usersReducer";
 
 //testing
 // TODO: take out after production
@@ -15,34 +14,14 @@ const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
     window.store = store;
+    window.createUser = createUser;
+    window.loginUser = loginUser;
+    window.logoutUser = logoutUser;
+    window.csrfFetch = csrfFetch;
+    //window.
 }
-//window.
-//window.
 
-// const initializeApp = () => {
-//     // let currentUser = JSON.parse(sessionStorage.getItem("currentUser")); // grab current user object
-//     // let initialState = {};
-
-//     // if (currentUser) {
-//     //     initialState = {
-//     //         users: {
-//     //             [currentUser.id]: currentUser,
-//     //         },
-//     //     };
-//     // }
-
-//     // // initialize store with currentUser if logged in
-//     // const store = configureStore(initialState);
-
-//     ReactDOM.render(
-//         <React.StrictMode>
-//             <App />
-//         </React.StrictMode>,
-//         document.getElementById("root")
-//     );
-// };
-
-function Root() {
+const Root = () => {
     return (
         <Provider store={store}>
             <BrowserRouter>
@@ -50,14 +29,22 @@ function Root() {
             </BrowserRouter>
         </Provider>
     );
-}
+};
 
-ReactDOM.render(
-    <React.StrictMode>
-        <Root />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
+const renderApplication = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <Root />
+        </React.StrictMode>,
+        document.getElementById("root")
+    );
+};
+
+if (sessionStorage.getItem("X-CSRF-Token") === null) {
+    restoreSession().then(renderApplication);
+} else {
+    renderApplication();
+}
 
 // we get our csrf token and potentianlly a current user before initializing our app
 // restoreSession().then(initializeApp);
