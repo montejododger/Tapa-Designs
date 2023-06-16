@@ -38,7 +38,8 @@ export const login =
             method: "POST",
             body: JSON.stringify({ email, password }),
         });
-        const data = await res.json();
+
+        const data = await res.clone().json();
         storeCurrentUser(data.user);
         dispatch(setCurrentUser(data.user));
         return res;
@@ -51,7 +52,7 @@ export const signup =
             method: "POST",
             body: JSON.stringify({ email, password }),
         });
-        const data = await res.json();
+        const data = await res.clone().json();
         storeCurrentUser(data.user);
         dispatch(setCurrentUser(data.user));
         return res;

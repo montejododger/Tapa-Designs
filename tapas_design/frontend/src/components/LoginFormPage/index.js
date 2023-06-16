@@ -18,15 +18,9 @@ export const LoginFormPage = () => {
         // resetting setErrors to an empty array each time
         setErrors([]);
         // this is calling Login thunk action from session.js
-        return dispatch(sessionActions.login({ email, password })).catch(
+        return dispatch(sessionActions.login({ email, password })).then(
             async (res) => {
-                let data;
-                try {
-                    // .clone() essentially allows you to read the response body twice
-                    data = await res.clone().json();
-                } catch {
-                    data = await res.text(); // Will hit this case if the server is down
-                }
+                let data = await res.json();
                 if (data?.errors) setErrors(data.errors);
                 else if (data) setErrors([data]);
                 else setErrors([res.statusText]);
