@@ -32,49 +32,70 @@ export const LoginFormPage = () => {
         );
     };
 
-
     // CREATE ACCOUNT BUTTON
     const handleClick = (e) => {
         e.preventDefault();
-        setRedirect(true)
+        setRedirect(true);
     };
 
     if (redirect) {
-        return <Redirect to={'/signup'}/>
+        return <Redirect to={"/signup"} />;
     }
 
     return (
-        <form className="form-control" onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error) => (
-                    <li key={error}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Email
-                <input
-                    className="input-field"
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    className="input-field"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button onClick={handleClick} className="create-account-button">Create Account</button>
-            <button className="signup-button" type="submit">
-                Log In
-            </button>
-        </form>
+        <div className="login-container">
+            <form className="form-container" onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error) => (
+                        <li key={error}>{error}</li>
+                    ))}
+                </ul>
+                <br />
+                <h6 className="signin-header">Sign In</h6>
+                <br />
+                <p className="signin-descrip">
+                    Sign in or create an account to become a member.
+                </p>
+                <br />
+                <div className="login-fields">
+                    <label className="login-labels">
+                        Email Address *
+                        <input
+                            className="input-field"
+                            // placeholder="Email"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <label className="login-labels">
+                        Password *
+                        <input
+                            className="input-field"
+                            // placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </label>
+                </div>
+                <div className="login-buttons-container">
+                    <button className="signup-button" type="submit">
+                        SIGN IN
+                    </button>
+                    <br />
+                    <button
+                        onClick={handleClick}
+                        className="create-account-button"
+                    >
+                        CREATE ACCOUNT
+                    </button>
+                </div>
+                <p></p>
+            </form>
+        </div>
     );
 };
 

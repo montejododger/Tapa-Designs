@@ -1,52 +1,67 @@
 .header-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-
-.nav-bar {
+/* .nav-bar {
     display: flex;
     flex-direction: row;
     align-content: space-around;
     height: 5%;
     width: 100vw;
     position: sticky;
-}
+} */
 
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 100px;
+    width: 100%;
     background-color: #ffffff;
     padding: 10px;
-    line-height: 1;
+    line-height: 32px;
+    font-weight: 400;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: sticky;
 }
 
 .navbar-left {
-    flex: 0.1;
+    flex: 1;
 }
 
 .navbar-middle {
-    flex: 0.7;
     display: flex;
     justify-content: flex-start;
     padding: 10px;
+    flex: 2;
 }
 
 .navbar-right {
-    flex: 0.25;
-    text-align: right;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    flex: 1;
 }
 
 .logo {
-    height: auto;
-    width: auto;
-    transform: scale(0.55);
+    transform: scale(0.85);
+    max-height: 105px;
     margin-left: 10px;
+    flex-shrink: 0;
+    margin-left: 50px;
 }
 
 .dropdown {
+    padding: 50px;
     display: inline-block;
+    font-family: "Gotham Narrow", Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .signup-login {
@@ -54,8 +69,33 @@
     text-decoration: none;
 }
 
-.login-links{
-    font-family: 'Gotham Narrow', Arial, sans-serif;
-    font-size: 15px;
+.login-links {
+    font-family: "Gotham Narrow", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #202020;
     text-decoration: none;
+    margin-right: 25px;
+    letter-spacing: 1px;
+}
+
+/* UnderLine Hover Affect */
+.login-links {
+    position: relative;
+    text-decoration: none;
+}
+
+.login-links::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: #000;
+    transition: width 0.1s ease-in-out;
+}
+
+.login-links:hover::after {
+    width: 100%;
 }
