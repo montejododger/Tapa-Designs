@@ -1,0 +1,18 @@
+.header-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+    width: 100%;
+    background-color: rgb(230, 30, 48);
+    /* margin-bottom: 20px; */
+}
+
+.header-bar p {
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 46px;
+    font-family: "Gotham Narrow", Helvetica, Arial, sans-serif;
+}

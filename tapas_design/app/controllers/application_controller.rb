@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
     before_action :snake_case_params, :attach_authenticity_token
     
     def current_user
+
         return nil unless session[:session_token]
         @current_user ||= User.find_by(session_token: session[:session_token])
     end

@@ -10,20 +10,9 @@ export const restoreSession = async () => {
     return res;
 };
 
-//////////////////////////////////////////////////////////////////////////
-// export function storeCSRFToken(response) {
-//     const csrfToken = response.headers.get("X-CSRF-Token");
-//     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
-// }
-
-// export async function restoreCSRF() {
-//     const response = await csrfFetch("/api/session");
-//     storeCSRFToken(response);
-//     return response;
-// }
-///////////////////////////////////////////////////////////////////////////
 
 // will use in place of fetch, for non-get requests
+// options is the body with a method: POST, GET, DELETE
 export const csrfFetch = async (url, options = {}) => {
     options.method ||= "GET";
     options.headers ||= {};
@@ -34,11 +23,8 @@ export const csrfFetch = async (url, options = {}) => {
             sessionStorage.getItem("X-CSRF-Token");
     }
 
-    const res = await fetch(url, options);
 
-    // if (!res.ok) {
-    //     throw new Error(`Network response was not ok, status: ${res.status}`);
-    // }
+    const res = await fetch(url, options);
 
     return res;
 };

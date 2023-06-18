@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+
 import "./LoginForm.css";
 
 export const LoginFormPage = () => {
@@ -10,11 +11,14 @@ export const LoginFormPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [redirect, setRedirect] = useState(false);
 
     if (sessionUser) return <Redirect to="/" />;
 
+    //when form button submitted
     const handleSubmit = (e) => {
         e.preventDefault();
+
         // resetting setErrors to an empty array each time
         setErrors([]);
         // this is calling Login thunk action from session.js
@@ -27,6 +31,17 @@ export const LoginFormPage = () => {
             }
         );
     };
+
+
+    // CREATE ACCOUNT BUTTON
+    const handleClick = (e) => {
+        e.preventDefault();
+        setRedirect(true)
+    };
+
+    if (redirect) {
+        return <Redirect to={'/signup'}/>
+    }
 
     return (
         <form className="form-control" onSubmit={handleSubmit}>
@@ -55,6 +70,7 @@ export const LoginFormPage = () => {
                     required
                 />
             </label>
+            <button onClick={handleClick} className="create-account-button">Create Account</button>
             <button className="signup-button" type="submit">
                 Log In
             </button>

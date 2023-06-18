@@ -1,1 +1,41 @@
 /* TODO Add site wide styles */
+body {
+    font-family: "Gotham Narrow A", "Gotham Narrow B", Helvetica, Arial,
+        sans-serif;
+}
+
+@font-face {
+    font-family: "Gotham Narrow";
+    src: url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Thin.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Thin%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Medium.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Medium%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Light.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Light%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Extra%20Light.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Extra%20Light%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Book.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Book%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Bold.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Bold%20Italic.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Black.otf")
+            format("opentype"),
+        url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Black%20Italic.otf")
+            format("opentype");
+}
