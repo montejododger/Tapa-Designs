@@ -27,7 +27,8 @@ function Navigation() {
         );
     }
 
-    const logoUrl = "https://topodesigns.com/cdn/shop/files/topo_designs_logo_vertical-logo.svg?v=1652876766858419023"
+    const logoUrl =
+        "https://topodesigns.com/cdn/shop/files/topo_designs_logo_vertical-logo.svg?v=1652876766858419023";
 
     return (
         <>
@@ -36,11 +37,7 @@ function Navigation() {
                 <nav className="navbar">
                     <div className="navbar-left">
                         <NavLink exact to="/">
-                            <img
-                                src={logoUrl}
-                                alt="Logo"
-                                className="logo"
-                            />
+                            <img src={logoUrl} alt="Logo" className="logo" />
                         </NavLink>
                     </div>
                     <div className="navbar-middle">

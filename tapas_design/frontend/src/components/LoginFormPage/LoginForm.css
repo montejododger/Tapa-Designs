@@ -5,15 +5,15 @@
 }
 
 .form-container {
-    height: 60vh;
     padding: 50px;
-    width: 350px;
+    width: 700px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
-    max-width: 400px;
+    max-width: 700px;
     background-color: white;
+    box-sizing: border-box;
 }
 
 .signin-header {
@@ -41,10 +41,14 @@
 .login-fields {
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
     line-height: 1.5;
 }
 
 .login-labels {
+    width: 100%;
     font-size: 20px;
     font-weight: lighter;
     margin: 10px;
@@ -57,17 +61,13 @@
     height: 60px;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 8px 12px;
+    padding: 8px 18px;
     font-size: 16px;
 
     color: #111;
     background-color: white;
     border: 1px solid #ccc;
-    /* box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box; */
     box-sizing: border-box;
-    max-width: 500px;
 }
 
 .login-buttons-container {
@@ -76,11 +76,13 @@
     justify-content: center;
     padding: 8px 12px;
     margin-top: 20px;
+    width: 100%;
 }
 .signup-button {
     border-radius: 0;
     background-color: #e31b23;
     height: 60px;
+    width: 100%;
     border: none;
     font-size: 16px;
     color: #ffffff;

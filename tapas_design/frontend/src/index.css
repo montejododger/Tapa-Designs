@@ -1,13 +1,18 @@
 /* TODO Add site wide styles */
 body {
-    width: 100%;
+    /* width: 100%; */
     font-family: "Gotham Narrow A", "Gotham Narrow B", Helvetica, Arial,
         sans-serif;
 }
 
+.whole-app{
+    width: 100%;
+}
+
 @font-face {
     font-family: "Gotham Narrow";
-    src: url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra.otf")
+    src: url(../public/assests/fonts/Gotham\ Narrow/Gotham%20Narrow%20Ultra.otf) format('opentype');
+    /* src: url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra.otf")
             format("opentype"),
         url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra%20Italic.otf")
             format("opentype"),
@@ -38,5 +43,6 @@ body {
         url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Black.otf")
             format("opentype"),
         url("../../app/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Black%20Italic.otf")
-            format("opentype");
+            format("opentype"),
+            url(../src/assests/fonts/Gotham\ Narrow/20Ultra%) */
 }
