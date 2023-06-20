@@ -7,8 +7,9 @@ import "./SignupForm.css";
 function SignupFormPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    // TODO: set last and first name
+    const [firstName] = useState("");
+    const [lastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

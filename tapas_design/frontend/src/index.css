@@ -11,13 +11,13 @@ body {
     width: 100%;
 }
 
-@font-face {
+/* @font-face {
     font-family: "Gotham Narrow";
     src: url("../public/assests/fonts/Gotham%20Narrow/Gotham%20Narrow%20Ultra.otf")
         format("opentype");
     font-weight: Extra Light;
     font-style: normal;
-}
+} */
 /* 
 @font-face {
     font-family: "Gotham Narrow";
