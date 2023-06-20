@@ -45,7 +45,7 @@ function SignupFormPage() {
 
 
     const welcomeMessage =
-        "By creating an account you'll instantly earn 50 rewards points and gain easy access to your order status and order history. Earn an additional 25 rewards points for adding in your birthday.";
+        "By creating an account you'll instantly earn 50 rewards points and gain easy access to your order status and order history.";
 
     return (
         <div className="signup-container">

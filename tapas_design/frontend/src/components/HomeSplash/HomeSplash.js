@@ -1,5 +1,6 @@
 import React from "react";
 import Splash from './splash-home.png'
+import './HomeSplash.css'
 
 function HomeSplash() {
     return (
