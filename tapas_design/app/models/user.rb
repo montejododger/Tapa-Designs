@@ -1,6 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  first_name      :string           not null
+#  last_name       :string           not null
+#
 class User < ApplicationRecord
   has_secure_password
   before_validation :ensure_session_token
+
+  validates :first_name, :last_name,
+  length: { in: 2..25 },
+  format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
 
   validates :email,
     uniqueness: true,
