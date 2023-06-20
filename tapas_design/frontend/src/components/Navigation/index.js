@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import HeaderBanner from "./HeaderBanner";
@@ -47,10 +47,7 @@ function Navigation() {
                     </div>
                     <div className="navbar-right">
                         <ul>
-                            <li>
-                                <Link></Link>
-                                {sessionLinks}
-                            </li>
+                            <li>{sessionLinks}</li>
                         </ul>
                     </div>
                 </nav>
