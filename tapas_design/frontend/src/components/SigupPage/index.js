@@ -7,33 +7,46 @@ import "./SignupForm.css";
 function SignupFormPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    // TODO: set last and first name
-    const [firstName] = useState("");
-    const [lastName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [redirect, setRedirect] = useState(false);
 
     if (sessionUser) return <Redirect to="/" />;
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (password === confirmPassword) {
+    //         setErrors([]);
+    //         return dispatch(sessionActions.signup({ email, password })).then(
+    //             async (res) => {
+    //                 let data = await res.json();
+    //                 if (data?.errors) setErrors(data.errors);
+    //                 else if (data) setErrors([data]);
+    //                 else setErrors([res.statusText]);
+    //             }
+    //         );
+    //     }
+    //     return setErrors([
+    //         "Confirm Password field must be the same as the Password field",
+    //     ]);
+    // };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password === confirmPassword) {
-            setErrors([]);
-            return dispatch(sessionActions.signup({ email, password })).then(
-                async (res) => {
-                    let data = await res.json();
-                    if (data?.errors) setErrors(data.errors);
-                    else if (data) setErrors([data]);
-                    else setErrors([res.statusText]);
-                }
-            );
-        }
-        return setErrors([
-            "Confirm Password field must be the same as the Password field",
-        ]);
+        setErrors([]);
+
+        return dispatch(
+            sessionActions.signup({ email, password, firstName, lastName })
+        ).then(async (res) => {
+            let data = await res.json();
+            if (data?.errors) setErrors(data.errors);
+            else if (data) setErrors([data]);
+            else setErrors([res.statusText]);
+        });
     };
 
     const handleClick = (e) => {
@@ -43,7 +56,6 @@ function SignupFormPage() {
     if (redirect) {
         return <Redirect to={"/login"} />;
     }
-
 
     const welcomeMessage =
         "By creating an account you'll instantly earn 50 rewards points and gain easy access to your order status and order history.";
@@ -62,14 +74,14 @@ function SignupFormPage() {
                 <p className="signup-descrip">{welcomeMessage}</p>
                 <br />
                 <div className="signup-fields">
-                    {/* TODO: add onchange once i update backend and remove readonly*/}
                     <label className="signup-labels">
                         First Name
                         <input
                             type="text"
                             value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
                             className="input-field"
-                            readOnly
+                            required
                         />
                     </label>
                     <label className="signup-labels">
@@ -77,8 +89,9 @@ function SignupFormPage() {
                         <input
                             type="text"
                             value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
                             className="input-field"
-                            readOnly
+                            required
                         />
                     </label>
                     <label className="signup-labels">
@@ -101,7 +114,7 @@ function SignupFormPage() {
                             required
                         />
                     </label>
-                    <label className="signup-labels">
+                    {/* <label className="signup-labels">
                         Confirm Password
                         <input
                             className="input-field"
@@ -110,10 +123,13 @@ function SignupFormPage() {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
-                    </label>
+                    </label> */}
                 </div>
                 <div className="singup-buttons-container">
-                    <button className="create-account-button-signup" type="submit">
+                    <button
+                        className="create-account-button-signup"
+                        type="submit"
+                    >
                         CREATE ACCOUNT
                     </button>
                     <br />
