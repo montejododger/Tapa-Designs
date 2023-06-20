@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # TODO:
   #test route (custom)
   post "/api/test", to: "application#test"
-  get '*path', to: "static_pages#frontend_index"
+  get '*path', to: "static_pages#frontend"
   
 end
