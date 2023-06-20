@@ -54,7 +54,7 @@
 .dropdown {
     padding: 50px;
     display: inline-block;
-    font-family: "Gotham Narrow", Arial, sans-serif;
+    /* font-family: "Gotham Narrow", Arial, sans-serif; */
     font-weight: bold;
     letter-spacing: 3px;
 }
@@ -65,7 +65,7 @@
 }
 
 .login-links {
-    font-family: "Gotham Narrow", Arial, sans-serif;
+    /* font-family: "Gotham Narrow", Arial, sans-serif; */
     font-size: 18px;
     font-weight: lighter;
     color: #202020;

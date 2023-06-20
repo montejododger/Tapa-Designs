@@ -18,7 +18,7 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module AuthenticateMe
+module TapasDesign
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     # TODO: remove this when csrf is setup
@@ -26,7 +26,7 @@ module AuthenticateMe
     config.load_defaults 7.0
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-      key: '_auth_me_session',
+      key: '_tapa_designs_session',
       same_site: :lax, 
       secure: Rails.env.production?
 
