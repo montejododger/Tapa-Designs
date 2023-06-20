@@ -62,13 +62,14 @@ function SignupFormPage() {
                 <p className="signup-descrip">{welcomeMessage}</p>
                 <br />
                 <div className="signup-fields">
-                    {/* TODO: add onchange once i update backend */}
+                    {/* TODO: add onchange once i update backend and remove readonly*/}
                     <label className="signup-labels">
                         First Name
                         <input
                             type="text"
                             value={firstName}
                             className="input-field"
+                            readOnly
                         />
                     </label>
                     <label className="signup-labels">
@@ -77,6 +78,7 @@ function SignupFormPage() {
                             type="text"
                             value={lastName}
                             className="input-field"
+                            readOnly
                         />
                     </label>
                     <label className="signup-labels">
