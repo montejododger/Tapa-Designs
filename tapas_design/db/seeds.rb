@@ -40,7 +40,7 @@ ApplicationRecord.transaction do
 
 
 
-    p1 = Product.create!({
+      Product.create!({
       name: "DIRT SHIRT - SHORT SLEEVE - MEN'S",
       description: "
       Our Dirt Shirt can handle whatever you throw at it. Made from organic cotton with just the right amount of stretch, this button-up has a casual look that performs equally as well around town, on a hike, or on the bike.",
@@ -50,7 +50,7 @@ ApplicationRecord.transaction do
       color: "Sand",
     })
 
-    p2 = Product.create!({
+    Product.create!({
       name: "DIRT HOODIE - MEN'S",
       description: "The Dirt Hoodie is the go-to wardrobe staple built with 100% organic, midweight brushed french terry cotton. With a matching drawcord to other pieces in the Dirt Collection line, this silhouette is unmistakably Topo.",
       price: 119.00,
@@ -59,7 +59,7 @@ ApplicationRecord.transaction do
       color: "Natural",
     })
 
-    p3 = Product.create!({
+    Product.create!({
       name: "MOUNTAIN PANTS RIPSTOP - MEN'S",
       description: "The Mountain Pants Ripstop offer a new outdoor style with updates to a Topo Designs favorite. With an added double-knee layer for durability and an elastic waistband for an adjustable comfort fit, this pant is made with a cotton and nylon blend, giving it a broken-in feel from the start. We've added a little bit of spandex to give it some stretch in just the right spots.",
       price: 129.00,
@@ -68,19 +68,20 @@ ApplicationRecord.transaction do
       color: "Earth",
     })
 
-    p4 = Product.create!({
+    Product.create!({
       name: "GLOBAL SHIRT - WOMEN'S",
       description: "Designed for outdoor, travel, and life—the Global Shirt combines effortless versatility with just enough thoughtful design details to make it a world-class piece.",
-      description: "",
+
       price: 109.00,
       category: "Women's",
       size: "M",
       color: "Olive",
     })
     
-    p5 = Product.create!({
+    Product.create!({
       name: "SHERPA JACKET - WOMEN'S - FINAL SALE",
-      price: 100,
+      description: "Fit for travel, our reversible Sherpa Jacket features fleece on one side, and a smooth, DWR-finished tech fabric on the other. Hand pockets on both sides and a reversible zipper make for an easy transition, whichever way you want to wear it.",
+      price: 85.00,
       category: "Women's",
       size: "L",
       color: "Black",

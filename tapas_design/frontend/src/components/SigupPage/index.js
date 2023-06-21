@@ -11,29 +11,11 @@ function SignupFormPage() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [redirect, setRedirect] = useState(false);
 
     if (sessionUser) return <Redirect to="/" />;
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (password === confirmPassword) {
-    //         setErrors([]);
-    //         return dispatch(sessionActions.signup({ email, password })).then(
-    //             async (res) => {
-    //                 let data = await res.json();
-    //                 if (data?.errors) setErrors(data.errors);
-    //                 else if (data) setErrors([data]);
-    //                 else setErrors([res.statusText]);
-    //             }
-    //         );
-    //     }
-    //     return setErrors([
-    //         "Confirm Password field must be the same as the Password field",
-    //     ]);
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
