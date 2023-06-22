@@ -2,7 +2,7 @@ import React from "react";
 // import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 
-function ProductShowItem({ product }) {
+function ProductShow({ product }) {
     // TODO: ADD FUNCTIONALITY OF BUTTON TO ADD TO CART
     // const dispatch = useDispatch();
 
@@ -13,4 +13,4 @@ function ProductShowItem({ product }) {
         </div>
     );
 }
-export default ProductShowItem;
+export default ProductShow;

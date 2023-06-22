@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SigupPage";
-import ProductIndex from "./components/products/ProductIndexPage/ProductIndex";
+import ProductIndex from "./components/products/ProductIndex";
+import ProductShow from "./components/products/ProductShow";
 import Navigation from "./components/Navigation";
 import BottomBanner from "./components/Navigation/BottomBanner";
 import HomeSplash from "./components/HomeSplash/HomeSplash";
@@ -13,8 +14,11 @@ function App() {
             <div className="whole-app">
                 <Navigation />
                 <Switch>
-                    <Route path='/products'>
-                        <ProductIndex/>
+                    <Route exacr path="/products/:productId">
+                        <ProductShow />
+                    </Route>
+                    <Route exact path="/products">
+                        <ProductIndex />
                     </Route>
                     <Route path="/login">
                         <LoginFormPage />

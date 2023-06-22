@@ -9,6 +9,7 @@ import configureStore from "./store/index";
 import { csrfFetch } from "./store/csrf";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer";
 import * as sessionActions from "./store/session";
+import * as productActions from "./store/productsReducer"
 
 //testing
 // TODO: take out after production
@@ -21,6 +22,9 @@ if (process.env.NODE_ENV !== "production") {
     window.logoutUser = logoutUser;
     window.csrfFetch = csrfFetch;
     window.sessionActions = sessionActions;
+    window.productActions = productActions
+
+    // window.
     //window.
 }
 

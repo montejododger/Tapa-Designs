@@ -61,6 +61,7 @@ function SignupFormPage() {
                         <input
                             type="text"
                             value={firstName}
+                            placeholder="First Name"
                             onChange={(e) => setFirstName(e.target.value)}
                             className="input-field"
                             required
@@ -71,6 +72,7 @@ function SignupFormPage() {
                         <input
                             type="text"
                             value={lastName}
+                            placeholder="Last Name"
                             onChange={(e) => setLastName(e.target.value)}
                             className="input-field"
                             required
@@ -91,21 +93,12 @@ function SignupFormPage() {
                         <input
                             className="input-field"
                             type="password"
+                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                     </label>
-                    {/* <label className="signup-labels">
-                        Confirm Password
-                        <input
-                            className="input-field"
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </label> */}
                 </div>
                 <div className="singup-buttons-container">
                     <button
