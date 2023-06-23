@@ -17,7 +17,6 @@ export const receiveProduct = (product) => {
     };
 };
 
-
 // THUNK ACTON CREATORS
 export const fetchProducts = () => async (dispatch) => {
     const res = await fetch("/api/products");
@@ -30,9 +29,10 @@ export const fetchProducts = () => async (dispatch) => {
 
 export const fetchProduct = (productId) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}`);
-
+    console.log(res);
     if (res.ok) {
         const product = await res.json();
+
         dispatch(receiveProduct(product));
     }
 };
@@ -41,11 +41,11 @@ export const productsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
 
+
     switch (action.type) {
         case RECEIVE_PRODUCTS:
-
             newState = { ...state };
-            return {...newState, ...action.products}
+            return { ...newState, ...action.products };
         case RECEIVE_PRODUCT:
             newState = { ...state };
             return { ...newState, [action.product.id]: action.product };

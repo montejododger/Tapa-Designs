@@ -55,5 +55,3 @@ if (
 } else {
     renderApplication();
 }
-// we get our csrf token and potentianlly a current user before initializing our app
-// restoreSession().then(initializeApp);

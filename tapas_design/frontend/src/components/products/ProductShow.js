@@ -1,16 +1,32 @@
 import React from "react";
-// import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProduct } from "../../store/productsReducer";
+import ProductShowImgSide from "./ProductShowImgSide";
+import "./ProductShow.css";
 
-function ProductShow({ product }) {
-    // TODO: ADD FUNCTIONALITY OF BUTTON TO ADD TO CART
-    // const dispatch = useDispatch();
+function ProductShow() {
+    const dispatch = useDispatch();
+    const { productId } = useParams();
+    const product = useSelector((state) => state.products[productId]);
+
+    useEffect(() => {
+        if (productId) {
+            dispatch(fetchProduct(productId));
+        }
+    }, [dispatch, productId]);
+
+    if (product === undefined) {
+        return null;
+    }
 
     return (
-        <div>
-            <Link to={`/products/${product.id}`}>{product.name}</Link>
-            <button>(REMOVE FROM CART)</button>
+        <div className="product-show-wrapper">
+            <ProductShowImgSide photos={product.photos} />
         </div>
     );
 }
+
+
 export default ProductShow;

@@ -61,12 +61,7 @@ require 'open-uri'
       color: "Natural",
     })
 
-    p2.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
-    p2.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
-    p2.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
-    p2.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
-
-    Product.create!({
+    p3 = Product.create!({
       name: "MOUNTAIN PANTS RIPSTOP - MEN'S",
       description: "The Mountain Pants Ripstop offer a new outdoor style with updates to a Topo Designs favorite. With an added double-knee layer for durability and an elastic waistband for an adjustable comfort fit, this pant is made with a cotton and nylon blend, giving it a broken-in feel from the start. We've added a little bit of spandex to give it some stretch in just the right spots.",
       price: 129.00,
@@ -75,25 +70,62 @@ require 'open-uri'
       color: "Earth",
     })
 
-    p3 = Product.create!({
+    p4= Product.create!({
       name: "GLOBAL SHIRT - WOMEN'S",
       description: "Designed for outdoor, travel, and life—the Global Shirt combines effortless versatility with just enough thoughtful design details to make it a world-class piece.",
 
       price: 109.00,
       category: "Womens",
       size: "XS S M L XL",
-      color: "Olive",
+      color: "Sand Brick Pond Blue Olive Black",
     })
-    
-    p4 = Product.create!({
-      name: "SHERPA JACKET - WOMEN'S - FINAL SALE",
+  
+    p5 = Product.create!({
+      name: "SHERPA JACKET - WOMEN'S",
       description: "Fit for travel, our reversible Sherpa Jacket features fleece on one side, and a smooth, DWR-finished tech fabric on the other. Hand pockets on both sides and a reversible zipper make for an easy transition, whichever way you want to wear it.",
       price: 85.00,
       category: "Womens",
       size: "XS S M L XL",
       color: "Black",
     })
+    
+    p6 = Product.create!({
+      name: "SHERPA JACKET - WOMEN'S - SALE",
+      description: "Fit for travel, our reversible Sherpa Jacket features fleece on one side, and a smooth, DWR-finished tech fabric on the other. Hand pockets on both sides and a reversible zipper make for an easy transition, whichever way you want to wear it.",
+      price: 85.00,
+      category: "Womens",
+      size: "XS S M L XL",
+      color: "Sand Brick Pond Blue Olive Black",
+    })
+    
+    p7 = Product.create!({
+      name: "SHERPA JACKET - WOMEN'S FINAL SALE",
+      description: "Fit for travel, our reversible Sherpa Jacket features fleece on one side, and a smooth, DWR-finished tech fabric on the other. Hand pockets on both sides and a reversible zipper make for an easy transition, whichever way you want to wear it.",
+      price: 85.00,
+      category: "Womens",
+      size: "XS S M L XL",
+      color: "Black",
+    })
+    
+    p8 = Product.create!({
+      name: "SHERPA JACKET - WOMEN FINAL SALE",
+      description: "Fit for travel, our reversible Sherpa Jacket features fleece on one side, and a smooth, DWR-finished tech fabric on the other. Hand pockets on both sides and a reversible zipper make for an easy transition, whichever way you want to wear it.",
+      price: 85.00,
+      category: "Womens",
+      size: "XS S M L XL",
+      color: "Sand Brick Pond Blue Olive Black",
+    })
 
+
+    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
+    p2.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+    p3.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+    p4.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
+
+    p5.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
+    p6.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+    p7.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+    p8.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
 
     puts 'Done Creating Products"'
     

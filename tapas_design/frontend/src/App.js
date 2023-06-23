@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SigupPage/index.js";
-import ProductIndex from "./components/products/ProductIndex";
+import ProductHome from "./components/products/ProductHome";
 import ProductShow from "./components/products/ProductShow";
 import Navigation from "./components/Navigation";
 import BottomBanner from "./components/Navigation/BottomBanner";
@@ -18,7 +18,7 @@ function App() {
                         <ProductShow />
                     </Route>
                     <Route exact path="/products">
-                        <ProductIndex />
+                        <ProductHome />
                     </Route>
                     <Route path="/login">
                         <LoginFormPage />

@@ -20,17 +20,12 @@ function ProductIndex() {
     }, [dispatch]);
 
     return (
-        <div className="product-index-container">
-            <div>
-                
-            </div>
-            <p className="p-i-header">Index Header</p>
-            <div className="p-i-items">
-                {products.map((product) => (
-                    <ProductIndexItem product={product} key={product.id} />
-                ))}
-            </div>
-        </div>
+        <section className="product-index-wrapper">
+            {/* <p>Index Header Bar</p> */}
+            {products.map((product) => (
+                <ProductIndexItem product={product} key={product.id} />
+            ))}
+        </section>
     );
 }
 

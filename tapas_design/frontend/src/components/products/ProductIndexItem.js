@@ -3,22 +3,24 @@ import { Link } from "react-router-dom";
 
 function ProductIndexItem({ product }) {
     const photo = product.photos[0];
-
+    console.log(product.id);
     return (
-        <div className="index-item-container">
-            <div className="index-img-container">
+        <li className="product-item-wrapper">
+
+
+            <div className="product-img-container">
                 <Link to={`/products/${product.id}`}>
                     <img src={photo} alt={`${product.name}`} />
                 </Link>
             </div>
-            <div className="index-item-info-container">
+            <div className="product-index-item-container">
                 <span className="i-i-color">{product.color}</span>
                 <br />
                 <p className="index-name-container">{product.name}</p>
                 <br />
                 <p className="index-price-container">${product.price}.00</p>
             </div>
-        </div>
+        </li>
     );
 }
 
