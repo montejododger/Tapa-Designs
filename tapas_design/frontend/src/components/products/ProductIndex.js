@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { Link } from "react-router-dom";
 import { fetchProducts } from "../../store/productsReducer";
+import ProductIndexItem from "./ProductIndexItem";
 import "./ProductIndex.css";
 
 const selectProducts = createSelector(
@@ -20,32 +20,16 @@ function ProductIndex() {
     }, [dispatch]);
 
     return (
-        <div>
-            <ul>
+        <div className="product-index-container">
+            <div>
+                
+            </div>
+            <p className="p-i-header">Index Header</p>
+            <div className="p-i-items">
                 {products.map((product) => (
-                    <div key={product.id}>
-                        <p>{product.name}</p>
-                        <br />
-                        <p>{product.description}</p>
-                        <br />
-                        {product.photos.map((photo, index) => {
-                            return (
-                                <Link
-                                    to={`${product.id} ${index + 1}`}
-                                    key={index}
-                                >
-                                    <img
-                                        src={photo}
-                                        alt={`${product.name} ${index + 1} `}
-                                        key={index}
-                                    />
-                                </Link>
-                            );
-                        })}
-                    </div>
+                    <ProductIndexItem product={product} key={product.id} />
                 ))}
-            </ul>
-            <Link to="/">Home</Link>
+            </div>
         </div>
     );
 }

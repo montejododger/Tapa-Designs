@@ -17,15 +17,6 @@ export const receiveProduct = (product) => {
     };
 };
 
-//  SELECTORS
-
-// export const getProducts = (state) => {
-//     return state?.product ? Object.values(state.products) : [];
-// };
-
-// export const getProduct = (productId) => (state) => {
-//     return state?.product ? state.[actions] : nil;
-// };
 
 // THUNK ACTON CREATORS
 export const fetchProducts = () => async (dispatch) => {
@@ -52,6 +43,7 @@ export const productsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_PRODUCTS:
+
             newState = { ...state };
             return {...newState, ...action.products}
         case RECEIVE_PRODUCT:

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SigupPage";
+import SignupFormPage from "./components/SigupPage/index.js";
 import ProductIndex from "./components/products/ProductIndex";
 import ProductShow from "./components/products/ProductShow";
 import Navigation from "./components/Navigation";
