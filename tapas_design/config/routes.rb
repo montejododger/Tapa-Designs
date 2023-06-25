@@ -5,10 +5,18 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:create]
+    resources :users, only: [:create] do
+      #  this allows the user to see his reviews on his profile 
+      # 
+      resources :reviews, only: [:index]
+    end
     resource :session, only: [:show, :create, :destroy]
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show] do
+      # allows a product to show its reviews and creadte update and delete
+      resources :reviews, only: [:index, :create, :update, :destroy]
+    end
   end
+
 
 
   #test route (custom)

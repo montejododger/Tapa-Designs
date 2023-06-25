@@ -29,4 +29,4 @@ export const csrfFetch = async (url, options = {}) => {
     return res;
 };
 
-// export default csrfFetch;
+export default csrfFetch;

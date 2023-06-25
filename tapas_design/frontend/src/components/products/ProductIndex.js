@@ -19,6 +19,8 @@ function ProductIndex() {
         dispatch(fetchProducts());
     }, [dispatch]);
 
+    if (products === undefined) return null;
+
     return (
         <section className="product-index-wrapper">
             {/* <p>Index Header Bar</p> */}

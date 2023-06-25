@@ -3,8 +3,8 @@ import { csrfFetch } from "./csrf";
 // Set and Remove Current User
 
 // ACTION CONSTANTS
-const SET_CURRENT_USER = "session/setCurrentUser";
-const REMOVE_CURRENT_USER = "session/removeCurrentUser";
+const SET_CURRENT_USER = "session/SET_CURRENT_USER";
+const REMOVE_CURRENT_USER = "session/REMOVE_CURRENT_USER";
 
 // ACTION CREATORS
 export const setCurrentUser = (user) => {

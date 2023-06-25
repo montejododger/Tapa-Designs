@@ -14,7 +14,7 @@ function App() {
             <div className="whole-app">
                 <Navigation />
                 <Switch>
-                    <Route exacr path="/products/:productId">
+                    <Route exact path="/products/:productId">
                         <ProductShow />
                     </Route>
                     <Route exact path="/products">

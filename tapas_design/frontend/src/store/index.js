@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import usersReducer from "./usersReducer";
 import productsReducer from "./productsReducer";
 import session from "./session";
+import reviewsReducer from "./reviews";
 
 // Import your individual reducers here:
 // import session from './session'
@@ -26,10 +27,11 @@ const rootReducer = combineReducers({
     // cart,
     session,
     users: usersReducer,
-    products: productsReducer
+    products: productsReducer,
+    reviews: reviewsReducer,
 });
 
-const configureStore = (preloadedState =  {}) => {
+const configureStore = (preloadedState = {}) => {
     return createStore(rootReducer, preloadedState, enhancer);
 };
 

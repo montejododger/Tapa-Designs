@@ -128,6 +128,22 @@ require 'open-uri'
     p8.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
 
     puts 'Done Creating Products"'
+
+    puts 'Creating Reviews'
+
+    Product.all.map do |product|
+      3.times do
+        Review.create!(
+          title: Faker::Movies::Lebowski.character, 
+          rating: rand(2..5),
+          body: Faker::Movies::Lebowski.quote,
+          user_id: rand(2..9), # assuming that user with id 1
+          product_id: product.id
+        )
+      end
+    end
+
+    puts 'Done Creating Reviews'
     
 
 

@@ -1,3 +1,6 @@
+import csrfFetch from "./csrf";
+import { receiveReviews } from "./reviews";
+
 // ACTION CONSTANTS
 const RECEIVE_PRODUCTS = "products/RECEIVER_PRODUCTS";
 const RECEIVE_PRODUCT = "products/RECEIVER_PRODUCT";
@@ -31,9 +34,10 @@ export const fetchProduct = (productId) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}`);
     console.log(res);
     if (res.ok) {
-        const product = await res.json();
-
-        dispatch(receiveProduct(product));
+        const data = await res.json();
+        // its now a data object that has a product and all its reviews in a single fetch
+        dispatch(receiveProduct(data.product));
+        dispatch(receiveReviews(data.reviews));
     }
 };
 
@@ -41,11 +45,9 @@ export const productsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
 
-
     switch (action.type) {
         case RECEIVE_PRODUCTS:
-            newState = { ...state };
-            return { ...newState, ...action.products };
+            return { ...action.products };
         case RECEIVE_PRODUCT:
             newState = { ...state };
             return { ...newState, [action.product.id]: action.product };

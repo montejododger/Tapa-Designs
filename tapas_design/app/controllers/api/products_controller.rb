@@ -5,8 +5,15 @@ class Api::ProductsController < ApplicationController
     end
 
     def show
-        @product = Product.find(params[:id])
-        render :show
+
+        @product = Product.find_by(id: params[:id])
+
+        if @product 
+            render :show 
+        else
+            render json: { errors: 'Listing not Found'}, status: 422
+        end
+        # render :show
     end
 
     # TODO: make a search method
