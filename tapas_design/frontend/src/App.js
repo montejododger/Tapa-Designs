@@ -7,6 +7,7 @@ import ProductShow from "./components/products/ProductShow";
 import Navigation from "./components/Navigation";
 import BottomBanner from "./components/Navigation/BottomBanner";
 import HomeSplash from "./components/HomeSplash/HomeSplash";
+import ReviewHome from "./components/Reviews/ReviewHome";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Switch>
                     <Route exact path="/products/:productId">
                         <ProductShow />
+                        <ReviewHome/>
                     </Route>
                     <Route exact path="/products">
                         <ProductHome />

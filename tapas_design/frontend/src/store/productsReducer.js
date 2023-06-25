@@ -1,4 +1,3 @@
-import csrfFetch from "./csrf";
 import { receiveReviews } from "./reviews";
 
 // ACTION CONSTANTS
@@ -32,10 +31,11 @@ export const fetchProducts = () => async (dispatch) => {
 
 export const fetchProduct = (productId) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}`);
-    console.log(res);
+
     if (res.ok) {
         const data = await res.json();
         // its now a data object that has a product and all its reviews in a single fetch
+        // all thru JBUILDER
         dispatch(receiveProduct(data.product));
         dispatch(receiveReviews(data.reviews));
     }
