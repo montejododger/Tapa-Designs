@@ -1,0 +1,19 @@
+.review-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-body-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+
+}

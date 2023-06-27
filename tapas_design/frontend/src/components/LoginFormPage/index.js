@@ -16,18 +16,40 @@ export const LoginFormPage = () => {
     if (sessionUser) return <Redirect to="/" />;
 
     //when form button submitted
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     // resetting setErrors to an empty array each time
+    //     setErrors([]);
+    //     // this is calling Login thunk action from session.js
+    //     return dispatch(sessionActions.login({ email, password })).then(
+    //         async (res) => {
+    //             let data = await res.json();
+    //             if (data?.errors) setErrors(data.errors);
+    //             else if (data) setErrors([data]);
+    //             else setErrors([res.statusText]);
+    //         }
+    //     );
+    // };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         // resetting setErrors to an empty array each time
         setErrors([]);
         // this is calling Login thunk action from session.js
         return dispatch(sessionActions.login({ email, password })).then(
             async (res) => {
-                let data = await res.json();
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
+                if (res.ok) { // Check if login was successful
+                    const prevUrl = localStorage.getItem('prevUrl');
+                    window.location.href = prevUrl ? prevUrl : '/'; // Navigate to the previous page, or home page if no previous page
+                    localStorage.removeItem('prevUrl'); // Remove the stored url after using it
+                } else {
+                    let data = await res.json();
+                    if (data?.errors) setErrors(data.errors);
+                    else if (data) setErrors([data]);
+                    else setErrors([res.statusText]);
+                }
             }
         );
     };

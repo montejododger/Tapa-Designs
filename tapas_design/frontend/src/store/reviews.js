@@ -1,6 +1,5 @@
 import csrfFetch from "./csrf";
 
-
 //  ACTION CONSTANTS
 export const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 export const RECEIVE_REVIEW = "reviews/RECEIVE_REVIEW";
@@ -29,10 +28,10 @@ export const removeReview = (reviewId) => {
 
 // TODO: might have to change these to product on update and delete instead of productID
 
-
 // THUNK ACTION CREATORS
 
 export const createReview = (productId, review) => async (dispatch) => {
+    // console.log(productId);
     const res = await csrfFetch(`/api/products/${productId}/reviews`, {
         method: "Post",
         headers: {
@@ -42,8 +41,8 @@ export const createReview = (productId, review) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const review = await res.json();
-        dispatch(receiveReview(review));
+        const data = await res.json();
+        dispatch(receiveReview(data.review));
     }
 };
 
@@ -59,9 +58,12 @@ export const updateReview = (productId, review) => async (dispatch) => {
         }
     );
 
+
+
     if (res.ok) {
-        const review = await res.json();
-        dispatch(receiveReview(review));
+        const data = await res.json();
+        debugger
+        dispatch(receiveReviews(data.reviews));
     }
 };
 
@@ -79,7 +81,6 @@ export const deleteReview = (productId, reviewId) => async (dispatch) => {
 };
 
 // TODO: MAKE A FETCH-USER-REVIEWS THUNK
-
 
 // REDUCER
 

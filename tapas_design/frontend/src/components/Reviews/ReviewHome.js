@@ -1,27 +1,16 @@
 import React from "react";
-import { createSelector } from "reselect";
-import { useSelector } from "react-redux";
 import ReviewBody from "./ReviewBody";
-import ReviewForm from "./ReviewForm";
+import ReviewStarHeader from "./ReviewStarHeader";
+import ReviewHeader from "./ReviewHeader";
 
-const selectReviews = createSelector(
-    (state) => state.reviews,
-    (reviews) => Object.values(reviews)
-);
+import "./Reviews.css";
 
 const ReviewHome = () => {
-    const reviews = useSelector(selectReviews);
-
     return (
         <section className="review-wrapper">
-            <div className="review-title-container">
-                <h3>REVIEWS & RATINGS</h3>
-            </div>
-            <ReviewStarHeader/>
-            <ReviewForm/>
-            {reviews.map((review) => (
-                <ReviewBody key={review.id} review={review} />
-            ))}
+            <ReviewHeader />
+            <ReviewStarHeader />
+            <ReviewBody />
         </section>
     );
 };

@@ -16,6 +16,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         @review.user_id = current_user.id # sets the user id of the review to the current user
+        @review.product_id = params[:product_id]
 
         if @review.save
             render :show
@@ -26,10 +27,15 @@ class Api::ReviewsController < ApplicationController
 
 
     def update
+        debugger
+        # need to find review to edit
+        # need to grab the product so you can use the jBUILDer
         @review = current_user.reviews.find(params[:id])
+        @product = Product.find_by(id: params[:product_id])
 
+        # render the show page view
         if @review.update(review_params)
-            render :show
+            render '/api/products/show'
         else
             render json: @review.errors.full_messages, status: 422
         end

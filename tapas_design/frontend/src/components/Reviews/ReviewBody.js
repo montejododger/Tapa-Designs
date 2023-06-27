@@ -1,24 +1,25 @@
-import React from "react"
+import React from "react";
+import ReviewBodyItem from "./ReviewBodyItem";
+import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
 
-const ReviewBody = ({review}) => {
+function ReviewBody() {
+
+    const selectReviews = createSelector(
+        (state) => state.reviews,
+        (reviews) => Object.values(reviews)
+    );
+
+    const reviews = useSelector(selectReviews);
 
 
     return (
-        <div>
-            <p>{review.title}</p>
-            <p>{review.body}</p>
-            <p>{review.title}</p>
-        </div>
-    )
+        <section className="review-body-wrapper">
+            {reviews.map((review) => (
+                <ReviewBodyItem review={review} />
+            ))}
+        </section>
+    );
 }
 
-export default ReviewBody
-
-// #  id         :bigint       
-// #  title      :string  
-// #  body       :string  
-// #  rating     :integer
-// #  user_id    :bigint  
-// #  product_id :bigint  
-// #  created_at :datetime
-// #  updated_at :datetime
+export default ReviewBody;

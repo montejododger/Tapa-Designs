@@ -16,6 +16,19 @@ function SignupFormPage() {
 
     if (sessionUser) return <Redirect to="/" />;
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     setErrors([]);
+
+    //     return dispatch(
+    //         sessionActions.signup({ email, password, firstName, lastName })
+    //     ).then(async (res) => {
+    //         let data = await res.json();
+    //         if (data?.errors) setErrors(data.errors);
+    //         else if (data) setErrors([data]);
+    //         else setErrors([res.statusText]);
+    //     });
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,10 +37,17 @@ function SignupFormPage() {
         return dispatch(
             sessionActions.signup({ email, password, firstName, lastName })
         ).then(async (res) => {
-            let data = await res.json();
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
+            if (res.ok) {
+                // Check if signup was successful
+                const prevUrl = localStorage.getItem("prevUrl");
+                window.location.href = prevUrl ? prevUrl : "/"; // Navigate to the previous page, or home page if no previous page
+                localStorage.removeItem("prevUrl"); // Remove the stored url after using it
+            } else {
+                let data = await res.json();
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            }
         });
     };
 
