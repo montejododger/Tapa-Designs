@@ -1,10 +1,21 @@
 import React from "react";
+import { createSelector } from "reselect";
+import { useSelector } from "react-redux";
 import StarDisplay from "./StarDisplay";
 
-const AverageStarRating = ({ ratings }) => {
-    const averageRating = ratings.reduce((total, num) => total + num, 0) / ratings.length;
+const StarAvg = () => {
+    const selectReviews = createSelector(
+        (state) => state.reviews,
+        (reviews) => Object.values(reviews)
+    );
+
+    const reviews = useSelector(selectReviews);
+    const ratings = reviews.map((review) => review.rating)
+
+    const averageRating =
+        ratings.reduce((total, num) => total + num, 0) / ratings.length;
 
     return <StarDisplay rating={Math.round(averageRating)} />;
 };
 
-export default AverageStarRating;
+export default StarAvg;

@@ -62,7 +62,6 @@ export const updateReview = (productId, review) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        debugger
         dispatch(receiveReviews(data.reviews));
     }
 };

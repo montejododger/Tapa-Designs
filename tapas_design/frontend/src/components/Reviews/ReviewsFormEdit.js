@@ -5,18 +5,18 @@ import * as ReviewActions from "../../store/reviews";
 
 function ReviewEditForm({ review, onFinishEdit }) {
     const dispatch = useDispatch();
-    const [editedReviewTitle, setEditedReviewTitle] = useState(review.title);
-    const [editedReviewBody, setEditedReviewBody] = useState(review.body);
-    const [editedReviewRating, setEditedReviewRating] = useState(review.rating);
+    const [title, setTitle] = useState(review.title);
+    const [body, setBody] = useState(review.body);
+    const [rating, setRating] = useState(review.rating);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const editedReview = {
             id: review.id,
-            title: editedReviewTitle,
-            body: editedReviewBody,
-            rating: editedReviewRating,
+            title: title,
+            body: body,
+            rating: rating,
         };
         dispatch(ReviewActions.updateReview(review.productId, editedReview));
         onFinishEdit();
@@ -26,21 +26,16 @@ function ReviewEditForm({ review, onFinishEdit }) {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={editedReviewTitle}
-                onChange={(e) => setEditedReviewTitle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
-                value={editedReviewBody}
-                onChange={(e) => setEditedReviewBody(e.target.value)}
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
             />
-
-            <input
-                type="number"
-                value={editedReviewRating}
-                min="1"
-                max="5"
-                onChange={(e) => setEditedReviewRating(e.target.value)}
-            />
+            <StarRating 
+            rating={rating} 
+            setRating={setRating}/>
             <button type="submit">Submit</button>
             <button onClick={onFinishEdit}>Cancel</button>
         </form>

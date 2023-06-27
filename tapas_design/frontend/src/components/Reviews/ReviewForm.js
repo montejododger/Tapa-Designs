@@ -64,10 +64,8 @@ const ReviewForm = () => {
                         <li key={index}>{error}</li>
                     ))}
                 </ul>
-                <label>
-                    Score:
-                    <StarRating rating={rating} setRating={setRating} />
-                </label>
+                <label /> Score:
+                <StarRating rating={rating} setRating={setRating} />
                 <label>
                     Title:
                     <input

@@ -39,5 +39,3 @@ const StarRating = ({ rating, setRating }) => {
 };
 
 export default StarRating;
-
-

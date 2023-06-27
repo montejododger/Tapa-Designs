@@ -27,7 +27,6 @@ class Api::ReviewsController < ApplicationController
 
 
     def update
-        debugger
         # need to find review to edit
         # need to grab the product so you can use the jBUILDer
         @review = current_user.reviews.find(params[:id])

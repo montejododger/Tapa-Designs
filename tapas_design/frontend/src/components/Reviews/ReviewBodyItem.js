@@ -7,21 +7,18 @@ import * as ReviewActions from "../../store/reviews";
 const ReviewBodyItem = ({ review }) => {
     const dispatch = useDispatch();
 
-    const [editingReviewId, setEditingReviewId] = useState(null);
+    const [editReviewId, setEditReviewId] = useState(null);
 
     const currentUser = useSelector((state) => state.session.user);
 
     // this is to show the edit review or regular view
     const handleFinishEdit = () => {
-        setEditingReviewId(null);
+        setEditReviewId(null);
     };
-    console.log(review.id);
-
-    console.log(review);
 
     return (
         <section className="review-body-container">
-            {editingReviewId === review.id ? (
+            {editReviewId === review.id ? (
                 <ReviewEditForm
                     review={review}
                     onFinishEdit={handleFinishEdit}
@@ -30,9 +27,7 @@ const ReviewBodyItem = ({ review }) => {
                 <>
                     <p>{review.title}</p>
                     <p>{review.body}</p>
-                    <p>
-                        <StarDisplay rating={review.rating} />
-                    </p>
+                    <StarDisplay rating={review.rating} />
                     {currentUser && currentUser.id === review.userId && (
                         <>
                             <button
@@ -47,9 +42,7 @@ const ReviewBodyItem = ({ review }) => {
                             >
                                 Delete
                             </button>
-                            <button
-                                onClick={() => setEditingReviewId(review.id)}
-                            >
+                            <button onClick={() => setEditReviewId(review.id)}>
                                 Edit
                             </button>
                         </>

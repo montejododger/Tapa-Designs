@@ -11,12 +11,10 @@ function ReviewBody() {
     );
 
     const reviews = useSelector(selectReviews);
-
-
     return (
         <section className="review-body-wrapper">
             {reviews.map((review) => (
-                <ReviewBodyItem review={review} />
+                <ReviewBodyItem review={review} key={review.id} />
             ))}
         </section>
     );
