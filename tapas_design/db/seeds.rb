@@ -13,12 +13,14 @@ require 'open-uri'
     User.destroy_all
     Product.destroy_all
     Review.destroy_all
+    CartItem.destroy_all
   
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('products')
     ApplicationRecord.connection.reset_pk_sequence!('reviews')
+    ApplicationRecord.connection.reset_pk_sequence!('cart_items')
   
     puts "Creating users..."
     # Create one user with an easy to remember email, and password:
@@ -146,6 +148,14 @@ require 'open-uri'
     end
 
     puts 'Done Creating Reviews'
+    
+    
+    puts 'Creating Cart Items'
+
+    CartItem.create(user_id: 1,  product_id: 1, quantity: 2, options: 'small')
+    
+    
+    puts 'Done Creating Cart Items'
     
 
 
