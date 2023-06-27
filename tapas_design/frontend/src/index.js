@@ -11,6 +11,7 @@ import { createUser, loginUser, logoutUser } from "./store/usersReducer";
 import * as sessionActions from "./store/session";
 import * as productActions from "./store/productsReducer"
 
+
 //testing
 // TODO: take out after production
 const store = configureStore();

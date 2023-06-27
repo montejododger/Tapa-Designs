@@ -26,7 +26,6 @@ export const removeReview = (reviewId) => {
     };
 };
 
-// TODO: might have to change these to product on update and delete instead of productID
 
 // THUNK ACTION CREATORS
 

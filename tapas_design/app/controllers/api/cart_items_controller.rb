@@ -3,24 +3,30 @@ class Api::CartItemsController < ApplicationController
   before_action :require_logged_in, only: [:create, :update, :destory]
 
 
+  # grabs the items that belong to the current user
+
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(user_id: current_user.id)
     render :index
   end
 
-  def show
-    @cart_item = CartItem.find(params[:id])
-    render :show
-  end
 
-  # TODO: custom render might not be right / DOUBLE CHECK
+  # will never use this route
+
+  # def show
+  #   @cart_item = CartItem.find(params[:id])
+  #   render :show
+  # end
+
+  # what the servers response should be
 
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.user_id = current_user.id
+    @cart_item.quantity = 1
 
     if @cart_item.save
-      render '/api/products/show'
+      render :show
     else
       render json: @cart_item.errors.full_messages, status: 422
     end

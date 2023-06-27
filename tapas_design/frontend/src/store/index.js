@@ -4,6 +4,7 @@ import usersReducer from "./usersReducer";
 import productsReducer from "./productsReducer";
 import session from "./session";
 import reviewsReducer from "./reviews";
+import cartItemsReducer from "./cartItems";
 
 // Import your individual reducers here:
 // import session from './session'
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
     users: usersReducer,
     products: productsReducer,
     reviews: reviewsReducer,
+    cart: cartItemsReducer,
 });
 
 const configureStore = (preloadedState = {}) => {
