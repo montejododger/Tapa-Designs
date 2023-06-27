@@ -22,7 +22,6 @@ const ReviewForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let newErrors = [];
-        const author = currentUser.firstName;
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
@@ -47,7 +46,6 @@ const ReviewForm = () => {
         } else {
             // make the review object
             const review = {
-                author,
                 title,
                 body,
                 rating,
@@ -65,7 +63,6 @@ const ReviewForm = () => {
         <div>
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <h2>WRITE A REVIEW</h2>
-                <h3>{currentUser.firstName}</h3>
                 <ul className="form-errors-container">
                     {errors.map((error, index) => (
                         <li key={index}>{error}</li>

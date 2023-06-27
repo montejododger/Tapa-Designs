@@ -28,6 +28,8 @@ function ProfileButton({ user }) {
         dispatch(sessionActions.logout());
     };
 
+    // TODO: either have a button with an onclick or have the component do that and import it
+
     return (
         <>
             <button onClick={openMenu}>DropDown</button>
@@ -35,6 +37,10 @@ function ProfileButton({ user }) {
                 <ul className="profile-dropdown">
                     <li>{user.username}</li>
                     <li>{user.email}</li>
+                    <li>
+                        <button>Cart</button>
+                        {/* <CartIndex onClick={showCart}/> */}
+                    </li>
                     <li>
                         <button onClick={logout}>Log Out</button>
                     </li>

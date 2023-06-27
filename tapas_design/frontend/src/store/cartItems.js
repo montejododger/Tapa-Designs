@@ -40,14 +40,14 @@ export const fetchCartItems = () => async (dispatch) => {
 
 
 // TODO: i think its data then go data.cartItem
-export const fetchCartItem = (cartItemId) => async (dispatch) => {
-    const res = await fetch(`/api/cart_items/${cartItemId}`);
+// export const fetchCartItem = (cartItemId) => async (dispatch) => {
+//     const res = await fetch(`/api/cart_items/${cartItemId}`);
 
-    if (res.ok) {
-        const cartItem = await res.json();
-        dispatch(receiveCartItem(cartItem));
-    }
-};
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(receiveCartItem(data));
+//     }
+// };
 
 export const createCartItem = (cartItem) => async (dispatch) => {
     const res = await csrfFetch(`/api/cart_items/`, {
@@ -59,8 +59,8 @@ export const createCartItem = (cartItem) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const newCartItem = await res.json();
-        dispatch(receiveCartItem(newCartItem));
+        const data = await res.json();
+        dispatch(receiveCartItem(data.cartItem));
     }
 };
 

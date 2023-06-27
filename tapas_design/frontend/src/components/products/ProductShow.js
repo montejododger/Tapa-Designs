@@ -14,7 +14,7 @@ function ProductShow() {
 
     useEffect(() => {
         dispatch(fetchProduct(productId));
-    }, [dispatch]);
+    }, [dispatch, productId]);
 
     if (product === undefined) return null;
 

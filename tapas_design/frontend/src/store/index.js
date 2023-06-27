@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
     users: usersReducer,
     products: productsReducer,
     reviews: reviewsReducer,
-    cart: cartItemsReducer,
+    cartIndex: cartItemsReducer,
 });
 
 const configureStore = (preloadedState = {}) => {
