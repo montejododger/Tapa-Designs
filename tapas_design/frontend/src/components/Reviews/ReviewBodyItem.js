@@ -24,7 +24,7 @@ const ReviewBodyItem = ({ review }) => {
                     onFinishEdit={handleFinishEdit}
                 />
             ) : (
-                <>
+                <><h3>{review.author}</h3>
                     <p>{review.title}</p>
                     <p>{review.body}</p>
                     <StarDisplay rating={review.rating} />

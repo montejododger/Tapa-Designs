@@ -4,7 +4,6 @@ import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 
 function ReviewBody() {
-
     const selectReviews = createSelector(
         (state) => state.reviews,
         (reviews) => Object.values(reviews)

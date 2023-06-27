@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ReviewActions from "../../store/reviews";
 import StarRating from "./StarRating";
 
+// TODO: figure out how ot get user firstName to display with the review when it posts
+
 const ReviewForm = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
@@ -15,9 +17,12 @@ const ReviewForm = () => {
 
     const currentUser = useSelector((state) => state.session.user) || null;
 
+    // console.log(currentUser);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let newErrors = [];
+        const author = currentUser.firstName;
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
@@ -42,6 +47,7 @@ const ReviewForm = () => {
         } else {
             // make the review object
             const review = {
+                author,
                 title,
                 body,
                 rating,
@@ -59,6 +65,7 @@ const ReviewForm = () => {
         <div>
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <h2>WRITE A REVIEW</h2>
+                <h3>{currentUser.firstName}</h3>
                 <ul className="form-errors-container">
                     {errors.map((error, index) => (
                         <li key={index}>{error}</li>
