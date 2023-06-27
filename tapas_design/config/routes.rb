@@ -7,14 +7,15 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] do
       #  this allows the user to see his reviews on his profile 
-      # 
       resources :reviews, only: [:index]
     end
     resource :session, only: [:show, :create, :destroy]
     resources :products, only: [:index, :show] do
-      # allows a product to show its reviews and creadte update and delete
+      # allows a product to show its reviews and create update and delete
       resources :reviews, only: [:index, :create, :update, :destroy]
     end
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    
   end
 
 
