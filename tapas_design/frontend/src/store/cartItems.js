@@ -6,7 +6,12 @@ export const RECEIVE_CART_ITEMS = "cartItems/RECEIVE_CART_ITEMS";
 export const RECEIVE_CART_ITEM = "cartItems/RECEIVE_CART_ITEM";
 export const REMOVE_CART_ITEM = "cartItems/REMOVE_CART_ITEM";
 
+
+// actions hold DATA
+// returns an object
+
 export const receiveCartItems = (cartItems) => {
+    // debugger
     return {
         type: RECEIVE_CART_ITEMS,
         cartItems,
@@ -14,6 +19,7 @@ export const receiveCartItems = (cartItems) => {
 };
 
 export const receiveCartItem = (cartItem) => {
+    // debugger
     return {
         type: RECEIVE_CART_ITEM,
         cartItem,
@@ -27,7 +33,8 @@ export const removeCartItem = (cartItemId) => {
     };
 };
 
-// useEffec to index
+// thunk action interacts with backend/middle man
+// returns a function
 
 export const fetchCartItems = () => async (dispatch) => {
     const res = await fetch(`/api/cart_items`);
@@ -39,16 +46,6 @@ export const fetchCartItems = () => async (dispatch) => {
 };
 
 
-// TODO: i think its data then go data.cartItem
-// export const fetchCartItem = (cartItemId) => async (dispatch) => {
-//     const res = await fetch(`/api/cart_items/${cartItemId}`);
-
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(receiveCartItem(data));
-//     }
-// };
-
 export const createCartItem = (cartItem) => async (dispatch) => {
     const res = await csrfFetch(`/api/cart_items/`, {
         method: "POST",
@@ -59,12 +56,11 @@ export const createCartItem = (cartItem) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const data = await res.json();
-        dispatch(receiveCartItem(data.cartItem));
+        const cartItems = await res.json();
+        dispatch(receiveCartItems(cartItems));
     }
 };
 
-// TODO: what it dispatches might not be right, possibly
 
 export const updateCartItem = (cartItem) => async (dispatch) => {
     const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
@@ -91,13 +87,17 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
     }
 };
 
+
+// chooses which data to update STATE
+
 const cartItemsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
+    // debugger
 
     switch (action.type) {
         case RECEIVE_CART_ITEMS:
-            return { ...action.cart_items };
+            return { ...action.cartItems }; // returns index and changed to camelCase
         case RECEIVE_CART_ITEM:
             newState = { ...state };
             return { ...newState, [action.cartItem.id]: action.cartItem };

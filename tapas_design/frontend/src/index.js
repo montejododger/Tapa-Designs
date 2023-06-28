@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import './reset.css'
+import "./reset.css";
 import "./index.css";
 import App from "./App";
 import configureStore from "./store/index";
 import { csrfFetch } from "./store/csrf";
 import { createUser, loginUser, logoutUser } from "./store/usersReducer";
 import * as sessionActions from "./store/session";
-import * as productActions from "./store/productsReducer"
-
+import * as productActions from "./store/productsReducer";
+import * as cartActions from "./store/cartItems";
 
 //testing
 // TODO: take out after production
@@ -23,7 +23,8 @@ if (process.env.NODE_ENV !== "production") {
     window.logoutUser = logoutUser;
     window.csrfFetch = csrfFetch;
     window.sessionActions = sessionActions;
-    window.productActions = productActions
+    window.productActions = productActions;
+    window.cartActions = cartActions;
 
     // window.
     //window.

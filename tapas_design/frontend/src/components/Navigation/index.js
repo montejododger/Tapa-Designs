@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import HeaderBanner from "./HeaderBanner";
+import CartIndex from "../ShoppingCart/CartIndex";
+
 import "./Navigation.css";
 
 function Navigation() {
-    const sessionUser = useSelector((state) => state.session.user);
+    const [cartShow, setCartShow] = useState(false);
 
+    const toggleCart = () => {
+        setCartShow(!cartShow);
+    };
+
+    const sessionUser = useSelector((state) => state.session.user);
     let sessionLinks;
 
-    // if a user was found use Profile Button
-    // else show login sign up
+
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     } else {
@@ -20,9 +26,6 @@ function Navigation() {
                 <NavLink to="/login" className="login-links">
                     Join / Sign In
                 </NavLink>
-                {/* <NavLink to="/signup" className="login-links">
-                    Sign Up
-                </NavLink> */}
             </>
         );
     }
@@ -50,6 +53,10 @@ function Navigation() {
                             <li>{sessionLinks}</li>
                         </ul>
                     </div>
+                    <button onClick={toggleCart}> CART 
+                    </button>
+                    {cartShow && <CartIndex/>}
+
                 </nav>
             </div>
         </>

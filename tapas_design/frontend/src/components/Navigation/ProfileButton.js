@@ -39,7 +39,6 @@ function ProfileButton({ user }) {
                     <li>{user.email}</li>
                     <li>
                         <button>Cart</button>
-                        {/* <CartIndex onClick={showCart}/> */}
                     </li>
                     <li>
                         <button onClick={logout}>Log Out</button>

@@ -6,6 +6,7 @@ class Api::CartItemsController < ApplicationController
   # grabs the items that belong to the current user
 
   def index
+    # debugger
     @cart_items = CartItem.where(user_id: current_user.id)
     render :index
   end
@@ -25,9 +26,9 @@ class Api::CartItemsController < ApplicationController
     @cart_item.user_id = current_user.id
     # @cart_item.quantity = 1
 
-    
+    @cart_items = CartItem.where(user_id: current_user.id)
     if @cart_item.save
-      render :show
+      render :index
     else
       render json: @cart_item.errors.full_messages, status: 422
     end
@@ -38,7 +39,7 @@ class Api::CartItemsController < ApplicationController
     @cart_item = CartItem.find_by(id: params[:id])
 
     if @cart_item.update(cart_item_params)
-      render :show
+      render :index
     else
       render json: @cart_item.errors.full_messages, status: 422
     end
