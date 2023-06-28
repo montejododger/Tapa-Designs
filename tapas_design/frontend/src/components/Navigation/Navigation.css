@@ -94,3 +94,7 @@
 .login-links:hover::after {
     width: 100%;
 }
+
+.session-wrapper{
+    display: flex;
+}

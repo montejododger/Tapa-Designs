@@ -23,7 +23,6 @@ function ProductIndex() {
 
     return (
         <section className="product-index-wrapper">
-            {/* <p>Index Header Bar</p> */}
             {products.map((product) => (
                 <ProductIndexItem product={product} key={product.id} />
             ))}

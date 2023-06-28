@@ -29,6 +29,7 @@ class Api::CartItemsController < ApplicationController
     @cart_items = CartItem.where(user_id: current_user.id)
     if @cart_item.save
       render :index
+      
     else
       render json: @cart_item.errors.full_messages, status: 422
     end
@@ -39,7 +40,8 @@ class Api::CartItemsController < ApplicationController
     @cart_item = CartItem.find_by(id: params[:id])
 
     if @cart_item.update(cart_item_params)
-      render :index
+      @cart_items = CartItem.where(user_id: current_user.id)
+      render :show
     else
       render json: @cart_item.errors.full_messages, status: 422
     end

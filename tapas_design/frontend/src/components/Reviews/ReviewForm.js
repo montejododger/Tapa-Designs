@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ReviewActions from "../../store/reviews";
 import StarRating from "./StarRating";
 
-// TODO: figure out how ot get user firstName to display with the review when it posts
 
 const ReviewForm = () => {
     const dispatch = useDispatch();

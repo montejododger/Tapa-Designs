@@ -9,6 +9,12 @@ const ProductShowRight = ({ product }) => {
     const sizes = product.size.split(" ");
     const colors = product.color.split(" ");
 
+    const handleItemAdd = () => {
+        setSize("");
+        setColor("");
+        setQuantity(1);
+    };
+
     const handleSizeClick = (size) => {
         setSize(size);
     };
@@ -22,7 +28,7 @@ const ProductShowRight = ({ product }) => {
     };
 
     return (
-        <div className="show-product-container" key={product.id}>
+        <div className="show-product-container">
             <p>{product.name}</p>
             <br />
             <p>{product.price}</p>
@@ -30,30 +36,35 @@ const ProductShowRight = ({ product }) => {
             <p>Afterpay available for orders over $35</p>
             <br />
             <p>Available colors:</p>
-            {colors.map((color) => (
-                <button onClick={() => handleColorClick(color)}>{color}</button>
+            {colors.map((color, index) => (
+                <button key={index + 1} onClick={() => handleColorClick(color)}>
+                    {color}
+                </button>
             ))}
             <br />
             <p>Available sizes:</p>
-            {sizes.map((size) => (
-                <button onClick={() => handleSizeClick(size)}>{size}</button>
+            {sizes.map((size, index) => (
+                <button key={index + 1} onClick={() => handleSizeClick(size)}>
+                    {size}
+                </button>
             ))}
             <br />
 
             <p>Quantity:</p>
             <select value={quantity} onChange={handleQuantityChange}>
-                {[...Array(4).keys()].map((i) => (
-                    <option key={i + 1} value={i + 1}>
-                        {i + 1}
+                {[1, 2, 3, 4].map((value, index) => (
+                    <option key={index + 1} value={value}>
+                        {value}
                     </option>
                 ))}
             </select>
             <br />
             <CartAdd
+                onItemAdd={handleItemAdd}
                 product={product}
                 selectedOptions={{
                     productId: product.id,
-                    options: `${pickedSize}, ${pickedColor}`,
+                    options: `${pickedSize} ${pickedColor}`,
                     quantity: quantity,
                 }}
             />
@@ -63,3 +74,5 @@ const ProductShowRight = ({ product }) => {
 };
 
 export default ProductShowRight;
+
+// TODO: i meed to fix options and not get a , or split on it

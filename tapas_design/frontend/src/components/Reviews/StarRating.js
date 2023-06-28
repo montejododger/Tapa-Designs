@@ -4,38 +4,36 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 const StarRating = ({ rating, setRating }) => {
     const [hover, setHover] = useState(0);
 
-    return (
-        <div>
-            {[...Array(5)].map((star, i) => {
-                const starValue = i + 1;
+    let stars = [];
 
-                return (
-                    <label key={i}>
-                        <input
-                            type="radio"
-                            name="rating"
-                            value={starValue}
-                            onClick={() => setRating(starValue)}
-                            style={{ display: "none" }} // Hide button
-                        />
-                        {starValue <= (hover || rating) ? (
-                            <AiFillStar
-                                color="red"
-                                onMouseEnter={() => setHover(starValue)}
-                                onMouseLeave={() => setHover(0)}
-                            />
-                        ) : (
-                            <AiOutlineStar
-                                color="red"
-                                onMouseEnter={() => setHover(starValue)}
-                                onMouseLeave={() => setHover(0)}
-                            />
-                        )}
-                    </label>
-                );
-            })}
-        </div>
-    );
+    for (let i = 1; i <= 5; i++) {
+        stars.push(
+            <label key={i}>
+                <input
+                    type="radio"
+                    name="rating"
+                    value={i}
+                    onClick={() => setRating(i)}
+                    style={{ display: "none" }}
+                />
+                {i <= (hover || rating) ? (
+                    <AiFillStar
+                        color="red"
+                        onMouseEnter={() => setHover(i)}
+                        onMouseLeave={() => setHover(0)}
+                    />
+                ) : (
+                    <AiOutlineStar
+                        color="red"
+                        onMouseEnter={() => setHover(i)}
+                        onMouseLeave={() => setHover(0)}
+                    />
+                )}
+            </label>
+        );
+    }
+
+    return <div>{stars}</div>;
 };
 
 export default StarRating;

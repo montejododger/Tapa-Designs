@@ -8,15 +8,9 @@ import CartIndex from "../ShoppingCart/CartIndex";
 import "./Navigation.css";
 
 function Navigation() {
-    const [cartShow, setCartShow] = useState(false);
-
-    const toggleCart = () => {
-        setCartShow(!cartShow);
-    };
-
     const sessionUser = useSelector((state) => state.session.user);
-    let sessionLinks;
 
+    let sessionLinks;
 
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
@@ -49,14 +43,8 @@ function Navigation() {
                         <div className="dropdown">Accessories</div>
                     </div>
                     <div className="navbar-right">
-                        <ul>
-                            <li>{sessionLinks}</li>
-                        </ul>
+                        {sessionLinks}
                     </div>
-                    <button onClick={toggleCart}> CART 
-                    </button>
-                    {cartShow && <CartIndex/>}
-
                 </nav>
             </div>
         </>

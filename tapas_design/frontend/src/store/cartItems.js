@@ -57,12 +57,14 @@ export const createCartItem = (cartItem) => async (dispatch) => {
 
     if (res.ok) {
         const cartItems = await res.json();
+        // debugger
         dispatch(receiveCartItems(cartItems));
     }
 };
 
 
 export const updateCartItem = (cartItem) => async (dispatch) => {
+    // debugger
     const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
         method: "PATCH",
         header: {
@@ -72,8 +74,9 @@ export const updateCartItem = (cartItem) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const updatedCartItem = await res.json();
-        dispatch(receiveCartItem(updatedCartItem));
+        const data = await res.json();
+        // debugger
+        dispatch(receiveCartItem(data.cartItem));
     }
 };
 
@@ -94,6 +97,7 @@ const cartItemsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
     // debugger
+
 
     switch (action.type) {
         case RECEIVE_CART_ITEMS:

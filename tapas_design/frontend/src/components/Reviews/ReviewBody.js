@@ -3,11 +3,13 @@ import ReviewBodyItem from "./ReviewBodyItem";
 import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 
+
+const selectReviews = createSelector(
+    (state) => state.reviews,
+    (reviews) => Object.values(reviews)
+);
+
 function ReviewBody() {
-    const selectReviews = createSelector(
-        (state) => state.reviews,
-        (reviews) => Object.values(reviews)
-    );
 
     const reviews = useSelector(selectReviews);
     return (

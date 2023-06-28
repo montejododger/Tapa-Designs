@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import CartIndex from "../ShoppingCart/CartIndex";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [cartShow, setCartShow] = useState(false);
 
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
+    };
+    const toggleCart = () => {
+        setCartShow(!cartShow);
     };
 
     useEffect(() => {
@@ -29,23 +34,25 @@ function ProfileButton({ user }) {
     };
 
     // TODO: either have a button with an onclick or have the component do that and import it
-
     return (
-        <>
-            <button onClick={openMenu}>DropDown</button>
-            {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button>Cart</button>
-                    </li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
-            )}
-        </>
+        <div className="session-wrapper">
+            <div className="sessions-container">
+                <button onClick={openMenu}>DropDown</button>
+                {showMenu && (
+                    <ul className="profile-dropdown">
+                        <li>{user.username}</li>
+                        <li>{user.email}</li>
+                        <li>
+                            <button onClick={logout}>Log Out</button>
+                        </li>
+                    </ul>
+                )}
+            </div>
+            <div className="cart-container">
+                <button onClick={toggleCart}> CART</button>
+                {cartShow && <CartIndex />}
+            </div>
+        </div>
     );
 }
 
