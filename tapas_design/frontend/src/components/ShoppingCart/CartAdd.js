@@ -8,6 +8,7 @@ const CartAdd = ({ product, selectedOptions, onItemAdd}) => {
     const currentUser = useSelector((state) => state.session.user);
     const [size, color] = selectedOptions.options.split(" ")
 
+
     const handleClick = () => {
         if (!currentUser) {
             setErrors(
@@ -15,9 +16,9 @@ const CartAdd = ({ product, selectedOptions, onItemAdd}) => {
             );
             return;
         }
-        console.log(product);
-        console.log(selectedOptions);
-        console.log(selectedOptions.options);
+        // console.log(product);
+        // console.log(selectedOptions);
+        // console.log(selectedOptions.options);
 
         if (selectedOptions.options.split(" ").length !== 2) {
             setErrors(

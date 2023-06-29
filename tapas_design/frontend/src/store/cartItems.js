@@ -93,6 +93,7 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
 
 // chooses which data to update STATE
 
+
 const cartItemsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
