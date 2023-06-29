@@ -2,16 +2,23 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import HeaderBanner from "./HeaderBanner";
+import Header from "./Header";
+import NavLogo from "./NavLogo";
+import NavBarLinks from "./NavBarLinks";
+import NavBarCart from "./NavBarCart";
 import CartIndex from "../ShoppingCart/CartIndex";
 
 import "./Navigation.css";
+
+// TODO: Move session links to header
 
 function Navigation() {
     const sessionUser = useSelector((state) => state.session.user);
 
     let sessionLinks;
-
+    {
+        /* <div className="navbar-right">{sessionLinks}</div> */
+    }
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     } else {
@@ -24,28 +31,15 @@ function Navigation() {
         );
     }
 
-    const logoUrl =
-        "https://topodesigns.com/cdn/shop/files/topo_designs_logo_vertical-logo.svg?v=1652876766858419023";
-
     return (
         <>
-            <div className="header-container">
-                <HeaderBanner />
-                <nav className="navbar">
-                    <div className="navbar-left">
-                        <NavLink exact to="/">
-                            <img src={logoUrl} alt="Logo" className="logo" />
-                        </NavLink>
-                    </div>
-                    <div className="navbar-middle">
-                        <div className="dropdown">Mens</div>
-                        <div className="dropdown">Womens</div>
-                        <div className="dropdown">Accessories</div>
-                    </div>
-                    <div className="navbar-right">
-                        {sessionLinks}
-                    </div>
-                </nav>
+            <Header />
+            <div className="nav-wrapper">
+                <div className="navleft-wrapper">
+                    <NavLogo />
+                    <NavBarLinks />
+                </div>
+                <NavBarCart />
             </div>
         </>
     );

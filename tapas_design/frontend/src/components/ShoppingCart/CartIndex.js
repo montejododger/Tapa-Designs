@@ -14,7 +14,7 @@ const CartIndex = () => {
 
     const cartItems = Object.values(cartItemsObj);
 
-    console.log(cartItems);
+    // console.log(cartItems);
 
 
     // const totalPrice = cartItems.reduce((total, item) => {

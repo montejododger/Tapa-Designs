@@ -4,11 +4,15 @@ body {
     font-family: "Gotham Narrow A", "Gotham Narrow B", Helvetica, Arial,
         sans-serif;
 }
+.ul {
+    list-style: none;
+}
 
-.whole-app {
+.whole-app-wrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 /* @font-face {

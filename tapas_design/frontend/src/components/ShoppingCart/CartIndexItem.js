@@ -4,7 +4,7 @@ import { deleteCartItem, updateCartItem } from "../../store/cartItems";
 
 const CartIndexItem = ({ item }) => {
     const dispatch = useDispatch();
-    console.log(item);
+    // console.log(item);
 
     // let totalPrice =
 
@@ -13,7 +13,7 @@ const CartIndexItem = ({ item }) => {
             ...item,
             quantity: Number(e.target.value),
         };
-        console.log(updatedItem);
+        // console.log(updatedItem);
         dispatch(updateCartItem(updatedItem));
     };
 

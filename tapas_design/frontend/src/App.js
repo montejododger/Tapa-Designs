@@ -12,7 +12,7 @@ import ReviewHome from "./components/Reviews/ReviewHome";
 function App() {
     return (
         <>
-            <div className="whole-app">
+            <div className="whole-app-wrapper">
                 <Navigation />
                 <Switch>
                     <Route exact path="/products/:productId">

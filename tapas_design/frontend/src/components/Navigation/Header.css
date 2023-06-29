@@ -1,0 +1,70 @@
+/*
+
+.header-bar {
+    background-color: #e31b23;
+    animation: slideDown 1s forwards;
+    animation-delay: 0.5s;
+}
+
+.slide-down-animation {
+    animation-name: slideDown;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+} */
+
+/* NEW CSS FOR THE REVAMP */
+
+.header-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 2vh;
+    justify-content: center;
+    background-color: #e31b23;
+    position: relative;
+    min-height: 40px;
+    padding: 10px 0;
+    /* transition: opacity 0s ease 0.6s; */
+}
+.header-wrapper * {
+    font-family: Gotham Narrow A, Gotham Narrow B, Roboto, helvetica, arial,
+        sans-serif;
+    font-weight: lighter;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.header-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.header-text-container span {
+    font-weight: 100;
+    font-size: large;
+
+}
+
+.header-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
