@@ -38,6 +38,7 @@ function Navigation() {
                 <div className="navleft-wrapper">
                     <NavLogo />
                     <NavBarLinks />
+                    <p>{sessionLinks}</p>
                 </div>
                 <NavBarCart />
             </div>
