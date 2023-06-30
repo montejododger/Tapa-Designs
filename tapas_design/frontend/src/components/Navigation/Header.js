@@ -4,7 +4,7 @@ import "./Header.css";
 function Header() {
 
 
-// TODO: move over session links 
+// TODO: move over session links  where span tag is
 
     return (
         <header className={`header-wrapper`}>
@@ -14,7 +14,7 @@ function Header() {
                 </span>
             </div>
             <div className="header-login-container">
-                <span>Join / Sign In</span>
+                {/* <span>Join / Sign In</span> */}
             </div>
         </header>
     );
