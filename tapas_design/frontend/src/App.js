@@ -17,7 +17,7 @@ function App() {
                 <Switch>
                     <Route exact path="/products/:productId">
                         <ProductShow />
-                        <ReviewHome/>
+                        {/* <ReviewHome/> */}
                     </Route>
                     <Route exact path="/products">
                         <ProductHome />

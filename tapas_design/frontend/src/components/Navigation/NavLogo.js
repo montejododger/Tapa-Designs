@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavLogo = () => {
-    const logoUrl =
-        "https://topodesigns.com/cdn/shop/files/topo_designs_logo_vertical-logo.svg?v=1652876766858419023";
+    const logoUrl = "https://tapadesigns.s3.us-west-1.amazonaws.com/Misc/topo-designs-logo-vertical.svg"
 
     return (
         <div className="logo-wrapper">

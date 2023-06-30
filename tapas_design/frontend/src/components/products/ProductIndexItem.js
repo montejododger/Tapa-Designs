@@ -5,22 +5,20 @@ function ProductIndexItem({ product }) {
     const photo = product.photos[0];
     
     return (
-        <li className="product-item-wrapper">
-
-
+        <div className="product-item-wrapper">
             <div className="product-img-container">
                 <Link to={`/products/${product.id}`}>
                     <img src={photo} alt={`${product.name}`} />
                 </Link>
             </div>
             <div className="product-index-item-container">
-                <span className="i-i-color">{product.color}</span>
+                {/* <span className="i-i-color">{product.color}</span> */}
                 <br />
-                <p className="index-name-container">{product.name}</p>
+                <span className="index-name-container">{product.name}</span>
                 <br />
-                <p className="index-price-container">${product.price}.00</p>
+                <span className="index-price-container">${product.price}.00</span>
             </div>
-        </li>
+        </div>
     );
 }
 

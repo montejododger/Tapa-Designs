@@ -2,6 +2,10 @@ import React from "react";
 import "./Header.css";
 
 function Header() {
+
+
+// TODO: move over session links 
+
     return (
         <header className={`header-wrapper`}>
             <div className={`header-text-container`}>

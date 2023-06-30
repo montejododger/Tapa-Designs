@@ -6,18 +6,18 @@ const NavBarLinks = () => {
         <div className="navbar-links-wrapper">
             <div className="navbar-links-container">
                 <ul className="navbar-ul-container menu">
-                    <li>
+                    <li className="nav-li">
                         <Link to="/category/mens">Men's</Link>
                     </li>
-                    <li>
+                    <li className="nav-li">
                         <Link to="/category/womens">Women's</Link>
                     </li>
-                    <li>
+                    <li className="nav-li">
                         <Link to="/category/accessories">Accessories</Link>
                     </li>
-                    <li>Future Categories</li>
-                    <li>Future Categories</li>
-                    <li>Future Categories</li>
+                    <li className="nav-li">Future Categories</li>
+                    <li className="nav-li">Future Categories</li>
+                    <li className="nav-li">Future Categories</li>
                 </ul>
             </div>
         </div>

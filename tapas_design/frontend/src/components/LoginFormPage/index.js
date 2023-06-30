@@ -15,35 +15,19 @@ export const LoginFormPage = () => {
 
     if (sessionUser) return <Redirect to="/" />;
 
-    //when form button submitted
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     // resetting setErrors to an empty array each time
-    //     setErrors([]);
-    //     // this is calling Login thunk action from session.js
-    //     return dispatch(sessionActions.login({ email, password })).then(
-    //         async (res) => {
-    //             let data = await res.json();
-    //             if (data?.errors) setErrors(data.errors);
-    //             else if (data) setErrors([data]);
-    //             else setErrors([res.statusText]);
-    //         }
-    //     );
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         // resetting setErrors to an empty array each time
         setErrors([]);
         // this is calling Login thunk action from session.js
         return dispatch(sessionActions.login({ email, password })).then(
             async (res) => {
-                if (res.ok) { // Check if login was successful
-                    const prevUrl = localStorage.getItem('prevUrl');
-                    window.location.href = prevUrl ? prevUrl : '/'; // Navigate to the previous page, or home page if no previous page
-                    localStorage.removeItem('prevUrl'); // Remove the stored url after using it
+                if (res.ok) {
+                    // Check if login was successful
+                    const prevUrl = localStorage.getItem("prevUrl");
+                    window.location.href = prevUrl ? prevUrl : "/"; // Navigate to the previous page, or home page if no previous page
+                    localStorage.removeItem("prevUrl"); // Remove the stored url after using it
                 } else {
                     let data = await res.json();
                     if (data?.errors) setErrors(data.errors);
@@ -52,6 +36,31 @@ export const LoginFormPage = () => {
                 }
             }
         );
+    };
+
+    const handleDemoSubmit = (e) => {
+        e.preventDefault();
+
+        const demoUserEmail = "demo@user.io";
+        const demoUserPassword = "password";
+
+        return dispatch(
+            sessionActions.login({
+                email: demoUserEmail,
+                password: demoUserPassword,
+            })
+        ).then(async (res) => {
+            if (res.ok) {
+                const prevUrl = localStorage.getItem("prevUrl");
+                window.location.href = prevUrl ? prevUrl : "/";
+                localStorage.removeItem("prevUrl");
+            } else {
+                let data = await res.json();
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            }
+        });
     };
 
     // CREATE ACCOUNT BUTTON
@@ -107,6 +116,8 @@ export const LoginFormPage = () => {
                     <button className="signup-button" type="submit">
                         SIGN IN
                     </button>
+                    <br />
+                    <button className="signup-button" onClick={handleDemoSubmit}>DEMO USER</button>
                     <br />
                     <button
                         onClick={handleClick}
