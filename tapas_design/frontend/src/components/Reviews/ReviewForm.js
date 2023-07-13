@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ReviewActions from "../../store/reviews";
 import StarRating from "./StarRating";
 
-
 const ReviewForm = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
@@ -15,8 +14,15 @@ const ReviewForm = () => {
     const [rating, setRating] = useState(0);
 
     const currentUser = useSelector((state) => state.session.user) || null;
+    const productReviews = useSelector((state) => state.reviews);
 
-    // console.log(currentUser);
+    // console.log(productReviews);
+    const hasReviewed = Object.values(productReviews).some(
+        (review) => review.userId === currentUser.id
+    );
+
+    console.log(hasReviewed);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,7 +91,7 @@ const ReviewForm = () => {
                         onChange={(e) => setBody(e.target.value)}
                     />
                 </label>
-                <button value="submit">POST</button>
+                <button value="submit" disabled={hasReviewed}>POST</button>
             </form>
         </div>
     );
