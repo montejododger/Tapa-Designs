@@ -21,9 +21,6 @@ const ReviewForm = () => {
         (review) => review.userId === currentUser.id
     );
 
-    console.log(hasReviewed);
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         let newErrors = [];
@@ -38,7 +35,7 @@ const ReviewForm = () => {
         }
 
         if (body === "") {
-            newErrors.push("Please add a review body");
+            newErrors.push("Please leave a review body");
         }
 
         if (rating === 0) {
@@ -91,7 +88,9 @@ const ReviewForm = () => {
                         onChange={(e) => setBody(e.target.value)}
                     />
                 </label>
-                <button value="submit" disabled={hasReviewed}>POST</button>
+                <button value="submit" disabled={hasReviewed}>
+                    POST
+                </button>
             </form>
         </div>
     );

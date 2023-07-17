@@ -14,14 +14,6 @@ const CartIndex = () => {
 
     const cartItems = Object.values(cartItemsObj);
 
-    // console.log(cartItems);
-
-
-    // const totalPrice = cartItems.reduce((total, item) => {
-    //     return total + item.quantity * item.productPrice;
-    // }, 0);
-
-
 
     return (
         <>
@@ -31,8 +23,7 @@ const CartIndex = () => {
                 })}
             </div>
             <div>
-                {/* <span>${cartItems.reduce((total, item) => total + item.quantity * item.productPrice, 0)}.00
-                </span> */}
+                
             </div>
         </>
     );

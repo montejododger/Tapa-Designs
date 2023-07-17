@@ -2,28 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createCartItem } from "../../store/cartItems";
 
-const CartAdd = ({ product, selectedOptions, onItemAdd}) => {
+const CartAdd = ({ product, selectedOptions, onItemAdd }) => {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState("");
     const currentUser = useSelector((state) => state.session.user);
-    const [size, color] = selectedOptions.options.split(" ")
-
+    const [size, color] = selectedOptions.options.split(" ");
 
     const handleClick = () => {
-        if (!currentUser) {
-            setErrors(
-                "Please log in or create an account to add items to the cart."
-            );
-            return;
-        }
-        // console.log(product);
-        // console.log(selectedOptions);
-        // console.log(selectedOptions.options);
-
-        if (selectedOptions.options.split(" ").length !== 2) {
-            setErrors(
-                "Please select both a size and color before adding to the cart."
-            );
+        if (!size || !color) {
+            setErrors("Please select a size and color");
             return;
         }
 
@@ -35,17 +22,16 @@ const CartAdd = ({ product, selectedOptions, onItemAdd}) => {
         // debugger
         dispatch(createCartItem(item));
         setErrors("");
-        onItemAdd()
+        onItemAdd();
     };
-
-    const isDisabled = !(size && color)
 
     return (
         <div>
             {errors && <p>{errors}</p>}
-            <button onClick={handleClick} disabled={isDisabled}>ADD TO CART</button>
+            <br />
+            <button onClick={handleClick}>ADD TO CART</button>
         </div>
-    )
+    );
 };
 
 export default CartAdd;

@@ -6,11 +6,18 @@ const ProductShowRight = ({ product }) => {
     const [pickedSize, setSize] = useState("");
     const [pickedColor, setColor] = useState("");
     const [quantity, setQuantity] = useState(1);
+    // const [errorMessage, setErrorMessage] = useState("");
 
     const sizes = product.size.split(" ");
     const colors = product.color.split(" ");
 
     const handleItemAdd = () => {
+        // if (pickedColor === "" || pickedSize === "") {
+        //     setErrorMessage("Please select a size and color")
+        //     return;
+        // }
+
+        // setErrorMessage('')
         setSize("");
         setColor("");
         setQuantity(1);
@@ -49,7 +56,9 @@ const ProductShowRight = ({ product }) => {
                     {colors.map((color, index) => (
                         <button
                             key={index + 1}
-                            className="sizes-swatches"
+                            className={`color-swatches ${
+                                color === pickedColor ? "selected" : ""
+                            }`}
                             onClick={() => handleColorClick(color)}
                         >
                             {color}
@@ -62,16 +71,24 @@ const ProductShowRight = ({ product }) => {
                 {sizes.map((size, index) => (
                     <button
                         key={index + 1}
+                        className={`size-swatches ${
+                            size === pickedSize ? "selected" : ""
+                        }`}
                         onClick={() => handleSizeClick(size)}
                     >
                         {size}
                     </button>
                 ))}
                 <br />
+                <br />
 
                 <p>Quantity:</p>
                 <br />
-                <select value={quantity} onChange={handleQuantityChange}>
+                <select
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="quantity-show"
+                >
                     {[1, 2, 3, 4].map((value, index) => (
                         <option key={index + 1} value={value}>
                             {value}
@@ -79,9 +96,12 @@ const ProductShowRight = ({ product }) => {
                     ))}
                 </select>
                 <br />
+                <br/>
+                {/* {errorMessage && <p>{errorMessage}</p>} */}
                 <br />
                 <CartAdd
                     onItemAdd={handleItemAdd}
+                    className="add-to-cart"
                     product={product}
                     selectedOptions={{
                         productId: product.id,
@@ -96,5 +116,3 @@ const ProductShowRight = ({ product }) => {
 };
 
 export default ProductShowRight;
-
-// TODO: i meed to fix options and not get a , or split on it

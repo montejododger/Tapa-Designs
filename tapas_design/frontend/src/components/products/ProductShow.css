@@ -56,10 +56,6 @@
 }
 
 .sizes-swatches{
-    font-size: 12px;
-    font-weight: 00;
-    /* padding: 0 12px; */
-
     position: relative;
     
 }
@@ -77,4 +73,17 @@
     margin-bottom: 5px;
     margin-right: 15px;
     margin-top: 5px;
+}
+
+
+.color-swatches, .size-swatches {
+    /* other button styles here */
+    font-size: 12px;
+    font-weight: 00;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.color-swatches.selected, .size-swatches.selected {
+    border-color: #000; /* change this to the color you want for the border */
 }

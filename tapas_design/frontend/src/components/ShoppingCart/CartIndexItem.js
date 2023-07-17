@@ -6,7 +6,6 @@ const CartIndexItem = ({ item }) => {
     const dispatch = useDispatch();
     // console.log(item);
 
-    // let totalPrice =
 
     const handleQuantityChange = (e) => {
         const updatedItem = {
