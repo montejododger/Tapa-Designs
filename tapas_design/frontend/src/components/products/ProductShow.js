@@ -25,7 +25,7 @@ function ProductShow() {
                 <ProductShowImgSide photos={product.photos} />
                 <ProductShowRight product={product} />
             </div>
-            <ReviewHome />
+                <ReviewHome />
         </div>
     );
 }

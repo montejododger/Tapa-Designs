@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CartAdd from "../ShoppingCart/CartAdd";
 import StarAvg from "../Reviews/StarAvg";
+import ReviewTotal from "../Reviews/ReviewTotal";
 
 const ProductShowRight = ({ product }) => {
     const [pickedSize, setSize] = useState("");
@@ -34,12 +35,15 @@ const ProductShowRight = ({ product }) => {
     const handleQuantityChange = (e) => {
         setQuantity(e.target.value);
     };
+    
+    // console.log(product);
 
     return (
         <div className="product-show-right-wrapper">
             <div className="show-product-container">
                 <div className="staravg-container">
                     <StarAvg />
+                    <ReviewTotal/>
                 </div>
                 <h3>{product.name}</h3>
                 <br />

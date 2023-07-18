@@ -13,35 +13,50 @@ class Api::CartItemsController < ApplicationController
   end
 
 
-  # will never use this route
+  # def create
+  #   @cart_item = CartItem.new(cart_item_params)
+  #   @cart_item.user_id = current_user.id
+  #   @cart_item.quantity = 1
 
-  # def show
-  #   @cart_item = CartItem.find(params[:id])
-  #   render :show
+  #   @cart_items = CartItem.where(user_id: current_user.id)
+  #   if @cart_item.save
+  #     render :index
+      
+  #   else
+  #     render json: @cart_item.errors.full_messages, status: 422
+  #   end
+
   # end
 
-  # what the servers response should be
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.user_id = current_user.id
-    @cart_item.quantity = 1
-
-    @cart_items = CartItem.where(user_id: current_user.id)
-    if @cart_item.save
-      render :index
-      
+    @cart_item = CartItem.find_by(user_id: current_user.id, product_id: cart_item_params[:product_id])
+  
+    if @cart_item
+      @cart_item.quantity += 1
+      if @cart_item.save
+        render :show
+      else
+        render json: @cart_item.errors.full_messages, status: 422
+      end
     else
-      render json: @cart_item.errors.full_messages, status: 422
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.user_id = current_user.id
+      if @cart_item.save
+        render :show
+      else
+        render json: @cart_item.errors.full_messages, status: 422
+      end
     end
-
   end
+  
 
   def update
     @cart_item = CartItem.find_by(id: params[:id])
 
     if @cart_item.update(cart_item_params)
       @cart_items = CartItem.where(user_id: current_user.id)
+      # render show because we dont need all the whole index back just the updated item
       render :show
     else
       render json: @cart_item.errors.full_messages, status: 422

@@ -23,14 +23,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const rootReducer = combineReducers({
-    // Add your reducer functions here:
-    // session,
-    // cart,
     session,
     users: usersReducer,
     products: productsReducer,
     reviews: reviewsReducer,
-    cartIndex: cartItemsReducer,
+    cartItems: cartItemsReducer,
 });
 
 const configureStore = (preloadedState = {}) => {

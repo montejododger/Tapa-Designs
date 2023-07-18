@@ -33,9 +33,7 @@ export const removeCartItem = (cartItemId) => {
     };
 };
 
-// thunk action interacts with backend/middle man
-// returns a function
-
+// Plural
 export const fetchCartItems = () => async (dispatch) => {
     const res = await fetch(`/api/cart_items`);
 
@@ -46,6 +44,17 @@ export const fetchCartItems = () => async (dispatch) => {
 };
 
 
+// Singular
+export const fetchCartItem = (cartItemId) => async (dispatch) => {
+    const res = await fetch(`/api/cart_items/${cartItemId}`)
+
+    if (res.ok) {
+        const cartItem = await res.json()
+        dispatch(receiveCartItems(cartItem))
+    }
+}
+
+// CREATE
 export const createCartItem = (cartItem) => async (dispatch) => {
     const res = await csrfFetch(`/api/cart_items/`, {
         method: "POST",
@@ -56,13 +65,13 @@ export const createCartItem = (cartItem) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const cartItems = await res.json();
+        const data = await res.json();
         // debugger
-        dispatch(receiveCartItems(cartItems));
+        dispatch(receiveCartItem(data.cartItem));
     }
 };
 
-
+// UPDATE
 export const updateCartItem = (cartItem) => async (dispatch) => {
     // debugger
     const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
@@ -80,7 +89,10 @@ export const updateCartItem = (cartItem) => async (dispatch) => {
     }
 };
 
+
+// DELETE
 export const deleteCartItem = (cartItemId) => async (dispatch) => {
+    // debugger
     const res = await csrfFetch(`/api/cart_items/${cartItemId}`, {
         method: "DELETE",
     });
@@ -89,9 +101,6 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
         dispatch(removeCartItem(cartItemId));
     }
 };
-
-
-// chooses which data to update STATE
 
 
 const cartItemsReducer = (state = {}, action) => {
