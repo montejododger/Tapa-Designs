@@ -7,23 +7,24 @@ const CartIndexItem = ({ item }) => {
     // console.log(item);
 
     const handleQuantityChange = (e) => {
-        console.log(item);
-        const updatedItem = {
-            ...item,
-            quantity: Number(e.target.value),
-        };
-        // console.log(updatedItem);
-        dispatch(updateCartItem(updatedItem));
+        const value = parseInt(e.target.value);
+
+        if (!isNaN(value) && e.target.value > 0) {
+            const updatedItem = {
+                ...item,
+                quantity: Number(e.target.value),
+            };
+            dispatch(updateCartItem(updatedItem));
+        }
     };
 
     const handleDeleteClick = () => {
         dispatch(deleteCartItem(item.id));
     };
 
-    console.log(item);
-
-    console.log(typeof item.productPrice);
-    console.log(typeof item.quantity);
+    // console.log(item);
+    // console.log(typeof item.productPrice);
+    // console.log(typeof item.quantity);
     return (
         <div className="cart-index-item-wrapper">
             <div className="cart-index-info-container">
@@ -36,17 +37,16 @@ const CartIndexItem = ({ item }) => {
             </div>
             <div className="index-item-crud-container">
                 <label className="quantity-label">
-                    Quantity:
-                    <select
-                        className="quantity-select"
-                        value={item.quantity}
+                    Quantity:{" "}
+                    <input
+                        type="number"
+                        min="1"
+                        placeholder={item.quantity}
+                        // value={item.quantity}
                         onChange={handleQuantityChange}
-                    >
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                    </select>
+                        className="quantity-show"
+                    />
+                    <br />
                 </label>
                 <button onClick={handleDeleteClick}>DELETE</button>
             </div>

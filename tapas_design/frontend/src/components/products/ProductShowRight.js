@@ -7,18 +7,11 @@ const ProductShowRight = ({ product }) => {
     const [pickedSize, setSize] = useState("");
     const [pickedColor, setColor] = useState("");
     const [quantity, setQuantity] = useState(1);
-    // const [errorMessage, setErrorMessage] = useState("");
 
     const sizes = product.size.split(" ");
     const colors = product.color.split(" ");
 
     const handleItemAdd = () => {
-        // if (pickedColor === "" || pickedSize === "") {
-        //     setErrorMessage("Please select a size and color")
-        //     return;
-        // }
-
-        // setErrorMessage('')
         setSize("");
         setColor("");
         setQuantity(1);
@@ -33,17 +26,20 @@ const ProductShowRight = ({ product }) => {
     };
 
     const handleQuantityChange = (e) => {
-        setQuantity(e.target.value);
+        const value = parseInt(e.target.value, 10)
+
+        if (!isNaN(value) && e.target.value > 0) {
+            setQuantity(value);
+        }
     };
-    
-    // console.log(product);
+
 
     return (
         <div className="product-show-right-wrapper">
             <div className="show-product-container">
                 <div className="staravg-container">
                     <StarAvg />
-                    <ReviewTotal/>
+                    <ReviewTotal />
                 </div>
                 <h3>{product.name}</h3>
                 <br />
@@ -88,20 +84,15 @@ const ProductShowRight = ({ product }) => {
 
                 <p>Quantity:</p>
                 <br />
-                <select
-                    value={quantity}
+                <br/>
+                <input
+                    type="number"
+                    placeholder="1"
+                    min="1"
                     onChange={handleQuantityChange}
                     className="quantity-show"
-                >
-                    {[1, 2, 3, 4].map((value, index) => (
-                        <option key={index + 1} value={value}>
-                            {value}
-                        </option>
-                    ))}
-                </select>
+                />
                 <br />
-                <br/>
-                {/* {errorMessage && <p>{errorMessage}</p>} */}
                 <br />
                 <CartAdd
                     onItemAdd={handleItemAdd}

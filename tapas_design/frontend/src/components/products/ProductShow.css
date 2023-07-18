@@ -6,7 +6,7 @@
     overflow: scroll;
 }
 
-.product-show-right-wrapper{
+.product-show-right-wrapper {
     width: 40%;
     height: 100%;
     display: flex;
@@ -27,11 +27,11 @@
     /* overflow: hidden; */
 }
 
-.show-img-container img{
+.show-img-container img {
     width: 100%;
 }
 
-.show-product-container{
+.show-product-container {
     width: 100%;
     height: 100%;
 }
@@ -41,26 +41,25 @@
     font-weight: 600;
 }
 
-.staravg-container{
+.staravg-container {
     font-size: 1.5em;
 }
 
-.show-product-container p{
+.show-product-container p {
     color: #000;
     display: inline-block;
-    font-size: 1.25em!important;
-    font-weight: 200!important;
-    line-height: 1.2em!important;
+    font-size: 1.25em !important;
+    font-weight: 200 !important;
+    line-height: 1.2em !important;
     position: sticky;
     text-align: left;
 }
 
-.sizes-swatches{
+.sizes-swatches {
     position: relative;
-    
 }
 
-.show-product-container button{
+.show-product-container button {
     border: 1px solid #e5e5e5;
     font-size: 12px;
     font-weight: 400;
@@ -75,15 +74,26 @@
     margin-top: 5px;
 }
 
-
-.color-swatches, .size-swatches {
+.color-swatches,
+.size-swatches {
     /* other button styles here */
     font-size: 12px;
     font-weight: 00;
-    border: 2px solid transparent;
+    border: 6px solid transparent;
     transition: border-color 0.3s ease-in-out;
 }
 
-.color-swatches.selected, .size-swatches.selected {
+.color-swatches.selected,
+.size-swatches.selected {
     border-color: #000; /* change this to the color you want for the border */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
