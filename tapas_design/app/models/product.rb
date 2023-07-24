@@ -18,8 +18,21 @@ class Product < ApplicationRecord
     validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :name, uniqueness: true
 
-    has_many :reviews
     has_many_attached :photos
-    has_many :cart_items
+
+    has_many :reviews,
+        foreign_key: :product_id,
+        class_name: :Review,
+        dependent: :destroy
+        
+    has_many :cart_items,
+        foreign_key: :product_id,
+        class_name: :Cart_item,
+        dependent: :destroy
+
+    scope :search, -> (query) { where("LOWER(name) LIKE :query OR LOWER(description) LIKE :query OR LOWER(category) LIKE :query", query: "%#{query.downcase}%") }
+
+    scope :by_category, -> (category) { where("LOWER(category) = ?", category.downcase) }
+
     
 end

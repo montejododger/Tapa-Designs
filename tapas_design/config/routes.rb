@@ -9,11 +9,20 @@ Rails.application.routes.draw do
       #  this allows the user to see his reviews on his profile 
       resources :reviews, only: [:index]
     end
+    
     resource :session, only: [:show, :create, :destroy]
+    
     resources :products, only: [:index, :show] do
+      collection do
+        get 'search'
+        get 'cart_items'
+        get 'categories/:category', action: :category, as: 'category'
+      end
+
       # allows a product to show its reviews and create update and delete
       resources :reviews, only: [:index, :create, :update, :destroy]
     end
+
     resources :cart_items, only: [:index, :create, :update, :destroy]
     
   end

@@ -24,6 +24,7 @@ const ReviewForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let newErrors = [];
+        debugger
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
@@ -48,10 +49,12 @@ const ReviewForm = () => {
         } else {
             // make the review object
             const review = {
+            
                 title,
                 body,
                 rating,
             };
+            debugger
             dispatch(ReviewActions.createReview(productId, review));
 
             // Reset the form
