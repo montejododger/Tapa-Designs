@@ -6,6 +6,7 @@ import Header from "./Header";
 import NavLogo from "./NavLogo";
 import NavBarLinks from "./NavBarLinks";
 import NavBarCart from "./NavBarCart";
+import SearchBar from "./SearchBar";
 import CartIndex from "../ShoppingCart/CartIndex";
 
 import "./Navigation.css";
@@ -38,6 +39,7 @@ function Navigation() {
                 <div className="navleft-wrapper">
                     <NavLogo />
                     <NavBarLinks />
+                    <SearchBar/>
                     <p>{sessionLinks}</p>
                 </div>
                 <NavBarCart />
