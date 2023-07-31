@@ -8,12 +8,12 @@
     list-style: none;
 }
 
-.side-panel-wrapper {
+/* .side-panel-wrapper {
     height: 100%;
     width: 20%;
     display: flex;
     align-items: center;
-}
+} */
 
 .side-panel-container {
     display: flex;

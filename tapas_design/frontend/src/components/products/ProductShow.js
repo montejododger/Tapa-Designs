@@ -19,6 +19,8 @@ function ProductShow() {
 
     if (product === undefined) return null;
 
+    console.log(product.photos);
+    
     return (
         <div className="">
             <div className="product-show-wrapper">

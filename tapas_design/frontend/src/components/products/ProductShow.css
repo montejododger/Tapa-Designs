@@ -7,14 +7,14 @@
 }
 
 .product-show-right-wrapper {
-    width: 40%;
+    width: 35%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .show-img-wrapper {
-    width: 60%;
+    width: 65%;
     display: flex;
     flex-wrap: wrap;
 }

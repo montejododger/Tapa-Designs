@@ -122,13 +122,26 @@ require 'open-uri'
 
 
     p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
+
+    p1.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+
+    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+
+    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
+
+
     p2.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+
     p3.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+
     p4.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
 
     p5.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
+
     p6.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+
     p7.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+
     p8.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
 
     puts 'Done Creating Products"'
@@ -147,17 +160,5 @@ require 'open-uri'
       end
     end
 
-    puts 'Done Creating Reviews'
     
-    
-    puts 'Creating Cart Items'
-
-    
-    CartItem.create(user_id: 1,  product_id: 1, quantity: 2, options: 'small')
-    CartItem.create(user_id: 3,  product_id: 2, quantity: 1, options: 'large')
-    
-    puts 'Done Creating Cart Items'
-    
-
-
     puts "Done!"
