@@ -41,26 +41,31 @@ export const fetchProduct = (productId) => async (dispatch) => {
     }
 };
 
-export const fetchSearchResults = (query) => async dispatch => {
-    const encodedQuery = encodeURIComponent(query);
-    const res = await fetch(`/api/products/search?query=${encodedQuery}`);
+export const fetchSearchResults = (query) => async (dispatch) => {
+    let res;
+
+    if (!query) {
+        res = await fetch(`/api/products`); // Change the endpoint to the one that fetches all products
+    } else {
+        const encodedQuery = encodeURIComponent(query);
+        res = await fetch(`/api/products/search?query=${encodedQuery}`);
+    }
 
     if (res.ok) {
-        const products = await res.json()
-        dispatch(receiveProducts(products))
+        const products = await res.json();
+        dispatch(receiveProducts(products));
     }
-}
+};
 
-export const fetchCategoryProducts = (category) => async dispatch => {
+export const fetchCategoryProducts = (category) => async (dispatch) => {
     const encodedCategory = encodeURIComponent(category);
     const res = await fetch(`/api/products/categories/${encodedCategory}`);
 
     if (res.ok) {
-        const products = await res.json()
-        dispatch(receiveProducts(products))
+        const products = await res.json();
+        dispatch(receiveProducts(products));
     }
-}
-
+};
 
 export const productsReducer = (state = {}, action) => {
     Object.freeze(state);

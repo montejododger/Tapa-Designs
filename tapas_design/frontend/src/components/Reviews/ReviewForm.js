@@ -24,7 +24,6 @@ const ReviewForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let newErrors = [];
-        debugger
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");

@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import BottomBanner from "./components/Navigation/BottomBanner";
 import HomeSplash from "./components/HomeSplash/HomeSplash";
 import SearchPage from "./components/products/SearchPage";
-import CategoryPage from "./components/products/CategoryPage";
+// import CategoryPage from "./components/products/CategoryPage";
 // import ReviewHome from "./components/Reviews/ReviewHome";
 
 function App() {
@@ -17,6 +17,9 @@ function App() {
             <div className="whole-app-wrapper">
                 <Navigation />
                 <Switch>
+                    <Route exact path="/search/:query?">
+                        <SearchPage />
+                    </Route>
                     <Route exact path="/products/:productId">
                         <ProductShow />
                     </Route>
@@ -32,12 +35,9 @@ function App() {
                     <Route exact path="/">
                         <HomeSplash />
                     </Route>
-                    <Route path="/categories/:category">
+                    {/* <Route exact path="/categories/:category">
                         <CategoryPage />
-                    </Route>
-                    <Route path="/search">
-                        <SearchPage />
-                    </Route>
+                    </Route> */}
                 </Switch>
                 <BottomBanner />
             </div>

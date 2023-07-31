@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { useLocation, useHistory } from "react-router-dom";
-import { fetchSearchResults } from "../../store/productsReducer";
+import { useParams } from "react-router-dom";
 import ProductIndexItem from "./ProductIndexItem";
 import "./ProductIndex.css";
 
@@ -12,16 +11,12 @@ const selectProducts = createSelector(
 );
 
 function SearchPage() {
-    const history = useHistory()
-    const dispatch = useDispatch();
-    const query = new URLSearchParams(useLocation().search).get("q");
-    const products = useSelector(selectProducts);
+    const productsFromState = useSelector(selectProducts);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        if (query) {
-            dispatch(fetchSearchResults(query));
-        }
-    }, [dispatch, query]);
+        setProducts(productsFromState);
+    }, [productsFromState]);
 
     if (products === undefined) return null;
 
