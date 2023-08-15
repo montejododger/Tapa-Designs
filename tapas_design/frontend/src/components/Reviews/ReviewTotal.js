@@ -5,7 +5,7 @@ const ReviewTotal = () => {
     const allReviews = useSelector((state) => state.reviews);
     const totalReview = Object.keys(allReviews).length
 
-    return <div>{totalReview} Reviews</div>;
+    return <div className="review-total">{totalReview} Reviews</div>;
 };
 
 export default ReviewTotal;

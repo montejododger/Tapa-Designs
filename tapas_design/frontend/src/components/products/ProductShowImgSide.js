@@ -1,4 +1,3 @@
-
 const ProductShowImgSide = ({photos}) => {
     // console.log(photos);
     return (
@@ -13,3 +12,4 @@ const ProductShowImgSide = ({photos}) => {
 };
 
 export default ProductShowImgSide;
+

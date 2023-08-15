@@ -26,13 +26,12 @@ const ProductShowRight = ({ product }) => {
     };
 
     const handleQuantityChange = (e) => {
-        const value = parseInt(e.target.value, 10)
+        const value = parseInt(e.target.value, 10);
 
         if (!isNaN(value) && e.target.value > 0) {
             setQuantity(value);
         }
     };
-
 
     return (
         <div className="product-show-right-wrapper">
@@ -41,17 +40,17 @@ const ProductShowRight = ({ product }) => {
                     <StarAvg />
                     <ReviewTotal />
                 </div>
-                <h3>{product.name}</h3>
+                <h3 className="item-prop-name">{product.name}</h3>
                 <br />
-                <div>
+                <div className="item-price">
                     <p>${product.price}.00</p>
                 </div>
                 <br />
                 <p>Afterpay available for orders over $35</p>
                 <br />
                 <br />
-                <div>
-                    <p>Available colors:</p>
+                <div className="item-colors">
+                    <p className="colors-title">Colors: {pickedColor}</p>
                     <br />
                     {colors.map((color, index) => (
                         <button
@@ -66,7 +65,7 @@ const ProductShowRight = ({ product }) => {
                     ))}
                 </div>
                 <br />
-                <p>Available sizes:</p>
+                <p className="size-title">Sizes: {pickedSize}</p>
                 <br />
                 {sizes.map((size, index) => (
                     <button
@@ -81,30 +80,27 @@ const ProductShowRight = ({ product }) => {
                 ))}
                 <br />
                 <br />
-
-                <p>Quantity:</p>
-                <br />
-                <br/>
-                <input
-                    type="number"
-                    placeholder="1"
-                    min="1"
-                    onChange={handleQuantityChange}
-                    className="quantity-show"
-                />
-                <br />
-                <br />
-                <CartAdd
-                    onItemAdd={handleItemAdd}
-                    className="add-to-cart"
-                    product={product}
-                    selectedOptions={{
-                        productId: product.id,
-                        options: `${pickedSize} ${pickedColor}`,
-                        quantity: quantity,
-                    }}
-                />
-                <br />
+                <div className="quantity-div">
+                    <input
+                        type="number"
+                        placeholder="1"
+                        min="1"
+                        onChange={handleQuantityChange}
+                        className="quantity-input"
+                        size="4"
+                    />
+                    <CartAdd
+                        onItemAdd={handleItemAdd}
+                        className="add-to-cart"
+                        product={product}
+                        selectedOptions={{
+                            productId: product.id,
+                            options: `${pickedSize} ${pickedColor}`,
+                            quantity: quantity,
+                        }}
+                    />
+                    <br />
+                </div>
             </div>
         </div>
     );

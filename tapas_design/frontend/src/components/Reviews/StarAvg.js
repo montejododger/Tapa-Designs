@@ -9,14 +9,21 @@ const selectReviews = createSelector(
 );
 
 const StarAvg = () => {
-
     const reviews = useSelector(selectReviews);
     const ratings = reviews.map((review) => review.rating);
+
+    if (ratings.length === 0) {
+        return <p>No reviews yet</p>;
+    }
 
     const averageRating =
         ratings.reduce((total, num) => total + num, 0) / ratings.length;
 
-    return <StarDisplay rating={Math.round(averageRating)} />;
+    return (
+        <div>
+            <StarDisplay rating={Math.round(averageRating)} />
+        </div>
+    );
 };
 
 export default StarAvg;

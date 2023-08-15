@@ -26,10 +26,9 @@ const CartAdd = ({ product, selectedOptions, onItemAdd }) => {
     };
 
     return (
-        <div>
-            {errors && <p>{errors}</p>}
-            <br />
-            <button onClick={handleClick}>ADD TO CART</button>
+        <div className="cart-container">
+            {errors && <div className="cart-errors">{errors}</div>}
+            <button className="cart-add" onClick={handleClick}>ADD TO CART</button>
         </div>
     );
 };

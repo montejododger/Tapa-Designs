@@ -13,6 +13,7 @@ function ProfileButton({ user }) {
         setShowMenu(true);
     };
     const toggleCart = () => {
+        // debugger
         setCartShow(!cartShow);
     };
 

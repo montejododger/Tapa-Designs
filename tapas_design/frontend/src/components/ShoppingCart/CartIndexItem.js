@@ -25,6 +25,8 @@ const CartIndexItem = ({ item }) => {
     // console.log(item);
     // console.log(typeof item.productPrice);
     // console.log(typeof item.quantity);
+
+    
     return (
         <div className="cart-index-item-wrapper">
             <div className="cart-index-info-container">

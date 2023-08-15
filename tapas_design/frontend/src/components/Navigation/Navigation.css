@@ -170,6 +170,7 @@
 .logo-wrapper img {
     position: relative;
     margin-right: 10px;
+    width: 3vw;
 }
 
 .navcart-wrapper{
