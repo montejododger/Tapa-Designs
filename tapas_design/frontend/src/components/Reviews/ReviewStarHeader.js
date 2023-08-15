@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import ReviewForm from "./ReviewForm";
 import StarAvg from "./StarAvg";
+import ReviewAverage from "./ReviewAvg";
+import ReviewTotal from "./ReviewTotal";
 
-// TODO: GET THE AVG STAR RATING AND DISPLAY IT
-// TODO: WRITE A REVIEW NEED TO BE A DROP DONW THAT TRIGGERS THE FORM
 
 const ReviewStarHeader = () => {
+    const [isReviewFormnVisible, setReviewFormVisable] = useState(false);
+    const hadnleWriteReviewClick = () => {
+        setReviewFormVisable(!isReviewFormnVisible);
+    };
 
     return (
         <section className="review-star-header-wrapper">
-            <h2><StarAvg/></h2>
-            <button>WRITE A REVIEW</button>
-            <ReviewForm />
+            <div className="review-scores">
+                <ReviewAverage />
+                <div className="star-stats">
+                    <StarAvg className="" />
+                    <div className="review-total-container">
+                        Based on <ReviewTotal />
+                    </div>
+                </div>
+            </div>
+            <div className="write-review">
+                <button
+                    className="review-button"
+                    onClick={hadnleWriteReviewClick}
+                >
+                    Write A Review
+                </button>
+                <br />
+                <br />
+                {isReviewFormnVisible && <ReviewForm />}
+            </div>
         </section>
     );
 };

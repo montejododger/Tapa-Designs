@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as ReviewActions from "../../store/reviews";
 import StarRating from "./StarRating";
+import "./ReviewForm.css";
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const ReviewForm = () => {
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
-            localStorage.setItem("prevUrl", window.location.href); // Save the current url
+            localStorage.setItem("prevUrl", window.location.href);
         }
 
         if (title === "") {
@@ -48,12 +49,10 @@ const ReviewForm = () => {
         } else {
             // make the review object
             const review = {
-            
                 title,
                 body,
                 rating,
             };
-            debugger
             dispatch(ReviewActions.createReview(productId, review));
 
             // Reset the form
@@ -66,14 +65,19 @@ const ReviewForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-wrapper">
-                <h2>WRITE A REVIEW</h2>
                 <ul className="form-errors-container">
                     {errors.map((error, index) => (
                         <li key={index}>{error}</li>
                     ))}
                 </ul>
-                <label /> Score:
-                <StarRating rating={rating} setRating={setRating} />
+                <div className="review-score">
+                    <p>Rate your experience</p>
+                </div>
+                <StarRating
+                className="review-form-star"
+                    rating={rating}
+                    setRating={setRating}
+                />
                 <label>
                     Title:
                     <input

@@ -8,7 +8,7 @@ const selectReviews = createSelector(
     (reviews) => Object.values(reviews)
 );
 
-const StarAvg = () => {
+const ReviewAverage = () => {
     const reviews = useSelector(selectReviews);
     const ratings = reviews.map((review) => review.rating);
 
@@ -20,10 +20,10 @@ const StarAvg = () => {
         ratings.reduce((total, num) => total + num, 0) / ratings.length;
 
     return (
-        <div className="star-avg">
-            <StarDisplay rating={Math.round(averageRating)} />
+        <div className="review-avg">
+            <p>{averageRating.toFixed(1)}</p>
         </div>
     );
 };
 
-export default StarAvg;
+export default ReviewAverage;

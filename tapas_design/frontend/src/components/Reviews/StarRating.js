@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-const StarRating = ({ rating, setRating }) => {
+const StarRating = ({ className, rating, setRating }) => {
     const [hover, setHover] = useState(0);
 
     let stars = [];
@@ -33,7 +33,7 @@ const StarRating = ({ rating, setRating }) => {
         );
     }
 
-    return <div>{stars}</div>;
+    return <div className={className}>{stars}</div>;
 };
 
 export default StarRating;

@@ -48,10 +48,9 @@ const ProductShowRight = ({ product }) => {
                 <br />
                 <p>Afterpay available for orders over $35</p>
                 <br />
-                <br />
                 <div className="item-colors">
-                    <p className="colors-title">Colors: {pickedColor}</p>
-                    <br />
+                    <p className="colors-title">Color: {pickedColor}</p>
+                    {/* <br /> */}
                     {colors.map((color, index) => (
                         <button
                             key={index + 1}
@@ -65,20 +64,22 @@ const ProductShowRight = ({ product }) => {
                     ))}
                 </div>
                 <br />
-                <p className="size-title">Sizes: {pickedSize}</p>
-                <br />
-                {sizes.map((size, index) => (
-                    <button
-                        key={index + 1}
-                        className={`size-swatches ${
-                            size === pickedSize ? "selected" : ""
-                        }`}
-                        onClick={() => handleSizeClick(size)}
-                    >
-                        {size}
-                    </button>
-                ))}
-                <br />
+                <div className="item-sizes">
+                    <p className="size-title">Size: {pickedSize}</p>
+                    {/* <br /> */}
+                    {sizes.map((size, index) => (
+                        <button
+                            key={index + 1}
+                            className={`size-swatches ${
+                                size === pickedSize ? "selected" : ""
+                            }`}
+                            onClick={() => handleSizeClick(size)}
+                        >
+                            {size}
+                        </button>
+                    ))}
+                    <br />
+                </div>
                 <br />
                 <div className="quantity-div">
                     <input
@@ -100,6 +101,10 @@ const ProductShowRight = ({ product }) => {
                         }}
                     />
                     <br />
+                </div>
+                <br />
+                <div className="product-description-container">
+                    <p className="product-description">{product.description}</p>
                 </div>
             </div>
         </div>
