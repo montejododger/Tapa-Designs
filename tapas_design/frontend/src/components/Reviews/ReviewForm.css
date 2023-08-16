@@ -10,3 +10,53 @@
     padding: 10px;
     padding-left: 45px;
 }
+
+.review-errors{
+    color: #cb2222;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+
+.review-label{
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 5px;
+    color: #202020;
+    font-weight: 800;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif !important;
+}
+
+.review-text{
+    padding-top: 10px;
+    height: 10vh;
+    width: 75%;
+    font-weight: 400;
+    font-size: 16px;
+    resize: none;
+    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif !important;
+}
+
+.review-headline{
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 13px;  
+    color: #202020;
+    font-weight: 800;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif !important;
+}
+
+.review-headline-input{
+    width: 75%;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.review-button-post{
+    justify-content: flex-start;
+}

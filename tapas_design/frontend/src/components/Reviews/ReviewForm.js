@@ -40,7 +40,7 @@ const ReviewForm = () => {
         }
 
         if (rating === 0) {
-            newErrors.push("Please choose a rating");
+            newErrors.push("A star rating is required");
         }
 
         if (newErrors.length > 0) {
@@ -67,36 +67,49 @@ const ReviewForm = () => {
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <ul className="form-errors-container">
                     {errors.map((error, index) => (
-                        <li key={index}>{error}</li>
+                        <li className="review-errors" key={index}>
+                            {error}
+                        </li>
                     ))}
                 </ul>
                 <div className="review-score">
                     <p>Rate your experience</p>
                 </div>
                 <StarRating
-                className="review-form-star"
+                    className="review-form-star"
                     rating={rating}
                     setRating={setRating}
                 />
-                <label>
-                    Title:
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Review:
+                <label className="review-label">
+                    Review
+                    <br />
                     <textarea
+                        className="review-text"
+                        placeholder=" Tell us what you like or dislike"
                         type="text"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                     />
                 </label>
-                <button value="submit" disabled={hasReviewed}>
-                    POST
-                </button>
+                <label className="review-headline">
+                    Add a headline
+                    <input
+                        className="review-headline-input"
+                        type="text"
+                        placeholder="Summerize your experience"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </label>
+                <div>
+                    <button
+                        className="review-button review-button-post"
+                        value="submit"
+                        disabled={hasReviewed}
+                    >
+                        POST
+                    </button>
+                </div>
             </form>
         </div>
     );
