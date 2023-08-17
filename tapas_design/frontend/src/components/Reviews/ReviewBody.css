@@ -1,0 +1,88 @@
+.review-body-wrapper {
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.review-body-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 40px 0;
+}
+.review-author-container {
+    flex-basis: 18%;
+    flex-grow: 0;
+    box-sizing: border-box;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 1px;
+    font-weight: 300;
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+.review-verified {
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.stars-titles-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-basis: 63%;
+}
+
+.stars-titles-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.review-body-stars {
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    padding-right: 25px;
+}
+
+.review-title {
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.review-body{
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important;
+    letter-spacing: 1px;
+    font-weight: 200;
+    font-size: 16px;
+
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+.edit-review, .delete-review{
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 0;
+    border: 1px solid rgba(129, 129, 129, 0.25) !important;
+    height: auto;
+    width: auto;
+    font-size: 16px;
+    color: #848484;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 5px;
+}

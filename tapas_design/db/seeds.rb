@@ -25,7 +25,7 @@ require 'open-uri'
     puts "Creating users..."
     # Create one user with an easy to remember email, and password:
     User.create!(
-      first_name: 'demo',
+      first_name: 'Demo',
       last_name: 'user',
       email: 'demo@user.io', 
       password: 'password'
@@ -147,18 +147,19 @@ require 'open-uri'
     puts 'Done Creating Products"'
 
     puts 'Creating Reviews'
-
+    
     Product.all.map do |product|
-      3.times do
+      5.times do
         Review.create!(
-          title: Faker::Movies::Lebowski.character, 
+          title: Faker::Book.title, 
           rating: rand(2..5),
           body: Faker::Movies::Lebowski.quote,
-          user_id: rand(2..9), # assuming that user with id 1
+          user_id: rand(2..9), # userId 1 is the demo user
           product_id: product.id
         )
       end
     end
-
+    
+    puts ' Done Creating Reviews'
     
     puts "Done!"

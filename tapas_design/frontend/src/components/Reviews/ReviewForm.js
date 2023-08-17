@@ -17,10 +17,11 @@ const ReviewForm = () => {
     const currentUser = useSelector((state) => state.session.user) || null;
     const productReviews = useSelector((state) => state.reviews);
 
-    // console.log(productReviews);
-    const hasReviewed = Object.values(productReviews).some(
+    const hasReviewed = currentUser && Object.values(productReviews).some(
         (review) => review.userId === currentUser.id
     );
+
+    console.log(currentUser);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +30,8 @@ const ReviewForm = () => {
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
             localStorage.setItem("prevUrl", window.location.href);
+            setErrors(newErrors);
+            return;
         }
 
         if (title === "") {
@@ -45,7 +48,7 @@ const ReviewForm = () => {
 
         if (newErrors.length > 0) {
             setErrors(newErrors);
-            return; // Stop the form from submitting
+            return;
         } else {
             // make the review object
             const review = {
@@ -80,7 +83,7 @@ const ReviewForm = () => {
                     rating={rating}
                     setRating={setRating}
                 />
-                <label className="review-label">
+                <label className="review-label review-edit-form">
                     Review
                     <br />
                     <textarea
@@ -93,6 +96,7 @@ const ReviewForm = () => {
                 </label>
                 <label className="review-headline">
                     Add a headline
+                    <br />
                     <input
                         className="review-headline-input"
                         type="text"
@@ -103,7 +107,7 @@ const ReviewForm = () => {
                 </label>
                 <div>
                     <button
-                        className="review-button review-button-post"
+                        className="review-button"
                         value="submit"
                         disabled={hasReviewed}
                     >

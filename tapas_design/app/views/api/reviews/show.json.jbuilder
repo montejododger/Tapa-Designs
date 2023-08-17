@@ -3,6 +3,7 @@
 # nested under a review object
 json.review do
     json.extract! @review, :id, :title, :body, :rating, :user_id, :product_id
+    json.author @review.user.first_name
 end
 
 

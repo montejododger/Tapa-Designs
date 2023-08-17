@@ -1,7 +1,7 @@
 import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-const StarDisplay = ({ rating }) => {
+const StarDisplay = ({ className, rating }) => {
     let stars = [];
     
     for (let i = 1; i <= 5; i++) {
@@ -15,7 +15,7 @@ const StarDisplay = ({ rating }) => {
             </span>
         );
     }
-    return <div>{stars}</div>;
+    return <div className={className}>{stars}</div>;
 };
 
 

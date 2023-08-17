@@ -1,0 +1,18 @@
+.review-edit-wrapper {
+    width: 80%;
+    display: flex;
+}
+
+.stars-titles-edit-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-basis: 63%;
+}
+
+.stars-titles-edit-container{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}

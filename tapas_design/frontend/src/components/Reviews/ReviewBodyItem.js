@@ -17,39 +17,55 @@ const ReviewBodyItem = ({ review }) => {
     };
 
     return (
-        <section className="review-body-container">
+        <div className="review-body-container">
             {editReviewId === review.id ? (
                 <ReviewEditForm
+                    isEditing={true}
                     review={review}
                     onFinishEdit={handleFinishEdit}
                 />
             ) : (
-                <><h3>{review.author}</h3>
-                    <p>{review.title}</p>
-                    <p>{review.body}</p>
-                    <StarDisplay rating={review.rating} />
-                    {currentUser && currentUser.id === review.userId && (
-                        <>
-                            <button
-                                onClick={() =>
-                                    dispatch(
-                                        ReviewActions.deleteReview(
-                                            review.productId,
-                                            review.id
+                <>
+                    <div className="review-author-container">
+                        <div className="review-author">{review.author}</div>
+                        <div className="review-verified">Verified Reviewer</div>
+                    </div>
+                    <div className="stars-titles-wrapper">
+                        <div className="stars-titles-container">
+                            <StarDisplay
+                                className="review-body-stars"
+                                rating={review.rating}
+                            />
+                            <div className="review-title">{review.title}</div>
+                        </div>
+                        <div className="review-body">{review.body}</div>
+                        {currentUser && currentUser.id === review.userId && (
+                            <div>
+                                <button
+                                    className="edit-review"
+                                    onClick={() => setEditReviewId(review.id)}
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    className="delete-review"
+                                    onClick={() =>
+                                        dispatch(
+                                            ReviewActions.deleteReview(
+                                                review.productId,
+                                                review.id
+                                            )
                                         )
-                                    )
-                                }
-                            >
-                                Delete
-                            </button>
-                            <button onClick={() => setEditReviewId(review.id)}>
-                                Edit
-                            </button>
-                        </>
-                    )}
+                                    }
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </>
             )}
-        </section>
+        </div>
     );
 };
 

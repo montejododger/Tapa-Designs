@@ -3,6 +3,8 @@ import ReviewBodyItem from "./ReviewBodyItem";
 import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 
+import "./ReviewBody.css"
+
 
 const selectReviews = createSelector(
     (state) => state.reviews,
@@ -13,11 +15,11 @@ function ReviewBody() {
 
     const reviews = useSelector(selectReviews);
     return (
-        <section className="review-body-wrapper">
+        <div className="review-body-wrapper">
             {reviews.map((review) => (
                 <ReviewBodyItem review={review} key={review.id} />
             ))}
-        </section>
+        </div>
     );
 }
 
