@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import CartIndex from "../ShoppingCart/CartIndex";
@@ -7,40 +8,41 @@ function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const [cartShow, setCartShow] = useState(false);
+    const dropdownRef = useRef(null);
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
     };
+
     const toggleCart = () => {
-        // debugger
         setCartShow(!cartShow);
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
-
-        const closeMenu = () => {
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
             setShowMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
         };
-
-        document.addEventListener("click", closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
+    }, []);
 
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
     };
 
-    // TODO: either have a button with an onclick or have the component do that and import it
     return (
         <div className="session-wrapper">
             <div className="sessions-container">
-                <button onClick={openMenu}>DropDown</button>
+                <button onClick={toggleMenu}>DropDown</button>
                 {showMenu && (
-                    <ul className="profile-dropdown">
+                    <ul className="profile-dropdown" ref={dropdownRef}>
                         <li>{user.username}</li>
                         <li>{user.email}</li>
                         <li>
