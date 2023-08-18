@@ -35,14 +35,16 @@ function Navigation() {
     return (
         <>
             <Header />
-            <div className="nav-wrapper">
+            <div className="nav-header-wrapper">
                 <div className="navleft-wrapper">
                     <NavLogo />
                     <NavBarLinks />
-                    <SearchBar/>
-                    <p>{sessionLinks}</p>
                 </div>
-                <NavBarCart />
+                <div className="nav-right-inner">
+                    <SearchBar />
+                    <p>{sessionLinks}</p>
+                    <NavBarCart />
+                </div>
             </div>
         </>
     );
