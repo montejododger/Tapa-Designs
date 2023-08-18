@@ -19,7 +19,7 @@ function ProductShow() {
 
     if (product === undefined) return null;
 
-    console.log(product.photos);
+    // console.log(product.photos);
     
     return (
         <div className="">

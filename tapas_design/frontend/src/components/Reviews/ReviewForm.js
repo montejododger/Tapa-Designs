@@ -21,7 +21,7 @@ const ReviewForm = () => {
         (review) => review.userId === currentUser.id
     );
 
-    console.log(currentUser);
+    // console.log(currentUser);
 
     const handleSubmit = (e) => {
         e.preventDefault();
