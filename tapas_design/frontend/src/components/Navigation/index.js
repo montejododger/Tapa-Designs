@@ -7,7 +7,6 @@ import NavLogo from "./NavLogo";
 import NavBarLinks from "./NavBarLinks";
 import NavBarCart from "./NavBarCart";
 import SearchBar from "./SearchBar";
-import CartIndex from "../ShoppingCart/CartIndex";
 
 import "./Navigation.css";
 
@@ -17,9 +16,6 @@ function Navigation() {
     const sessionUser = useSelector((state) => state.session.user);
 
     let sessionLinks;
-    {
-        /* <div className="navbar-right">{sessionLinks}</div> */
-    }
 
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
