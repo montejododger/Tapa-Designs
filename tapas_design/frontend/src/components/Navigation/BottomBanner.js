@@ -15,7 +15,7 @@ function BottomBanner() {
             <div className="black-bottom-wrapper">
                 <div className="contact-container">
                     <LinkedInIcon
-                        url={`https://www.linkedin.com/in/matthew-montejo-640905239/`}
+                        url={`https://www.linkedin.com/in/matthew-m-640905239/`}
                     />
 
                     <GithubIcon url={`https://github.com/montejododger`} />
