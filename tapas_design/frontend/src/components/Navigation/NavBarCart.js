@@ -25,11 +25,14 @@ const NavBarCart = () => {
             ></div>
             <div className={cartShow ? "cart-window cart-show" : "cart-window"}>
                 <div className="cart-header">
-                    <FontAwesomeIcon
-                        icon={faTimes}
-                        className="close-icon"
-                        onClick={toggleCart}
-                    />
+                    <h5 className="side-cart-head-title">Your Cart</h5>
+                    <div className="cart-exit-button">
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            className="close-icon"
+                            onClick={toggleCart}
+                        />
+                    </div>
                 </div>
                 <CartIndex />
             </div>

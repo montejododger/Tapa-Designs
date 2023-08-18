@@ -111,7 +111,7 @@
     overflow: hidden;
 }
 
-.login-links{
+.login-links {
     display: flex;
     flex-wrap: nowrap;
 }
@@ -124,5 +124,9 @@
     height: 23px;
     position: relative;
     z-index: 371;
+}
 
-  }
+
+.nav-carty{
+    margin-left: 20px;
+}

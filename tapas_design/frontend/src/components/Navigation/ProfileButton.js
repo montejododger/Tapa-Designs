@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
@@ -7,19 +6,17 @@ import CartIndex from "../ShoppingCart/CartIndex";
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
-    const [cartShow, setCartShow] = useState(false);
     const dropdownRef = useRef(null);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
 
-    const toggleCart = () => {
-        setCartShow(!cartShow);
-    };
-
     const handleClickOutside = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+        ) {
             setShowMenu(false);
         }
     };
@@ -37,10 +34,11 @@ function ProfileButton({ user }) {
         dispatch(sessionActions.logout());
     };
 
+
     return (
         <div className="session-wrapper">
             <div className="sessions-container">
-                <button onClick={toggleMenu}>DropDown</button>
+                <button onClick={toggleMenu}>User</button>
                 {showMenu && (
                     <ul className="profile-dropdown" ref={dropdownRef}>
                         <li>{user.username}</li>
@@ -50,10 +48,6 @@ function ProfileButton({ user }) {
                         </li>
                     </ul>
                 )}
-            </div>
-            <div className="cart-container">
-                <button onClick={toggleCart}> CART</button>
-                {cartShow && <CartIndex />}
             </div>
         </div>
     );
