@@ -160,6 +160,6 @@ require 'open-uri'
       end
     end
     
-    puts ' Done Creating Reviews'
+    puts 'Done Creating Reviews'
     
     puts "Done!"

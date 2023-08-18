@@ -27,7 +27,7 @@ class Product < ApplicationRecord
         
     has_many :cart_items,
         foreign_key: :product_id,
-        class_name: :Cart_item,
+        class_name: :CartItem,
         dependent: :destroy
 
     scope :search, -> (query) { where("LOWER(name) LIKE :query OR LOWER(description) LIKE :query OR LOWER(category) LIKE :query", query: "%#{query.downcase}%") }
