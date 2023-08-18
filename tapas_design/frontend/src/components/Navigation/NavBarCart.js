@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const NavBarCart = () => {
+    return (
+        <div className="">
+            <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
+        </div>
+    );
+};
 
-return (
-    <div className="navcart-wrapper">
-        <span className="navcart-container">Cart</span>
-    </div>
-)
-
-}
-
-export default NavBarCart
+export default NavBarCart;

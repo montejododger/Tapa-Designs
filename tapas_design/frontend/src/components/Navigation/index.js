@@ -20,13 +20,14 @@ function Navigation() {
     {
         /* <div className="navbar-right">{sessionLinks}</div> */
     }
+
     if (sessionUser) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     } else {
         sessionLinks = (
             <>
                 <NavLink to="/login" className="login-links">
-                    Join / Sign In
+                    <p>Join / Sign In</p>
                 </NavLink>
             </>
         );
