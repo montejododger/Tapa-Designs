@@ -183,9 +183,10 @@ input[type="number"] {
 .product-description {
     font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 20px;
     line-height: 1.5em;
+    letter-spacing: 1px;
 }
 
 .item-color{

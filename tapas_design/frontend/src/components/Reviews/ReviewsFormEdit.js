@@ -24,19 +24,24 @@ function ReviewEditForm({ review, onFinishEdit }) {
     };
 
     return (
-        <div className="review-edit-wrapper">
-            <div className="review-author-container">
+        <>
+            <div className="review-author-container edit-author">
                 <div className="review-author">{review.author}</div>
                 <div className="review-verified">Verified Reviewer</div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div className="stars-titles-edit-wrapper">
-                    <p>Adjust Rating</p>
+            <div className="stars-titles-edit-wrapper">
+                <form onSubmit={handleSubmit}>
                     <div className="stars-titles-edit-container">
-                        <StarRating
-                        className="review-body-stars"
-                        rating={rating} setRating={setRating} />
+                        <div className="edit-stars-container">
+                            <div>Adjust Rating</div>
+                            <StarRating
+                                className="review-body-stars"
+                                rating={rating}
+                                setRating={setRating}
+                            />
+                        </div>
                         <div className="review-edit-title">
+                            <div>Edit Headline</div>
                             <input
                                 type="text"
                                 value={title}
@@ -45,16 +50,17 @@ function ReviewEditForm({ review, onFinishEdit }) {
                         </div>
                     </div>
                     <textarea
+                        className="edit-review-text"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                     />
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                    <button onClick={onFinishEdit}>Cancel</button>
-                </div>
-            </form>
-        </div>
+                    <div className="edit-buttons">
+                        <button type="submit">Submit</button>
+                        <button onClick={onFinishEdit}>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 }
 

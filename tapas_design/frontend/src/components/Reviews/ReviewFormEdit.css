@@ -1,18 +1,79 @@
-.review-edit-wrapper {
-    width: 80%;
-    display: flex;
-}
-
-.stars-titles-edit-wrapper{
+.stars-titles-edit-wrapper {
+    /* display: flex;
+    box-sizing: border-box;
+    color: #202020;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     flex-basis: 63%;
+    /* margin-bottom: 13px; */
+
 }
 
-.stars-titles-edit-container{
+.stars-titles-edit-container {
     display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+
     align-items: center;
     padding-bottom: 20px;
+}
+
+.review-edit-title {
+    box-sizing: border-box;
+    width: auto;
+    margin-bottom: 13px;
+    color: #202020;
+    font-weight: 800;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important;
+}
+
+.edit-author {
+    box-sizing: border-box;
+}
+
+.edit-stars-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    color: #202020;
+    font-weight: 800;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif !important;
+}
+
+.edit-review-text{
+    height: 10vh;
+    width: 99%;
+    font-weight: 400;
+    font-size: 16px;
+    resize: none;
+    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif !important;
+}
+
+.edit-buttons button{
+
+    border-radius: 0;
+    border: 1px solid rgba(129, 129, 129, 0.25) !important;
+    height: auto;
+    width: auto;
+    font-size: 16px;
+    color: #848484;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin: 5px;
 }
