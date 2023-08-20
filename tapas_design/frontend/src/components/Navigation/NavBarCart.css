@@ -48,16 +48,24 @@
     padding: 10px 20px;
 }
 
-.side-cart-head-title{
-    margin-left: 5px;
+.session-links {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    white-space: nowrap;
+}
+
+.side-cart-head-title {
+    margin-left: 20px;
     text-align: center;
     flex-grow: 1;
     font-size: 18px;
     font-weight: 800;
     color: black;
+    box-sizing: border-box;
 }
 
-.cart-exit-button{
+.cart-exit-button {
     display: flex;
     align-items: center;
 }
@@ -80,7 +88,7 @@
 }
 
 .overlay.show {
-    display: block; 
+    display: block;
 }
 
 .cart-empty-message {
@@ -88,4 +96,81 @@
     font-size: 18px;
     color: #777;
     padding: 20px;
+    margin-left: 25px;
+    box-sizing: border-box;
+}
+
+.cart-login-message {
+    box-sizing: border-box;
+}
+
+.cart-flyout-announcement {
+    box-sizing: border-box;
+    color: #232323;
+    background-color: #eeeeee;
+    padding: 5px 20px;
+    opacity: 1;
+    transform: translateX(0%);
+    transition: opacity 1s ease-in-out;
+    width: 100%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+}
+
+.account-links {
+    background: #f0f0f0;
+    color: #494949;
+    display: block;
+    font-size: 0.8em !important;
+    padding: 0 0 10px;
+    text-align: center;
+}
+
+.flyout-empty-cart-msg {
+    margin: 0;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #eee;
+    padding: 40px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.empty-cart-notice {
+    text-align: center;
+    box-sizing: border-box;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif;
+    font-style: normal !important;
+    font-weight: 800 !important;
+    font-size: 1.4em !important;
+    line-height: 1.5em !important;
+}
+
+.add-favorites {
+    text-align: center;
+    font-size: 1em !important;
+    line-height: 1.5em !important;
+    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.cart-shop-now{
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 45px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background: #e31b23;
+    border-color: #e31b23;
+
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
 }

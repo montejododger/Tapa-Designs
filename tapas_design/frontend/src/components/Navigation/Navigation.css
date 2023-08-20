@@ -92,10 +92,10 @@
     width: 64px;
     height: 60px;
 }
+
 .logo-wrapper img {
     position: relative;
     margin-right: 10px;
-    width: 3vw;
 }
 
 .navcart-wrapper {
@@ -126,7 +126,6 @@
     z-index: 371;
 }
 
-
-.nav-carty{
+.nav-carty {
     margin-left: 20px;
 }

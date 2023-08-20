@@ -22,9 +22,11 @@ function Navigation() {
     } else {
         sessionLinks = (
             <>
-                <NavLink to="/login" className="login-links">
-                    <p>Join / Sign In</p>
-                </NavLink>
+                <div className="session-links">
+                    <NavLink to="/login" className="login-links">
+                        Join / Sign In
+                    </NavLink>
+                </div>
             </>
         );
     }

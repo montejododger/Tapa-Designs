@@ -33,7 +33,6 @@ function ProfileButton({ user }) {
         dispatch(sessionActions.logout());
     };
 
-
     return (
         <div className="session-wrapper">
             <div className="sessions-container">
