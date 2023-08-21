@@ -1,20 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { deleteCartItem, updateCartItem } from "../../store/cartItems";
 
 const CartIndexItem = ({ item }) => {
     const dispatch = useDispatch();
-    // console.log(item);
 
-    const handleQuantityChange = (e) => {
-        const value = parseInt(e.target.value);
+    const handleIncrement = () => {
+        const updatedItem = {
+            ...item,
+            quantity: item.quantity + 1,
+        };
+        dispatch(updateCartItem(updatedItem));
+    };
 
-        if (!isNaN(value) && e.target.value > 0) {
+    const handleDecrement = () => {
+        if (item.quantity > 1) {
             const updatedItem = {
                 ...item,
-                quantity: Number(e.target.value),
+                quantity: item.quantity - 1,
             };
             dispatch(updateCartItem(updatedItem));
         }
@@ -24,20 +29,12 @@ const CartIndexItem = ({ item }) => {
         dispatch(deleteCartItem(item.id));
     };
 
-    // console.log(item.productPhotos);
-
-    // const baseUrl = "http://127.0.0.1:5500"
-    // const imgUrl = baseUrl + item.productPhotos
-
     const options = item.options.split(" ");
+    const price = item.productPrice
+
 
     return (
         <div className="cart-index-item-wrapper">
-            <div className="cart-flyout-announcement">
-                Create an account and spend $250 per rolling year to become a
-                VIP and earn 2 points per $1 spent, Free U.S. Shipping &
-                Returns, and more.
-            </div>
             <div className="cart-index-info-container">
                 <ul key={item.id} className="flyout-items">
                     <li className="flyout-item-list">
@@ -60,90 +57,34 @@ const CartIndexItem = ({ item }) => {
                             </button>
                             <div className="flyout-item-quantity">
                                 <div className="flyout-quantity-widget">
-                                    <button className="cart-minus">
+                                    <button
+                                        className="cart-minus"
+                                        onClick={handleDecrement}
+                                    >
                                         <FontAwesomeIcon icon={faMinus} />
                                     </button>
-                                    <p className="cart-quantity-label">{item.quantity}</p>
-                                    <button className="cart-add"></button>
+                                    <p className="cart-quantity-label">
+                                        {item.quantity}
+                                    </p>
+                                    <button
+                                        className="cart-plus"
+                                        onClick={handleIncrement}
+                                    >
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </button>
                                 </div>
                             </div>
-                            <div className="flyout-item-price"></div>
+                            <div className="flyout-item-price">
+                                <div className="cart-items-price-flyout">
+                                    <span>${price}.00</span>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>
-            </div>
-            <div className="index-item-crud-container">
-                <label className="quantity-label">
-                    Quantity:{" "}
-                    <input
-                        type="number"
-                        min="1"
-                        placeholder={item.quantity}
-                        // value={item.quantity}
-                        onChange={handleQuantityChange}
-                        className="quantity-show"
-                    />
-                    <br />
-                </label>
-                <button onClick={handleDeleteClick}>DELETE</button>
             </div>
         </div>
     );
 };
 
 export default CartIndexItem;
-
-// return (
-//     <div className="cart-index-item-wrapper">
-//         <div className="cart-flyout-announcement">
-//             Create an account and spend $250 per rolling year to become a
-//             VIP and earn 2 points per $1 spent, Free U.S. Shipping &
-//             Returns, and more.
-//         </div>
-//         <div className="cart-index-info-container">
-//             <ul key={item.id} className="flyout-items">
-//                 <li>{item.productName}</li>
-//                 <li>${(item.productPrice * item.quantity).toFixed(2)}</li>
-//                 <li> Options: {item.options}</li>
-//                 <li>{item.price}</li>
-//             </ul>
-//         </div>
-//         <div className="index-item-crud-container">
-//             <label className="quantity-label">
-//                 Quantity:{" "}
-//                 <input
-//                     type="number"
-//                     min="1"
-//                     placeholder={item.quantity}
-//                     // value={item.quantity}
-//                     onChange={handleQuantityChange}
-//                     className="quantity-show"
-//                 />
-//                 <br />
-//             </label>
-//             <button onClick={handleDeleteClick}>DELETE</button>
-//         </div>
-//     </div>
-// );
-
-// id
-// :
-// 4
-// options
-// :
-// "S Sand"
-// productId
-// :
-// 1
-// productName
-// :
-// "DIRT SHIRT - SHORT SLEEVE - MEN'S"
-// productPhotos
-// :
-// "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--09c045433aaf9a1f40f3e82d8353e5ca81187c05/dirt_hoodie_back.webp"
-// productPrice
-// :
-// 89
-// quantity
-// :
-// 1

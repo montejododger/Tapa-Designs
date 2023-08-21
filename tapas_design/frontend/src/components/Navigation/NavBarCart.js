@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTimes } from "@fortawesome/free-solid-svg-icons";
 import CartIndex from "../ShoppingCart/CartIndex";
 import { useSelector } from "react-redux";
+import CartFooter from "../ShoppingCart/CartFooter";
 
 import "./NavBarCart.css";
 
@@ -39,7 +40,14 @@ const NavBarCart = () => {
                 </div>
                 {currentUser ? (
                     // If user is logged in
-                    <CartIndex toggleCart={toggleCart}/>
+                    <div>
+                        <div className="cart-flyout-announcement">
+                            Create an account and spend $250 per rolling year to
+                            become a VIP and earn 2 points per $1 spent, Free
+                            U.S. Shipping & Returns, and more.
+                        </div>
+                        <CartIndex toggleCart={toggleCart} />
+                    </div>
                 ) : (
                     // If user is not logged in
                     <div className="cart-login-message">

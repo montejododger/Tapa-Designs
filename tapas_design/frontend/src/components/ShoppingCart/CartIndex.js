@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCartItems } from "../../store/cartItems";
 import CartIndexItem from "./CartIndexItem";
 
+import "../Navigation/NavBarCart.css";
+import CartFooter from "./CartFooter";
+
 const CartIndex = ({ toggleCart }) => {
     const dispatch = useDispatch();
     const cartItemsObj = useSelector((state) => state.cartItems);
@@ -13,6 +16,9 @@ const CartIndex = ({ toggleCart }) => {
     }, [dispatch]);
 
     const cartItems = Object.values(cartItemsObj);
+
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
+    const totalCost = cartItems.reduce((total, item) => item.quantity * item.productPrice, 0)
 
     return (
         <div className="cart-index-wrapper">
@@ -30,7 +36,13 @@ const CartIndex = ({ toggleCart }) => {
                 </div>
             ) : (
                 cartItems.map((item) => {
-                    return <CartIndexItem key={item.id} item={item} />;
+                    return (
+                        <div>
+                            <CartIndexItem key={item.id} item={item} />
+                            <CartFooter totalItems={totalItems} totalCost={totalCost}/>
+                        </div>
+
+                    );
                 })
             )}
         </div>
