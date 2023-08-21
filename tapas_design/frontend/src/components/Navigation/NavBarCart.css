@@ -151,14 +151,14 @@
     text-align: center;
     font-size: 1em !important;
     line-height: 1.5em !important;
-    font-family: Gotham Narrow A,Gotham Narrow B,Helvetica,Arial,sans-serif;
+    font-family: Gotham Narrow A, Gotham Narrow B, Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
     margin-bottom: 20px;
     box-sizing: border-box;
 }
 
-.cart-shop-now{
+.cart-shop-now {
     text-align: center;
     font-size: 12px;
     font-weight: 600;
@@ -173,4 +173,172 @@
     width: 100%;
     box-sizing: border-box;
     display: block;
+    border-style: solid;
+    text-align: center;
+    box-shadow: none;
+    outline: none;
+}
+
+.flyout-items {
+    border-color: #e3e3e3;
+    margin: 0;
+    border-width: 0 0 1px;
+    border-style: solid;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.flyout-item-list {
+    display: box;
+    display: flex;
+    display: -moz-flex;
+    display: flexbox;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-align-content: center;
+    -moz-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    margin: 0 20px;
+    border-width: 0;
+    border-style: solid;
+    border-color: #eee;
+    padding: 20px 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.flyout-media {
+    -webkit-flex: 0 0 auto;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    margin: 0;
+    padding: 0;
+    width: 90px;
+    box-sizing: border-box;
+}
+.flyout-media img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    min-width: auto;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: none;
+    vertical-align: middle;
+}
+
+.flyout-info {
+    -webkit-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    display: box;
+    display: flex;
+    display: -moz-flex;
+    display: flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-align-content: center;
+    -moz-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 20px;
+    width: calc(100% - 90px);
+    box-sizing: border-box;
+}
+
+.flyout-info h4 {
+    color: #232323;
+    margin: 0;
+    padding: 0 30px 0 0;
+    width: 100%;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.cart-item-options {
+    color: #535353;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    line-height: 16px;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.cart-item-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    min-width: auto;
+    height: 20px;
+    min-height: auto;
+    line-height: 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-weight: 600;
+    color: #110303;
+}
+
+.fa-trash {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+
+    display: inline-block;
+    text-rendering: auto;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-variant: normal;
+    font-style: normal;
+    box-sizing: border-box;
+    margin-left: 3px;
 }

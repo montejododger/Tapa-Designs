@@ -39,7 +39,7 @@ const NavBarCart = () => {
                 </div>
                 {currentUser ? (
                     // If user is logged in
-                    <CartIndex />
+                    <CartIndex toggleCart={toggleCart}/>
                 ) : (
                     // If user is not logged in
                     <div className="cart-login-message">
@@ -65,6 +65,7 @@ const NavBarCart = () => {
                                 </Link>
                             </div>
                         </div>
+                        <div className="empty-cart-footer"></div>
                     </div>
                 )}
             </div>
