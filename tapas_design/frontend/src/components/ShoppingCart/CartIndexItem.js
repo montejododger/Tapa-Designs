@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteCartItem, updateCartItem } from "../../store/cartItems";
 
 const CartIndexItem = ({ item }) => {
@@ -24,6 +24,11 @@ const CartIndexItem = ({ item }) => {
         dispatch(deleteCartItem(item.id));
     };
 
+    // console.log(item.productPhotos);
+
+    // const baseUrl = "http://127.0.0.1:5500"
+    // const imgUrl = baseUrl + item.productPhotos
+
     const options = item.options.split(" ");
 
     return (
@@ -37,7 +42,7 @@ const CartIndexItem = ({ item }) => {
                 <ul key={item.id} className="flyout-items">
                     <li className="flyout-item-list">
                         <div className="flyout-media">
-                            <img src={item.productPhotos[0]} alt="" />
+                            {/* <img src={} alt="" /> */}
                         </div>
 
                         <div className="flyout-info">
@@ -47,13 +52,19 @@ const CartIndexItem = ({ item }) => {
                             <div className="cart-item-options">
                                 {options[1]} / {options[0]}
                             </div>
-                            <button className="cart-item-delete"
-                            onClick={handleDeleteClick}>
+                            <button
+                                className="cart-item-delete"
+                                onClick={handleDeleteClick}
+                            >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                             <div className="flyout-item-quantity">
                                 <div className="flyout-quantity-widget">
-                                    <button className="cart-minus"></button>
+                                    <button className="cart-minus">
+                                        <FontAwesomeIcon icon={faMinus} />
+                                    </button>
+                                    <p className="cart-quantity-label">{item.quantity}</p>
+                                    <button className="cart-add"></button>
                                 </div>
                             </div>
                             <div className="flyout-item-price"></div>
