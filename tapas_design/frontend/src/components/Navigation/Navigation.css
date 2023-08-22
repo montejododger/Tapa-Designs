@@ -129,3 +129,45 @@
 .nav-carty {
     margin-left: 20px;
 }
+
+.sessions-container button {
+    border-radius: 50%;
+    padding: 10px;
+    background-color: white;
+    border: none;
+}
+
+.sessions-container button svg {
+    width: 25px;
+    height: 25px;
+    color: #888;
+}
+
+.sessions-container {
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.profile-dropdown {
+    width: 200px;
+    text-align: center;
+}
+
+.profile-dropdown button {
+    padding: 0;
+    width: 100px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px #888;
+}
+
+.profile-name {
+    text-transform: uppercase;
+}
+
+.profile-logout{
+    border-radius: 0 !important;
+    border: 1px solid lightgrey !important;
+    padding: 5px 10px; /* Optional: adjust padding as needed */
+    cursor: pointer; /* Optional: to indicate it's clickable */
+}

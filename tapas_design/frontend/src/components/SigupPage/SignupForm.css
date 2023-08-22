@@ -109,3 +109,11 @@
     font-weight: lighter;
     letter-spacing: 1px;
 }
+
+.error-list {
+    list-style: none;
+    color: red; /* Set the text color for the entire list */
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+}

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 
@@ -36,13 +38,19 @@ function ProfileButton({ user }) {
     return (
         <div className="session-wrapper">
             <div className="sessions-container">
-                <button onClick={toggleMenu}>User</button>
+                {!showMenu && (
+                    <button onClick={toggleMenu}>
+                        <FontAwesomeIcon icon={faUser} />
+                    </button>
+                )}
                 {showMenu && (
                     <ul className="profile-dropdown" ref={dropdownRef}>
-                        <li>{user.username}</li>
+                        <li className="profile-name">
+                            {user.firstName} {user.lastName}
+                        </li>
                         <li>{user.email}</li>
                         <li>
-                            <button onClick={logout}>Log Out</button>
+                            <button onClick={logout} className="profile-logout">Log Out</button>
                         </li>
                     </ul>
                 )}

@@ -16,20 +16,6 @@ function SignupFormPage() {
 
     if (sessionUser) return <Redirect to="/" />;
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setErrors([]);
-
-    //     return dispatch(
-    //         sessionActions.signup({ email, password, firstName, lastName })
-    //     ).then(async (res) => {
-    //         let data = await res.json();
-    //         if (data?.errors) setErrors(data.errors);
-    //         else if (data) setErrors([data]);
-    //         else setErrors([res.statusText]);
-    //     });
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -65,10 +51,15 @@ function SignupFormPage() {
     return (
         <div className="signup-container">
             <form className="form-container" onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error) => (
-                        <li key={error}>{error}</li>
-                    ))}
+                <ul className="error-list">
+                    {errors
+                        .join(",")
+                        .split(",")
+                        .map((error, index) => (
+                            <li key={index}>
+                                <span className="error-message">{error}</span>
+                            </li>
+                        ))}
                 </ul>
                 <br />
                 <h6 className="signup-header">Create Your Account</h6>
