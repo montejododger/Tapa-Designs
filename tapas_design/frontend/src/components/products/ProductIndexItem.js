@@ -12,8 +12,8 @@ function ProductIndexItem({ product }) {
                 </Link>
             </div>
             <div className="product-index-item-container">
-                {/* <span className="i-i-color">{product.color}</span> */}
                 <br />
+                <div></div>
                 <span className="index-name-container">{product.name}</span>
                 <br />
                 <span className="index-price-container">${product.price}.00</span>
