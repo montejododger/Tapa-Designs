@@ -151,11 +151,11 @@ require 'open-uri'
     Product.all.map do |product|
       5.times do
         Review.create!(
-          title: Faker::Book.title, 
+          title: Faker::Book.title,
           rating: rand(2..5),
           body: Faker::Movies::Lebowski.quote,
           user_id: rand(2..9), # userId 1 is the demo user
-          product_id: product.id
+          product_id: product.id,
         )
       end
     end

@@ -30,6 +30,8 @@ const ProductShowRight = ({ product }) => {
 
         if (!isNaN(value) && e.target.value > 0) {
             setQuantity(value);
+        } else {
+            setQuantity(1);
         }
     };
 

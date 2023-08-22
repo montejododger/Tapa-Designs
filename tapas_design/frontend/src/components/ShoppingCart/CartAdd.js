@@ -5,7 +5,7 @@ import { createCartItem } from "../../store/cartItems";
 const CartAdd = ({ product, selectedOptions, onItemAdd }) => {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState("");
-    const currentUser = useSelector((state) => state.session.user);
+    // const currentUser = useSelector((state) => state.session.user);
     const [size, color] = selectedOptions.options.split(" ");
 
     const handleClick = () => {
