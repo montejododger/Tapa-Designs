@@ -17,8 +17,14 @@ const CartIndex = ({ toggleCart }) => {
 
     const cartItems = Object.values(cartItemsObj);
 
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
-    const totalCost = cartItems.reduce((total, item) => item.quantity * item.productPrice, 0)
+    const totalItems = cartItems.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+    const totalCost = cartItems.reduce(
+        (total, item) => total + item.quantity * item.productPrice,
+        0
+    );
 
     return (
         <div className="cart-index-wrapper">
@@ -35,15 +41,14 @@ const CartIndex = ({ toggleCart }) => {
                     </div>
                 </div>
             ) : (
-                cartItems.map((item) => {
-                    return (
-                        <div>
-                            <CartIndexItem key={item.id} item={item} />
-                            <CartFooter totalItems={totalItems} totalCost={totalCost}/>
+                <>
+                    {cartItems.map((item) => (
+                        <div key={item.id}>
+                            <CartIndexItem item={item} />
                         </div>
-
-                    );
-                })
+                    ))}
+                    <CartFooter totalItems={totalItems} totalCost={totalCost} toggleCart={toggleCart}/>
+                </>
             )}
         </div>
     );
