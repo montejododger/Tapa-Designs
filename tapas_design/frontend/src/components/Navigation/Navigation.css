@@ -168,6 +168,6 @@
 .profile-logout{
     border-radius: 0 !important;
     border: 1px solid lightgrey !important;
-    padding: 5px 10px; /* Optional: adjust padding as needed */
-    cursor: pointer; /* Optional: to indicate it's clickable */
+    padding: 5px 10px;
+    cursor: pointer; 
 }
