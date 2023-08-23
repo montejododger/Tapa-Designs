@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { UseSelector, useSelector } from "react-redux";
 import CartAdd from "../ShoppingCart/CartAdd";
 import StarAvg from "../Reviews/StarAvg";
 import ReviewTotal from "../Reviews/ReviewTotal";
 
 const ProductShowRight = ({ product }) => {
+
     const [pickedSize, setSize] = useState("");
     const [pickedColor, setColor] = useState("");
     const [quantity, setQuantity] = useState(1);
@@ -52,7 +54,6 @@ const ProductShowRight = ({ product }) => {
                 <br />
                 <div className="item-colors">
                     <p className="colors-title">Color: {pickedColor}</p>
-                    {/* <br /> */}
                     {colors.map((color, index) => (
                         <button
                             key={index + 1}
@@ -68,7 +69,6 @@ const ProductShowRight = ({ product }) => {
                 <br />
                 <div className="item-sizes">
                     <p className="size-title">Size: {pickedSize}</p>
-                    {/* <br /> */}
                     {sizes.map((size, index) => (
                         <button
                             key={index + 1}
@@ -92,6 +92,7 @@ const ProductShowRight = ({ product }) => {
                         className="quantity-input"
                         size="4"
                     />
+
                     <CartAdd
                         onItemAdd={handleItemAdd}
                         className="add-to-cart"

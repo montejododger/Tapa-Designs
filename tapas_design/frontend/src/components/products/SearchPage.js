@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { useParams } from "react-router-dom";
 import ProductIndexItem from "./ProductIndexItem";
 import "./ProductIndex.css";
 
@@ -21,11 +20,19 @@ function SearchPage() {
     if (products === undefined) return null;
 
     return (
-        <section className="product-index-wrapper">
-            {products.map((product) => (
-                <ProductIndexItem product={product} key={product.id} />
-            ))}
-        </section>
+        <div className="search-index">
+            <section className="product-index-wrapper">
+                {products.length > 0 ? (
+                    products.map((product) => (
+                        <ProductIndexItem product={product} key={product.id} />
+                    ))
+                ) : (
+                    <div className="no-items-found">
+                        <span>No items found</span>
+                    </div>
+                )}
+            </section>
+        </div>
     );
 }
 

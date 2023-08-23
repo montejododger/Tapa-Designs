@@ -1,6 +1,7 @@
 class Api::CartItemsController < ApplicationController
 
   before_action :require_logged_in, only: [:create, :update, :destory]
+  # include Rails.application.routes.url_helpers
 
 
   # grabs the items that belong to the current user

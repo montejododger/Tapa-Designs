@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 function ProductIndexItem({ product }) {
     const photo = product.photos[0];
+
+    // console.log(product);
+
+    // console.log(photo);
     
     return (
         <div className="product-item-wrapper">
@@ -13,7 +17,6 @@ function ProductIndexItem({ product }) {
             </div>
             <div className="product-index-item-container">
                 <br />
-                <div></div>
                 <span className="index-name-container">{product.name}</span>
                 <br />
                 <span className="index-price-container">${product.price}.00</span>

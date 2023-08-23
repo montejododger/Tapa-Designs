@@ -38,8 +38,9 @@ const CartIndexItem = ({ item }) => {
             <div className="cart-index-info-container">
                 <ul key={item.id} className="flyout-items">
                     <li className="flyout-item-list">
+                        
                         <div className="flyout-media">
-                            {/* <img src={} alt="" /> */}
+                            {/* <img src={photo} alt="" /> */}
                         </div>
 
                         <div className="flyout-info">

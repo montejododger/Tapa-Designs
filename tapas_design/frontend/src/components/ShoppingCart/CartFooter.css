@@ -15,7 +15,6 @@
 }
 
 .footer-subtotal {
-    display: box;
     display: flex;
     display: -moz-flex;
     display: flexbox;

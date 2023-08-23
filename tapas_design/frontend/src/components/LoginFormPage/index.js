@@ -76,10 +76,15 @@ export const LoginFormPage = () => {
     return (
         <div className="login-container">
             <form className="form-container" onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error) => (
-                        <li key={error}>{error}</li>
-                    ))}
+                <ul className="error-list">
+                    {errors
+                        .join(",")
+                        .split(",")
+                        .map((error, index) => (
+                            <li key={index}>
+                                <span className="error-message">{error}</span>
+                            </li>
+                        ))}
                 </ul>
                 <br />
                 <h6 className="signin-header">Sign In</h6>
@@ -117,7 +122,12 @@ export const LoginFormPage = () => {
                         SIGN IN
                     </button>
                     <br />
-                    <button className="signup-button" onClick={handleDemoSubmit}>DEMO USER</button>
+                    <button
+                        className="signup-button"
+                        onClick={handleDemoSubmit}
+                    >
+                        DEMO USER
+                    </button>
                     <br />
                     <button
                         onClick={handleClick}
