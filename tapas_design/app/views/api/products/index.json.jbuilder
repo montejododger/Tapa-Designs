@@ -4,5 +4,3 @@
         json.photos product.photos.map { |photo|  photo.url }
     end 
 end
-
-# json.photos product.photos.map { |photo|  url_for(photo.url) }

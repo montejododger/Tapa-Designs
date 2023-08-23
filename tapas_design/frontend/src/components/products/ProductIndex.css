@@ -1,20 +1,12 @@
-.side-panel-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 30%;
-    padding-left: 30px;
-}
 
 .product-index-wrapper {
     padding-top: 30px;
     box-sizing: border-box;
-    width: 100vw;
-    height: 80vh;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .product-item-wrapper {
@@ -182,4 +174,14 @@ strong{
 
 .email{
     color: red;
+}
+
+.product-category-wrapper{
+    padding-top: 30px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-bottom: 30px;
 }

@@ -10,7 +10,6 @@ import SearchBar from "./SearchBar";
 
 import "./Navigation.css";
 
-// TODO: Move session links to header
 
 function Navigation() {
     const sessionUser = useSelector((state) => state.session.user);

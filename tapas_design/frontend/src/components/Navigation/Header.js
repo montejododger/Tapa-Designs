@@ -9,9 +9,6 @@ function Header() {
                     Free U.S. Shipping on $200+ | Free U.S. Exchanges
                 </span>
             </div>
-            <div className="header-login-container">
-                {/* <span>Join / Sign In</span> */}
-            </div>
         </header>
     );
 }

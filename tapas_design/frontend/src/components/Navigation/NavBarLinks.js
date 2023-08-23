@@ -7,15 +7,17 @@ const NavBarLinks = () => {
             <div className="navbar-links-container">
                 <ul className="navbar-ul-container menu">
                     <li className="nav-li">
-                        <Link to="/category/mens">Men's</Link>
+                        <Link to="/categories/mens">Men's</Link>
                     </li>
                     <li className="nav-li">
-                        <Link to="/category/womens">Women's</Link>
+                        <Link to="/categories/womens">Women's</Link>
                     </li>
                     <li className="nav-li">
-                        <Link to="/category/accessories">Accessories</Link>
+                        <Link to="/categories/accessories">Accessories</Link>
                     </li>
-                    <li className="nav-li">Future Categories</li>
+                    <li className="nav-li">
+                        <Link to="/categories/sale">Sale</Link>
+                    </li>
                     <li className="nav-li">Future Categories</li>
                     <li className="nav-li">Future Categories</li>
                 </ul>

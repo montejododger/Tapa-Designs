@@ -5,7 +5,6 @@ import './ProductIndex.css'
 const ProductHome = () => {
     return (
         <section className="products-wrapper">
-            {/* <ProductSidePanel /> */}
             <ProductIndex />
         </section>
     );

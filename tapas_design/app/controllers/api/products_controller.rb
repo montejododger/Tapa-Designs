@@ -14,17 +14,6 @@ class Api::ProductsController < ApplicationController
         end
     end
 
-
-    # TODO: comment these puts out
-
-    # def search
-    #     # this calls the search method in the model
-    #     @products = Product.search(params[:query])
-    #     # puts "Search Query: #{params[:query]}" # Add this line to debug the query
-    #     # puts "Search Results: #{@products.inspect}" # Add this line to debug the search results
-    #     render :search
-    # end
-
     def search
         @products = Product.search(params[:query])
         render :search

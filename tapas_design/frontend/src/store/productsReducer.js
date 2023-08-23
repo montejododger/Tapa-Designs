@@ -58,6 +58,7 @@ export const fetchSearchResults = (query) => async (dispatch) => {
 };
 
 export const fetchCategoryProducts = (category) => async (dispatch) => {
+    // debugger
     const encodedCategory = encodeURIComponent(category);
     const res = await fetch(`/api/products/categories/${encodedCategory}`);
 

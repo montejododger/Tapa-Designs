@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 
 function ProductIndexItem({ product }) {
     const photo = product.photos[0];
-
-    // console.log(product);
-
-    // console.log(photo);
     
     return (
         <div className="product-item-wrapper">
