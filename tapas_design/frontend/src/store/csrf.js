@@ -13,6 +13,7 @@ export const restoreSession = async () => {
 
 // will use in place of fetch, for non-get requests
 // options is the body with a method: POST, GET, DELETE
+
 export const csrfFetch = async (url, options = {}) => {
     options.method ||= "GET";
     options.headers ||= {};
@@ -28,5 +29,6 @@ export const csrfFetch = async (url, options = {}) => {
 
     return res;
 };
+
 
 export default csrfFetch;

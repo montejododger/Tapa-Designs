@@ -8,7 +8,8 @@ class Api::CartItemsController < ApplicationController
 
   def index
     # debugger
-    @cart_items = CartItem.where(user_id: current_user.id)
+    # @cart_items = CartItem.where(user_id: current_user.id)
+    @cart_items = CartItem.all
     render :index
     
   end

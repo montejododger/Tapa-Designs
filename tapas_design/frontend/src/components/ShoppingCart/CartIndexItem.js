@@ -32,6 +32,8 @@ const CartIndexItem = ({ item }) => {
     const options = item.options.split(" ");
     const price = item.productPrice
 
+    const photo = item.photo
+
 
     return (
         <div className="cart-index-item-wrapper">
@@ -40,7 +42,7 @@ const CartIndexItem = ({ item }) => {
                     <li className="flyout-item-list">
                         
                         <div className="flyout-media">
-                            {/* <img src={photo} alt="" /> */}
+                            <img src={photo} alt="" />
                         </div>
 
                         <div className="flyout-info">

@@ -18,7 +18,7 @@ function ReviewBody() {
     return (
         <div className="review-body-wrapper">
             {sortedReviews.map((review) => (
-                    <ReviewBodyItem review={review}  />
+                    <ReviewBodyItem review={review} key={review.id} />
             ))}
         </div>
     );

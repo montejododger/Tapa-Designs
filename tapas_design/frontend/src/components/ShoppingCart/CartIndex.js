@@ -26,6 +26,8 @@ const CartIndex = ({ toggleCart }) => {
         0
     );
 
+   
+
 
     return (
         <div className="cart-index-wrapper">

@@ -3,7 +3,7 @@ json.cart_item do
     product = @cart_item.product
     json.product_name product.name 
     json.product_price product.price
-    json.product_photo_url rails_blob_url(product.photos.first) if product.photos.attached?
+    json.photo product.photos.first&.url
 
 end
 

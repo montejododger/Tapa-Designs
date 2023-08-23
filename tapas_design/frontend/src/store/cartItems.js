@@ -6,7 +6,6 @@ export const RECEIVE_CART_ITEMS = "cartItems/RECEIVE_CART_ITEMS";
 export const RECEIVE_CART_ITEM = "cartItems/RECEIVE_CART_ITEM";
 export const REMOVE_CART_ITEM = "cartItems/REMOVE_CART_ITEM";
 
-
 // actions hold DATA
 // returns an object
 
@@ -35,7 +34,8 @@ export const removeCartItem = (cartItemId) => {
 
 // Plural
 export const fetchCartItems = () => async (dispatch) => {
-    const res = await fetch(`/api/cart_items`);
+    // debugger
+    const res = await fetch(`/api/cart_items/`);
 
     if (res.ok) {
         const cartItems = await res.json();
@@ -46,13 +46,13 @@ export const fetchCartItems = () => async (dispatch) => {
 
 // Singular
 export const fetchCartItem = (cartItemId) => async (dispatch) => {
-    const res = await fetch(`/api/cart_items/${cartItemId}`)
+    const res = await fetch(`/api/cart_items/${cartItemId}`);
 
     if (res.ok) {
-        const cartItem = await res.json()
-        dispatch(receiveCartItems(cartItem))
+        const cartItem = await res.json();
+        dispatch(receiveCartItems(cartItem));
     }
-}
+};
 
 // CREATE
 export const createCartItem = (cartItem) => async (dispatch) => {
@@ -89,7 +89,6 @@ export const updateCartItem = (cartItem) => async (dispatch) => {
     }
 };
 
-
 // DELETE
 export const deleteCartItem = (cartItemId) => async (dispatch) => {
     // debugger
@@ -102,12 +101,10 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
     }
 };
 
-
 const cartItemsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
     // debugger
-
 
     switch (action.type) {
         case RECEIVE_CART_ITEMS:
@@ -125,7 +122,5 @@ const cartItemsReducer = (state = {}, action) => {
 };
 
 export default cartItemsReducer;
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////

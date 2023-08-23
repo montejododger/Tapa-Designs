@@ -7,6 +7,9 @@ const NavBarLinks = () => {
             <div className="navbar-links-container">
                 <ul className="navbar-ul-container menu">
                     <li className="nav-li">
+                        <Link to="/products">All</Link>
+                    </li>
+                    <li className="nav-li">
                         <Link to="/categories/mens">Men's</Link>
                     </li>
                     <li className="nav-li">
@@ -15,9 +18,10 @@ const NavBarLinks = () => {
                     <li className="nav-li">
                         <Link to="/categories/accessories">Accessories</Link>
                     </li>
-                    <li className="nav-li">
+                    {/* <li className="nav-li">
                         <Link to="/categories/sale">Sale</Link>
-                    </li>
+                    </li> */}
+                    <li className="nav-li">Future Categories</li>
                     <li className="nav-li">Future Categories</li>
                     <li className="nav-li">Future Categories</li>
                 </ul>
