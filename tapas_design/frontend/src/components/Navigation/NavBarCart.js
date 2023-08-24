@@ -40,7 +40,7 @@ const NavBarCart = () => {
                 </div>
                 {currentUser ? (
                     // If user is logged in
-                    <div>
+                    <div className="shopping-cart-flyout">
                         <div className="cart-flyout-announcement">
                             Create an account and spend $250 per rolling year to
                             become a VIP and earn 2 points per $1 spent, Free

@@ -40,7 +40,7 @@ function SearchPage() {
                             <ul className="sugg-list">
                                 <li>Check for misspellings.</li>
                                 <li>
-                                    Remove possible redundent keywords(ie.
+                                    Remove possible redundant keywords(ie.
                                     "products")
                                 </li>
                                 <li>

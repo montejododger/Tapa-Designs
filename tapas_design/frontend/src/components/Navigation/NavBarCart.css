@@ -10,12 +10,12 @@
 
 .cart-window {
     position: fixed;
+    overflow-y: auto;
     top: 0;
     right: -100%;
     bottom: 0;
     width: 500px;
     max-width: calc(100% - 20px);
-    overflow: hidden;
     background-color: white;
     z-index: 2147483638;
     border-left: 1px solid #ccc;
