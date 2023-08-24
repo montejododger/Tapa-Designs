@@ -169,16 +169,16 @@ require 'open-uri'
       p4.photos.attach(photo)
     end
 
-    # p5_photos = [
-    #   { io: URI.open(''), filename: ''},
-    #   { io: URI.open(''), filename: ''},
-    #   { io: URI.open(''), filename: ''},
-    #   { io: URI.open(''), filename: ''}
-    # ]
+    p5_photos = [
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number4.webp'), filename: ''}
+    ]
 
-    # p5_photos.each do |photo|
-    #   p5.photos.attach(photo)
-    # end
+    p5_photos.each do |photo|
+      p5.photos.attach(photo)
+    end
 
 
     # p6_photos = [
@@ -226,7 +226,6 @@ require 'open-uri'
     # end
 
 
-    p5.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
 
     p6.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
 

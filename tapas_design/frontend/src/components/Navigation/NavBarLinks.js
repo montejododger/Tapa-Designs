@@ -7,7 +7,7 @@ const NavBarLinks = () => {
             <div className="navbar-links-container">
                 <ul className="navbar-ul-container menu">
                     <li className="nav-li">
-                        <Link to="/products">All</Link>
+                        <Link to="/products">Collection</Link>
                     </li>
                     <li className="nav-li">
                         <Link to="/categories/mens">Men's</Link>
