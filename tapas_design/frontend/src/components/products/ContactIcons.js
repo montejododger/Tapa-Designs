@@ -5,7 +5,7 @@ const LinkedInIcon = ({ url }) => {
     return (
         <div>
             <a href={url} target="_blank" rel="noopener noreferrer">
-                <FaLinkedin size="3em" color="blue" />
+                <FaLinkedin size="2.5em" color="royalblue" />
             </a>
         </div>
     );
@@ -15,7 +15,7 @@ const GithubIcon = ({ url }) => {
     return (
         <div>
             <a href={url} target="_blank" rel="noopener noreferrer">
-                <FaGithub size="3em" color="white" />
+                <FaGithub size="2.5em" />
             </a>
         </div>
     );

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTimes } from "@fortawesome/free-solid-svg-icons";
 import CartIndex from "../ShoppingCart/CartIndex";
 import { useSelector } from "react-redux";
-import CartFooter from "../ShoppingCart/CartFooter";
+// import CartFooter from "../ShoppingCart/CartFooter";
 
 import "./NavBarCart.css";
 

@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import ProductIndexItem from "./ProductIndexItem";
 import { useParams } from "react-router-dom";
+import { LinkedInIcon, GithubIcon } from "../products/ContactIcons";
+
 import "./ProductIndex.css";
 
 const selectProducts = createSelector(
@@ -60,17 +62,23 @@ function SearchPage() {
                             </p>
                         </div>
                         <div className="ss-phone">
-                            <h4 className="ss-title">
-                                        Phone
-                            </h4>
+                            <h4 className="ss-title">Phone</h4>
                             <p>
                                 <strong>Telephone: </strong> (555) 555 - 5555
                             </p>
                         </div>
-                        <div className="ss-email"> 
+                        <div className="ss-email">
                             <h4 className="ss-title">Email</h4>
-                            <p className="email">
-                                notarealemail@gmail.com
+                            <p className="email">notarealemail@gmail.com</p>
+                        </div>
+                        <div className="ss-contact-links">
+                            <h4 className="ss-title">Contact</h4>
+                            <p className="ss-icon-links">
+                                <LinkedInIcon
+                                    url={`https://www.linkedin.com/in/matthew-m-640905239/`}
+                                />{" "}
+                                <br />
+                                <GithubIcon/>
                             </p>
                         </div>
                     </div>

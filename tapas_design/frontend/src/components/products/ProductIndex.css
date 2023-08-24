@@ -185,3 +185,13 @@ strong{
     text-align: center;
     margin-bottom: 30px;
 }
+
+.ss-icon-links{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.ss-icon-links svg{
+    padding: 20px;
+    margin-left: 5px;
+}
