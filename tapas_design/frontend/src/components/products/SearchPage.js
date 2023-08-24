@@ -43,7 +43,7 @@ function SearchPage() {
                                 <li>Check for misspellings.</li>
                                 <li>
                                     Remove possible redundant keywords(ie.
-                                    "products")
+                                    "products").
                                 </li>
                                 <li>
                                     Use other words to describe what you are
