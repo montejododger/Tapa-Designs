@@ -18,8 +18,6 @@ function ProductShow() {
     }, [dispatch, productId]);
 
     if (product === undefined) return null;
-
-    // console.log(product.photos);
     
     return (
         <div className="">

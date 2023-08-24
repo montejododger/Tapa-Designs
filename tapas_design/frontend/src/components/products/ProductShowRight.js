@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UseSelector, useSelector } from "react-redux";
+// import { UseSelector, useSelector } from "react-redux";
 import CartAdd from "../ShoppingCart/CartAdd";
 import StarAvg from "../Reviews/StarAvg";
 import ReviewTotal from "../Reviews/ReviewTotal";

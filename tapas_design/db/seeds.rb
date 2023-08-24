@@ -56,6 +56,8 @@ require 'open-uri'
       color: "Sand Brick Pond Blue Olive Black",
     })
 
+
+
     p2 = Product.create!({
       name: "DIRT HOODIE - MEN'S",
       description: "The Dirt Hoodie is the go-to wardrobe staple built with 100% organic, midweight brushed french terry cotton. With a matching drawcord to other pieces in the Dirt Collection line, this silhouette is unmistakably Topo.",
@@ -121,20 +123,108 @@ require 'open-uri'
     })
 
 
-    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
+      p1_photos = [
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: 'dirt_shirt_ss_mens_front.webp'},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number2.webp'), filename: ''},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number3.webp'), filename: ''},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number4.webp'), filename: ''}
+      ]
 
-    p1.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
-
-    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
-
-    p1.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
+      p1_photos.each do |photo|
+        p1.photos.attach(photo)
+      end
 
 
-    p2.photos.attach(io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp')
+    p2_photos = [
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_front.webp' },
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp' },
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp' },
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp' }
+    ]
 
-    p3.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp')
+    p2_photos.each do |photo|
+      p2.photos.attach(photo)
+    end
 
-    p4.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp')
+
+    p3_photos = [
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number4.webp'), filename: ''}
+    ]
+
+    p3_photos.each do |photo|
+      p3.photos.attach(photo)
+    end
+
+    p4_photos = [
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number4.webp'), filename: ''}
+    ]
+
+    p4_photos.each do |photo|
+      p4.photos.attach(photo)
+    end
+
+    # p5_photos = [
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''}
+    # ]
+
+    # p5_photos.each do |photo|
+    #   p5.photos.attach(photo)
+    # end
+
+
+    # p6_photos = [
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''}
+    # ]
+
+    # p6_photos.each do |photo|
+    #   p6.photos.attach(photo)
+    # end
+
+    # p7_photos = [
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''}
+    # ]
+
+    # p7_photos.each do |photo|
+    #   p7.photos.attach(photo)
+    # end
+
+    # p8_photos = [
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''}
+    # ]
+
+    # p8_photos.each do |photo|
+    #   p8.photos.attach(photo)
+    # end
+
+    # p_photos = [
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''},
+    #   { io: URI.open(''), filename: ''}
+    # ]
+
+    # p_photos.each do |photo|
+    #   p.photos.attach(photo)
+    # end
+
 
     p5.photos.attach(io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_back.webp' )
 
