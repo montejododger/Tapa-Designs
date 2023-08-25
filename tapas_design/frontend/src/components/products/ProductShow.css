@@ -98,13 +98,6 @@
     margin-top: 5px;
 }
 
-.color-swatches {
-    border-radius: 50%;
-    height: 2vw;
-    border: 2px solid #fff;
-    left: 0;
-}
-
 .color-swatches.selected,
 .size-swatches.selected {
     border-color: #000;
