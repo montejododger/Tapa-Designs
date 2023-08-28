@@ -101,12 +101,28 @@ ________________________________________________________________________________
 ### Installation 
 
 To get started with Tapa-Designs locally, follow these steps:
-  1. Clone the repository: git clone (https://github.com/montejododger/Tapa-Designs.git)
-  2. Install the required dependencies: cd tapas-design, bundle install, npm install
-  3. Set up the database: rails db:create rails db:migrate rails db:seed
-  4. Start the Rails server: rails s
-  5. Open a new terminal window and start the React development server: cd frontend, npm install, npm start
-  6. Visit http://localhost:3000 in your browser to explore the app locally.
+  1. Clone the repository: 
+     A. git clone (https://github.com/montejododger/Tapa-Designs.git)
+     
+  3. Install the required dependencies:
+     A. cd tapas-design
+     B. bundle install
+     C. npm install
+     
+  4. Set up the database:
+     A. rails db:create
+     B. rails db:migrate
+     C. rails db:seed
+     
+  5. Start the Rails server:
+     A. rails s
+     
+  6. Open a new terminal window and start the React development server:
+     A. cd frontend
+     B. npm install
+     C. npm start
+     
+  10. Visit http://localhost:3000 in your browser to explore the app locally.
 _________________________________________________________________________________________________________________________________________________________
 
 
