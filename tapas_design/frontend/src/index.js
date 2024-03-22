@@ -51,6 +51,10 @@ const renderApplication = () => {
     );
 };
 
+
+// check is there is a current user or token
+    // if it is present then restore session and then render App
+    // else just render app cause there is no curr or token present
 if (
     sessionStorage.getItem("currentUser") === null ||
     sessionStorage.getItem("X-CSRF-Token") === null

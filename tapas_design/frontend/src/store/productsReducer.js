@@ -1,8 +1,8 @@
 import { receiveReviews } from "./reviews";
 
 // ACTION CONSTANTS
-const RECEIVE_PRODUCTS = "products/RECEIVER_PRODUCTS";
-const RECEIVE_PRODUCT = "products/RECEIVER_PRODUCT";
+const RECEIVE_PRODUCTS = "products/RECEIVE_PRODUCTS";
+const RECEIVE_PRODUCT = "products/RECEIVE_PRODUCT";
 
 // ACTION CREATORS
 export const receiveProducts = (products) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
@@ -13,6 +13,13 @@ export const LoginFormPage = () => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        if (sessionUser) {
+            history.push("/");
+        }
+    }, [sessionUser, history]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -67,9 +74,6 @@ export const LoginFormPage = () => {
     if (redirect) {
         return <Redirect to={"/signup"} />;
     }
-
-
-    if (sessionUser) return history.push("/");
 
     return (
         <div className="login-container">
