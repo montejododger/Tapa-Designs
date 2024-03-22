@@ -1,14 +1,3 @@
-// method for grabbing a csrf token, AND a logged in user
-// load up our cookie
-export const restoreSession = async () => {
-    let res = await fetch("/api/session"); // fetch to session show route
-    let token = res.headers.get("X-CSRF-Token"); // grab from headers (was set in app_controller)
-    sessionStorage.setItem("X-CSRF-Token", token); // save to the browser
-    let data = await res.json(); // data -> {user: {id: ..., username: ..., createdAt: ...}}
-    sessionStorage.setItem("currentUser", JSON.stringify(data.user)); // get a string of the user info
-    return res;
-};
-
 
 // will use in place of fetch, for non-get requests
 // options is the body with a method: POST, GET, DELETE

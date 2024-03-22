@@ -25,6 +25,7 @@ const storeCSRFToken = (response) => {
     if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 };
 
+// is user is not null store it as a key value pair in sessionStorage
 const storeCurrentUser = (user) => {
     if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
     else sessionStorage.removeItem("currentUser");
@@ -67,10 +68,12 @@ export const logout = () => async (dispatch) => {
     return response;
 };
 
+
+// This happens when  the page is intially loaded
 export const restoreSession = () => async (dispatch) => {
     const res = await csrfFetch(`/api/session`);
-    storeCSRFToken(res);
     const data = await res.json();
+    storeCSRFToken(res);
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return res;
