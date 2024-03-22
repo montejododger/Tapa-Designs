@@ -14,6 +14,8 @@ import * as cartActions from "./store/cartItems";
 
 //testing
 // TODO: take out after production
+
+// init a new store - sets up redux store with , middelware, reducers, enhancers
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {

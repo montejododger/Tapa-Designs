@@ -40,7 +40,7 @@ function Navigation() {
                 </div>
                 <div className="nav-right-inner">
                     <SearchBar />
-                    <p>{sessionLinks}</p>
+                    <div>{sessionLinks}</div>
                     <div className="nav-carty">
                         <NavBarCart />
                     </div>

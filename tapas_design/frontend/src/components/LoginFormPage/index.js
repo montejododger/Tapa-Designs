@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import "./LoginForm.css";
 
 export const LoginFormPage = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [redirect, setRedirect] = useState(false);
-
-    if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,10 +23,7 @@ export const LoginFormPage = () => {
         return dispatch(sessionActions.login({ email, password })).then(
             async (res) => {
                 if (res.ok) {
-                    // Check if login was successful
-                    const prevUrl = localStorage.getItem("prevUrl");
-                    window.location.href = prevUrl ? prevUrl : "/"; // Navigate to the previous page, or home page if no previous page
-                    localStorage.removeItem("prevUrl"); // Remove the stored url after using it
+                    history.push("/");
                 } else {
                     let data = await res.json();
                     if (data?.errors) setErrors(data.errors);
@@ -38,6 +34,7 @@ export const LoginFormPage = () => {
         );
     };
 
+    // DEMO USER LOGIN
     const handleDemoSubmit = (e) => {
         e.preventDefault();
 
@@ -51,9 +48,7 @@ export const LoginFormPage = () => {
             })
         ).then(async (res) => {
             if (res.ok) {
-                const prevUrl = localStorage.getItem("prevUrl");
-                window.location.href = prevUrl ? prevUrl : "/";
-                localStorage.removeItem("prevUrl");
+                history.push("/");
             } else {
                 let data = await res.json();
                 if (data?.errors) setErrors(data.errors);
@@ -72,6 +67,9 @@ export const LoginFormPage = () => {
     if (redirect) {
         return <Redirect to={"/signup"} />;
     }
+
+
+    if (sessionUser) return history.push("/");
 
     return (
         <div className="login-container">
@@ -136,7 +134,6 @@ export const LoginFormPage = () => {
                         CREATE ACCOUNT
                     </button>
                 </div>
-                <p></p>
             </form>
         </div>
     );
