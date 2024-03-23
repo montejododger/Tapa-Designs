@@ -1,11 +1,17 @@
 .product-show-wrapper {
 
     width: 100vw;
-    height: 90vh;
+    max-height: 90vh;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 20px;
+    flex: 1;
+}
+
+.product-wrapper{
+    display: flex;
+    flex-direction: column;
 }
 
 .product-show-right-wrapper {

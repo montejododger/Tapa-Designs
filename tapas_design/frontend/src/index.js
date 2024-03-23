@@ -12,12 +12,11 @@ import * as sessionActions from "./store/session";
 import * as productActions from "./store/productsReducer";
 import * as cartActions from "./store/cartItems";
 
-//testing
-// TODO: take out after production
 
 // init a new store - sets up redux store with , middelware, reducers, enhancers
 const store = configureStore();
 
+// TODO: take out after production
 if (process.env.NODE_ENV !== "production") {
     window.store = store;
     window.createUser = createUser;

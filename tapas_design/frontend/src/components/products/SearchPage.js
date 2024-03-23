@@ -73,13 +73,13 @@ function SearchPage() {
                         </div>
                         <div className="ss-contact-links">
                             <h4 className="ss-title">Contact</h4>
-                            <p className="ss-icon-links">
+                            <div className="ss-icon-links">
                                 <LinkedInIcon
                                     url={`https://www.linkedin.com/in/matthew-m-640905239/`}
                                 />{" "}
                                 <br />
                                 <GithubIcon/>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 )}

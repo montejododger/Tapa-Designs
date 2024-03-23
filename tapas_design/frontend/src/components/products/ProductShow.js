@@ -18,9 +18,9 @@ function ProductShow() {
     }, [dispatch, productId]);
 
     if (product === undefined) return null;
-    
+
     return (
-        <div className="">
+        <div className="product-wrapper">
             <div className="product-show-wrapper">
                 <ProductShowImgSide photos={product.photos} />
                 <ProductShowRight product={product} />
