@@ -7,7 +7,7 @@ import CartIndexItem from "./CartIndexItem";
 import "../Navigation/NavBarCart.css";
 import CartFooter from "./CartFooter";
 
-const CartIndex = ({ toggleCart }) => {
+const CartIndex = ({ toggleCart, toggleCheckout }) => {
     const dispatch = useDispatch();
     const cartItemsObj = useSelector((state) => state.cartItems);
 
@@ -25,9 +25,6 @@ const CartIndex = ({ toggleCart }) => {
         (total, item) => total + item.quantity * item.productPrice,
         0
     );
-
-   
-
 
     return (
         <div className="cart-index-wrapper">
@@ -50,7 +47,12 @@ const CartIndex = ({ toggleCart }) => {
                             <CartIndexItem item={item} />
                         </div>
                     ))}
-                    <CartFooter totalItems={totalItems} totalCost={totalCost} toggleCart={toggleCart}/>
+                    <CartFooter
+                        totalItems={totalItems}
+                        totalCost={totalCost}
+                        toggleCart={toggleCart}
+                        toggleCheckout={toggleCheckout}
+                    />
                 </>
             )}
         </div>

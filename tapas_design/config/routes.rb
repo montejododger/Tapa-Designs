@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] do
-      #  this allows the user to see his reviews on his profile 
+      #  this allows the user to see their reviews on their profile
       resources :reviews, only: [:index]
     end
-    
+
     resource :session, only: [:show, :create, :destroy]
-    
+
     resources :products, only: [:index, :show] do
       collection do
         get 'search'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
 
     resources :cart_items, only: [:index, :create, :update, :destroy]
-    
+
   end
 
 
@@ -32,7 +32,5 @@ Rails.application.routes.draw do
   #test route (custom)
   # post "/api/test", to: "application#test"
   get '*path', to: "static_pages#frontend"
-  
+
 end
-
-

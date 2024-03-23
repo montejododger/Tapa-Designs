@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import "./CartFooter.css";
 
-const CartFooter = ({ totalItems, totalCost, toggleCart }) => {
+const CartFooter = ({ totalItems, totalCost, toggleCart, toggleCheckout }) => {
     let itemNumber = totalItems === 1 ? "item" : "items";
 
     return (
@@ -16,17 +15,17 @@ const CartFooter = ({ totalItems, totalCost, toggleCart }) => {
                         Subtotal ({totalItems} {itemNumber})
                     </span>
                 </div>
-                <div className="subtotal-amount">${totalCost}.00</div>
+                <div className="subtotal-amount,">${totalCost}.00</div>
             </div>
             <div className="fly-actions">
-                <button className="checkout-button">
+                <button className={"checkout-button"} onClick={toggleCheckout}>
                     <span className="checkout-span">
                         <FontAwesomeIcon icon={faLock} className="lock-icon" />
                         {" Checkout "}
                     </span>
                 </button>
                 <button className="cart-cont-shopping" onClick={toggleCart}>
-                    <Link to="/products" >
+                    <Link to="/products">
                         <span>Continue Shopping</span>
                     </Link>
                 </button>

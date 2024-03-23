@@ -1,0 +1,23 @@
+.checkout-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.checkout-window{
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 500px;
+    max-width: calc(100% - 20px);
+    background-color: white;
+    z-index: 5147483640;
+    border-left: 1px solid #ccc;
+    transition: right 0.25s ease-in-out;
+}
+
+.checkout-show {
+    right: 0;
+}

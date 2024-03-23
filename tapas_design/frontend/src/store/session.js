@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-// Set and Remove Current User
+// Set and Remove Current User ACTIONS
 
 // ACTION CONSTANTS
 const SET_CURRENT_USER = "session/SET_CURRENT_USER";
@@ -27,8 +27,11 @@ const storeCSRFToken = (response) => {
 
 // is user is not null store it as a key value pair in sessionStorage
 const storeCurrentUser = (user) => {
-    if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
-    else sessionStorage.removeItem("currentUser");
+    if (user) {
+        sessionStorage.setItem("currentUser", JSON.stringify(user));
+    } else {
+        sessionStorage.removeItem("currentUser");
+    }
 };
 
 // THUNK ACTIONS
@@ -67,7 +70,6 @@ export const logout = () => async (dispatch) => {
     dispatch(removeCurrentUser());
     return response;
 };
-
 
 // This happens when  the page is intially loaded
 export const restoreSession = () => async (dispatch) => {

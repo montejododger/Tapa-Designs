@@ -36,33 +36,28 @@ function ProfileButton({ user }) {
     };
 
     return (
-        <>
-            <div className="session-wrapper">
-                <div className="sessions-container">
-                    {!showMenu && (
-                        <button onClick={toggleMenu}>
-                            <FontAwesomeIcon icon={faUser} />
-                        </button>
-                    )}
-                    {showMenu && (
-                        <ul className="profile-dropdown" ref={dropdownRef}>
-                            <li className="profile-name">
-                                {user.firstName} {user.lastName}
-                            </li>
-                            <li>{user.email}</li>
-                            <li>
-                                <button
-                                    onClick={logout}
-                                    className="profile-logout"
-                                >
-                                    Log Out
-                                </button>
-                            </li>
-                        </ul>
-                    )}
-                </div>
+        <div className="session-wrapper">
+            <div className="sessions-container">
+                {!showMenu && (
+                    <button onClick={toggleMenu}>
+                        <FontAwesomeIcon icon={faUser} />
+                    </button>
+                )}
+                {showMenu && (
+                    <ul className="profile-dropdown" ref={dropdownRef}>
+                        <li className="profile-name">
+                            {user.firstName} {user.lastName}
+                        </li>
+                        <li>{user.email}</li>
+                        <li>
+                            <button onClick={logout} className="profile-logout">
+                                Log Out
+                            </button>
+                        </li>
+                    </ul>
+                )}
             </div>
-        </>
+        </div>
     );
 }
 

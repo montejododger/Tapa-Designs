@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTimes } from "@fortawesome/free-solid-svg-icons";
 import CartIndex from "../ShoppingCart/CartIndex";
+import Checkout from "../ShoppingCart/Checkout";
 import { useSelector } from "react-redux";
 // import CartFooter from "../ShoppingCart/CartFooter";
 
@@ -10,10 +11,20 @@ import "./NavBarCart.css";
 
 const NavBarCart = () => {
     const [cartShow, setCartShow] = useState(false);
+    const [checkoutShow, setCheckoutShow] = useState(false);
     const currentUser = useSelector((state) => state.session.user);
 
     const toggleCart = () => {
         setCartShow(!cartShow);
+    };
+
+    const toggleCheckout = () => {
+        setCheckoutShow(!checkoutShow);
+    };
+
+    const handleOverLayClick = () => {
+        toggleCart();
+        toggleCheckout();
     };
 
     return (
@@ -25,9 +36,18 @@ const NavBarCart = () => {
             />
             <div
                 className={cartShow ? "overlay show" : "overlay"}
-                onClick={toggleCart}
+                onClick={handleOverLayClick}
             ></div>
+
             <div className={cartShow ? "cart-window cart-show" : "cart-window"}>
+                <div
+                    className={
+                        checkoutShow
+                            ? "checkout-window checkout-show"
+                            : "checkout-window"
+                    }
+                ></div>
+                <>{checkoutShow && <Checkout className={"checkout-show"} />}</>
                 <div className="cart-header">
                     <h5 className="side-cart-head-title">YOUR CART</h5>
                     <div className="cart-exit-button">
@@ -46,7 +66,10 @@ const NavBarCart = () => {
                             become a VIP and earn 2 points per $1 spent, Free
                             U.S. Shipping & Returns, and more.
                         </div>
-                        <CartIndex toggleCart={toggleCart} />
+                        <CartIndex
+                            toggleCart={toggleCart}
+                            toggleCheckout={toggleCheckout}
+                        />
                     </div>
                 ) : (
                     // If user is not logged in
