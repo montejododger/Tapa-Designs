@@ -21,3 +21,20 @@
 .checkout-show {
     right: 0;
 }
+
+.checkout-header {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    flex: 0 0 auto;
+    position: relative;
+    margin: 0;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #eee;
+    background: #fff;
+    padding: 10px 20px;
+}

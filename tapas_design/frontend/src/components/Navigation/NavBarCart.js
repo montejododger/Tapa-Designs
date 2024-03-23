@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTimes } from "@fortawesome/free-solid-svg-icons";
+
 import CartIndex from "../ShoppingCart/CartIndex";
 import Checkout from "../ShoppingCart/Checkout";
-import { useSelector } from "react-redux";
-// import CartFooter from "../ShoppingCart/CartFooter";
 
 import "./NavBarCart.css";
 
@@ -23,8 +24,12 @@ const NavBarCart = () => {
     };
 
     const handleOverLayClick = () => {
-        toggleCart();
-        toggleCheckout();
+        if (!checkoutShow) {
+            toggleCart();
+        } else {
+            toggleCart();
+            toggleCheckout();
+        }
     };
 
     return (
@@ -38,16 +43,11 @@ const NavBarCart = () => {
                 className={cartShow ? "overlay show" : "overlay"}
                 onClick={handleOverLayClick}
             ></div>
+            {checkoutShow && <Checkout onClick={toggleCheckout} onClose={handleOverLayClick}/>}
 
-            <div className={cartShow ? "cart-window cart-show" : "cart-window"}>
-                <div
-                    className={
-                        checkoutShow
-                            ? "checkout-window checkout-show"
-                            : "checkout-window"
-                    }
-                ></div>
-                <>{checkoutShow && <Checkout className={"checkout-show"} />}</>
+            <div
+                className={cartShow ? "cart-window cart-show " : "cart-window"}
+            >
                 <div className="cart-header">
                     <h5 className="side-cart-head-title">YOUR CART</h5>
                     <div className="cart-exit-button">
@@ -58,6 +58,7 @@ const NavBarCart = () => {
                         />
                     </div>
                 </div>
+
                 {currentUser ? (
                     // If user is logged in
                     <div className="shopping-cart-flyout">
