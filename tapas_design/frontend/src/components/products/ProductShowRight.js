@@ -5,10 +5,9 @@ import StarAvg from "../Reviews/StarAvg";
 import ReviewTotal from "../Reviews/ReviewTotal";
 
 const ProductShowRight = ({ product }) => {
-
     const [pickedSize, setSize] = useState("");
     const [pickedColor, setColor] = useState("");
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState("");
 
     const sizes = product.size.split(" ");
     const colors = product.color.split(" ");
@@ -16,7 +15,7 @@ const ProductShowRight = ({ product }) => {
     const handleItemAdd = () => {
         setSize("");
         setColor("");
-        setQuantity(1);
+        setQuantity("");
     };
 
     const handleSizeClick = (size) => {
@@ -30,11 +29,17 @@ const ProductShowRight = ({ product }) => {
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
 
-        if (!isNaN(value) && e.target.value > 0) {
-            setQuantity(value);
+        if (value === "") {
+            setQuantity("");
         } else {
-            setQuantity(1);
+            const numericValue = parseInt(value, 10);
+            if (!isNaN(numericValue) && numericValue > 0) {
+                setQuantity(numericValue);
+            } else {
+                setQuantity(1);
+            }
         }
+
     };
 
     return (
@@ -86,7 +91,8 @@ const ProductShowRight = ({ product }) => {
                 <div className="quantity-div">
                     <input
                         type="number"
-                        placeholder="1"
+                        placeholder={'1'}
+                        value={quantity}
                         min="1"
                         onChange={handleQuantityChange}
                         className="quantity-input"

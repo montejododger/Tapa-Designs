@@ -19,7 +19,6 @@ const NavBarCart = () => {
         setCartShow(!cartShow);
     };
 
-    //!  FIGURE HOW HOW TO RENDER CHECKOUT OR CART SHOW
     const toggleCheckout = () => {
         setCheckoutShow(!checkoutShow);
     };
