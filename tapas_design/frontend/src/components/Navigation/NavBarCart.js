@@ -25,11 +25,10 @@ const NavBarCart = () => {
     };
 
     const handleOverLayClick = () => {
-        if (!checkoutShow) {
-            toggleCart();
-        } else {
-            toggleCart();
+        if (!cartShow) {
             toggleCheckout();
+        } else if (cartShow) {
+            toggleCart();
         }
     };
 
@@ -41,10 +40,17 @@ const NavBarCart = () => {
                 onClick={toggleCart}
             />
             <div
-                className={cartShow ? "overlay show" : "overlay"}
+                className={
+                    cartShow || checkoutShow ? "overlay show" : "overlay"
+                }
                 onClick={handleOverLayClick}
             ></div>
-            {checkoutShow && <Checkout onClick={toggleCheckout} onClose={handleOverLayClick}/>}
+            {checkoutShow && (
+                <Checkout
+                    onClick={toggleCheckout}
+                    onClose={handleOverLayClick}
+                />
+            )}
 
             <div
                 className={cartShow ? "cart-window cart-show " : "cart-window"}

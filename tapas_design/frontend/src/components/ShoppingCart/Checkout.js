@@ -1,10 +1,13 @@
 import React from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import "./Checkout.css";
 
 const Checkout = ({ onClose }) => {
+
+
     return (
         <div className="checkout-window checkout-show">
             <div className="checkout-header">
@@ -16,6 +19,9 @@ const Checkout = ({ onClose }) => {
                         onClick={onClose}
                     />
                 </div>
+            </div>
+            <div className="checkout-info">
+                <h3>Test</h3>
             </div>
         </div>
     );

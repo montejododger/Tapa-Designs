@@ -5,7 +5,7 @@ import csrfFetch from "./csrf";
 export const RECEIVE_CART_ITEMS = "cartItems/RECEIVE_CART_ITEMS";
 export const RECEIVE_CART_ITEM = "cartItems/RECEIVE_CART_ITEM";
 export const REMOVE_CART_ITEM = "cartItems/REMOVE_CART_ITEM";
-
+export const CLEAR_CART = "cartItems/CLEAR_CART";
 
 // actions hold DATA
 // returns an object
@@ -33,6 +33,12 @@ export const removeCartItem = (cartItemId) => {
     };
 };
 
+export const clearCartAction = () => {
+    return {
+        type: CLEAR_CART,
+    };
+};
+
 // Plural
 export const fetchCartItems = () => async (dispatch) => {
     // debugger
@@ -43,7 +49,6 @@ export const fetchCartItems = () => async (dispatch) => {
         dispatch(receiveCartItems(cartItems));
     }
 };
-
 
 // Singular
 export const fetchCartItem = (cartItemId) => async (dispatch) => {
@@ -92,7 +97,6 @@ export const updateCartItem = (cartItem) => async (dispatch) => {
 
 // DELETE
 export const deleteCartItem = (cartItemId) => async (dispatch) => {
-    // debugger
     const res = await csrfFetch(`/api/cart_items/${cartItemId}`, {
         method: "DELETE",
     });
@@ -102,21 +106,31 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
     }
 };
 
+
+export const clearCart = () => async (dispatch) => {
+    const res = await csrfFetch(`/api/cart_items/clear`, {
+        method: "DELETE",
+    })
+
+    if(res.ok){
+        dispatch(clearCartAction())
+    }
+};
+
 const cartItemsReducer = (state = {}, action) => {
     Object.freeze(state);
-    let newState;
-    // debugger
 
     switch (action.type) {
         case RECEIVE_CART_ITEMS:
             return { ...action.cartItems }; // returns index and changed to camelCase
         case RECEIVE_CART_ITEM:
-            newState = { ...state };
-            return { ...newState, [action.cartItem.id]: action.cartItem };
+            return { ...state, [action.cartItem.id]: action.cartItem };
         case REMOVE_CART_ITEM:
-            newState = { ...state };
+            let newState = { ...state };
             delete newState[action.cartItemId];
             return newState;
+        case CLEAR_CART:;
+            return {};
         default:
             return state;
     }

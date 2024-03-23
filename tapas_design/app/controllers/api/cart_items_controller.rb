@@ -10,15 +10,15 @@ class Api::CartItemsController < ApplicationController
     # debugger
     @cart_items = CartItem.where(user_id: current_user.id)
     render :index
-    
+
   end
 
 
   def create
     # find the current users cart items and then checks the options so you can add different version of the same product
     @cart_item = CartItem.find_by(user_id: current_user.id, product_id: cart_item_params[:product_id], options: cart_item_params[:options])
-  
-  
+
+
     if @cart_item
       @cart_item.quantity += 1
       if @cart_item.save
@@ -36,7 +36,7 @@ class Api::CartItemsController < ApplicationController
       end
     end
   end
-  
+
 
   def update
     @cart_item = CartItem.find_by(id: params[:id])
@@ -55,6 +55,16 @@ class Api::CartItemsController < ApplicationController
     @cart_item = CartItem.find_by(id: params[:id])
     @cart_item.destroy
     render :show
+  end
+
+  def clear
+    @cart_items = CartItem.where(user_id: current_user.id)
+
+    if @cart_items.destroy_all
+      render json: { message: 'Cart cleared successfully' }, status: :ok
+    else
+      render json: { error: 'Failed to clear the cart' }, status: :unprocessable_entity
+    end
   end
 
   private

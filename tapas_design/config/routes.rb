@@ -23,14 +23,12 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :create, :update, :destroy]
     end
 
-    resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+
+      #custom route for deleting the entire cart api/cart_items/clear
+      delete 'clear', on: :collection, to: 'cart_items#clear'
+    end
 
   end
-
-
-
-  #test route (custom)
-  # post "/api/test", to: "application#test"
-  get '*path', to: "static_pages#frontend"
 
 end
