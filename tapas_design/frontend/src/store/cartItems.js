@@ -6,6 +6,7 @@ export const RECEIVE_CART_ITEMS = "cartItems/RECEIVE_CART_ITEMS";
 export const RECEIVE_CART_ITEM = "cartItems/RECEIVE_CART_ITEM";
 export const REMOVE_CART_ITEM = "cartItems/REMOVE_CART_ITEM";
 
+
 // actions hold DATA
 // returns an object
 
