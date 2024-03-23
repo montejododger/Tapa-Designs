@@ -7,12 +7,14 @@ import ReviewTotal from "../Reviews/ReviewTotal";
 const ProductShowRight = ({ product }) => {
     const [pickedSize, setSize] = useState("");
     const [pickedColor, setColor] = useState("");
-    const [quantity, setQuantity] = useState("");
+    const [quantity, setQuantity] = useState("1");
 
     const sizes = product.size.split(" ");
     const colors = product.color.split(" ");
 
     const handleItemAdd = () => {
+
+
         setSize("");
         setColor("");
         setQuantity("");
@@ -29,6 +31,7 @@ const ProductShowRight = ({ product }) => {
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
 
+        // debugger
         if (value === "") {
             setQuantity("");
         } else {
@@ -36,10 +39,9 @@ const ProductShowRight = ({ product }) => {
             if (!isNaN(numericValue) && numericValue > 0) {
                 setQuantity(numericValue);
             } else {
-                setQuantity(1);
+                setQuantity("");
             }
         }
-
     };
 
     return (
@@ -91,7 +93,7 @@ const ProductShowRight = ({ product }) => {
                 <div className="quantity-div">
                     <input
                         type="number"
-                        placeholder={'1'}
+                        placeholder={"1"}
                         value={quantity}
                         min="1"
                         onChange={handleQuantityChange}
@@ -106,7 +108,7 @@ const ProductShowRight = ({ product }) => {
                         selectedOptions={{
                             productId: product.id,
                             options: `${pickedSize} ${pickedColor}`,
-                            quantity: quantity,
+                            quantity: quantity === "" ? 1 : quantity,
                         }}
                     />
                     <br />

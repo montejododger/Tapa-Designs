@@ -20,7 +20,7 @@ class Api::CartItemsController < ApplicationController
 
 
     if @cart_item
-      @cart_item.quantity += 1
+      @cart_item.quantity += cart_item_params[:quantity].to_i
       if @cart_item.save
         render :show
       else
