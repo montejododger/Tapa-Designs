@@ -26,7 +26,7 @@ require 'open-uri'
     # Create one user with an easy to remember email, and password:
     User.create!(
       first_name: 'Demo',
-      last_name: 'user',
+      last_name: 'User',
       email: 'demo@user.io',
       password: 'password'
     )
@@ -177,224 +177,214 @@ require 'open-uri'
     # })
 
 #! TODO: change the seeds back to aws when mergin with new-main again
-      # p1_photos = [
-      #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: ''},
-      #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number2.webp'), filename: ''},
-      #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number3.webp'), filename: ''},
-      #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number4.webp'), filename: ''}
-      # ]
+#! This will be toggled for dev or production
+
+# AWS SEED IMAGES
 
       p1_photos = [
-        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'dirt_shirt_ss_mens_front.webp')), filename: 'dirt_shirt_ss_mens_front.webp'},
-        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number2.webp')), filename: 'number2.webp'},
-        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number3.webp')), filename: 'number3.webp'},
-        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number4.webp')), filename: 'number4.webp'}
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: ''},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number2.webp'), filename: ''},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number3.webp'), filename: ''},
+        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number4.webp'), filename: ''}
       ]
 
-      p1_photos.each do |photo|
-        p1.photos.attach(photo)
-      end
-
-
-    # p2_photos = [
-    #   { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_front.webp' },
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp' },
-    #   { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp' },
-    #   { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp' }
-    # ]
-
       p2_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front.webp')), filename: 'dirt_hoodie_front.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt_hoodie_back.webp')), filename: 'dirt_hoodie_back.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front-model.webp')), filename: 'dirt_hoodie_front_model.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-side-model.webp')), filename: 'dirt_hoodie_side_model.webp'}
-  ]
-    p2_photos.each do |photo|
-      p2.photos.attach(photo)
-    end
-
-
-    # p3_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number1.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number2.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number4.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_front.webp' },
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp' },
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp' },
+      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp' }
+    ]
 
     p3_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number1.webp')), filename: 'number1.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number2.webp')), filename: 'number2.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number4.webp')), filename: 'number4.webp'}
-]
-
-    p3_photos.each do |photo|
-      p3.photos.attach(photo)
-    end
-
-    # p4_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number1.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number2.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number4.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number4.webp'), filename: ''}
+    ]
 
     p4_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number1.webp')), filename: 'number1.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number2.webp')), filename: 'number2.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number4.webp')), filename: 'number4.webp'}
-]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number4.webp'), filename: ''}
+    ]
 
-    p4_photos.each do |photo|
-      p4.photos.attach(photo)
-    end
 
-    # p5_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number1.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number2.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number4.webp'), filename: ''}
-    # ]
     p5_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number1.webp')), filename: 'number1.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number2.webp')), filename: 'number2.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number4.webp')), filename: 'number4.webp'}
-]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number4.webp'), filename: ''}
+    ]
 
 
-    p5_photos.each do |photo|
-      p5.photos.attach(photo)
-    end
-
-
-    # p6_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number2.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number4.webp'), filename: ''}
-    # ]
 
     p6_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp')), filename: 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number2.webp')), filename: 'number2.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number4.webp')), filename: 'number4.webp'}
-]
-
-    p6_photos.each do |photo|
-      p6.photos.attach(photo)
-    end
-
-    # p7_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number1.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number2.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number4.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number4.webp'), filename: ''}
+    ]
 
     p7_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number1.webp')), filename: 'number1.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number2.webp')), filename: 'number2.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number4.webp')), filename: 'number4.webp'}
-]
-
-    p7_photos.each do |photo|
-      p7.photos.attach(photo)
-    end
-
-    # p8_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number1.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number2.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number3.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number4.progressive.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number1.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number2.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number4.webp'), filename: ''}
+    ]
 
     p8_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-]
-
-    p8_photos.each do |photo|
-      p8.photos.attach(photo)
-    end
-
-    # p9_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number1.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number2.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number3.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number4.progressive.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number1.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number2.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number3.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number4.progressive.webp'), filename: ''}
+    ]
 
     p9_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-]
-
-
-    p9_photos.each do |photo|
-      p9.photos.attach(photo)
-    end
-
-    # p10_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number1.progressive.png.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number2.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number3.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number4.progressive.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number1.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number2.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number3.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number4.progressive.webp'), filename: ''}
+    ]
 
     p10_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number1.progressive.png.webp')), filename: 'number1.progressive.png.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number1.progressive.png.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number2.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number3.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number4.progressive.webp'), filename: ''}
+    ]
 
-    p10_photos.each do |photo|
-      p10.photos.attach(photo)
-    end
-
-    # p11_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number1.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number2.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number3.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number4.progressive.webp'), filename: ''}
-    # ]
 
     p11_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-]
-
-    p11_photos.each do |photo|
-      p11.photos.attach(photo)
-    end
-
-    # p12_photos = [
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number1.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number2.progressive.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number3.webp'), filename: ''},
-    #   { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number4.webp'), filename: ''}
-    # ]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number1.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number2.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number3.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number4.progressive.webp'), filename: ''}
+    ]
 
     p12_photos = [
-  { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number3.webp')), filename: 'number3.webp'},
-  { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number4.webp')), filename: 'number4.webp'}
-]
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number1.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number2.progressive.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number3.webp'), filename: ''},
+      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number4.webp'), filename: ''}
+    ]
 
-    p12_photos.each do |photo|
-      p12.photos.attach(photo)
-    end
+
+
+# LOCAL SEED IMAGES
+
+      # p1_photos = [
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'dirt_shirt_ss_mens_front.webp')), filename: 'dirt_shirt_ss_mens_front.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number2.webp')), filename: 'number2.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number3.webp')), filename: 'number3.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number4.webp')), filename: 'number4.webp'}
+      # ]
+
+      # p2_photos = [
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front.webp')), filename: 'dirt_hoodie_front.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt_hoodie_back.webp')), filename: 'dirt_hoodie_back.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front-model.webp')), filename: 'dirt_hoodie_front_model.webp'},
+      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-side-model.webp')), filename: 'dirt_hoodie_side_model.webp'}
+      #   ]
+
+      #   p3_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number1.webp')), filename: 'number1.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number2.webp')), filename: 'number2.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+      #   p4_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number1.webp')), filename: 'number1.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number2.webp')), filename: 'number2.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+
+      #   p5_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number1.webp')), filename: 'number1.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number2.webp')), filename: 'number2.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+      #   p6_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp')), filename: 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number2.webp')), filename: 'number2.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+      #   p7_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number1.webp')), filename: 'number1.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number2.webp')), filename: 'number2.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+
+      #   p8_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+      #   ]
+
+      #   p9_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+      #   ]
+
+      #   p10_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number1.progressive.png.webp')), filename: 'number1.progressive.png.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+      #   ]
+
+      #   p11_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+      #   ]
+
+      #   p12_photos = [
+      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number3.webp')), filename: 'number3.webp'},
+      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number4.webp')), filename: 'number4.webp'}
+      #   ]
+
+
+
+    #object with the product as the key and the photo array as its value
+    products_with_photos = {
+      p1 => p1_photos,
+      p2 => p2_photos,
+      p3 => p3_photos,
+      p4 => p4_photos,
+      p5 => p5_photos,
+      p6 => p6_photos,
+      p7 => p7_photos,
+      p8 => p8_photos,
+      p9 => p9_photos,
+      p10 => p10_photos,
+      p11 => p11_photos,
+      p12 => p12_photos
+  }
+
+products_with_photos.each do |product, photos|
+  photos.each do |photo|
+    product.photos.attach(photo)
+  end
+end
+
+
+    puts 'Done Creating Products'
 
     # p_photos = [
     #   { io: URI.open(''), filename: ''},
@@ -408,7 +398,7 @@ require 'open-uri'
     # end
 
 
-    puts 'Done Creating Products"'
+
 
     puts 'Creating Reviews'
 
