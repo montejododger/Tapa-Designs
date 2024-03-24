@@ -78,8 +78,6 @@ export const deleteReview = (productId, reviewId) => async (dispatch) => {
     }
 };
 
-// TODO: MAKE A FETCH-USER-REVIEWS THUNK
-
 // REDUCER
 
 const reviewsReducer = (state = {}, action) => {
