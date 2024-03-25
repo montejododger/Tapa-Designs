@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import StarRating from "./StarRating";
+import StarRating from "./ReviewStars/StarRating";
 import * as ReviewActions from "../../store/reviews";
 
-import "./ReviewFormEdit.css";
+import "./ReviewsCss/ReviewFormEdit.css";
 
 function ReviewEditForm({ review, onFinishEdit }) {
     const dispatch = useDispatch();

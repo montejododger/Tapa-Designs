@@ -3,7 +3,7 @@ import ReviewBody from "./ReviewBody";
 import ReviewStarHeader from "./ReviewStarHeader";
 import ReviewHeader from "./ReviewHeader";
 
-import "./Reviews.css";
+import "./ReviewsCss/Reviews.css";
 
 const ReviewHome = () => {
     return (

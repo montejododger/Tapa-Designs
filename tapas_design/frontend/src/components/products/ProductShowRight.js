@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { UseSelector, useSelector } from "react-redux";
 import CartAdd from "../ShoppingCart/CartAdd";
-import StarAvg from "../Reviews/StarAvg";
+import StarAvg from "../Reviews/ReviewStars/StarAvg";
 import ReviewTotal from "../Reviews/ReviewTotal";
 
 const ProductShowRight = ({ product }) => {

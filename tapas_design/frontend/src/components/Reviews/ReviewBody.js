@@ -1,9 +1,10 @@
 import React from "react";
-import ReviewBodyItem from "./ReviewBodyItem";
+// import ReviewBodyItem from "./ReviewBodyItem";
+import ReviewBodyContainer from "./ReviewBodyItem/ReviewBodyContainer";
 import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
 
-import "./ReviewBody.css";
+import "./ReviewsCss/ReviewBody.css";
 
 const selectReviews = createSelector(
     (state) => state.reviews,
@@ -17,7 +18,7 @@ const ReviewBody = () => {
     return (
         <div className="review-body-wrapper">
             {sortedReviews.map((review) => (
-                <ReviewBodyItem review={review} key={review.id} />
+                <ReviewBodyContainer review={review} key={review.id} />
             ))}
         </div>
     );

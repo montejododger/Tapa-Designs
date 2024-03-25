@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReviewForm from "./ReviewForm";
-import StarAvg from "./StarAvg";
+import StarAvg from "./ReviewStars/StarAvg";
 import ReviewAverage from "./ReviewAvg";
 import ReviewTotal from "./ReviewTotal";
 

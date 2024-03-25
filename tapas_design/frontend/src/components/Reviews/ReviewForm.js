@@ -10,7 +10,7 @@ import ReviewFormBody from "./reviewsForm/ReviewFormBody";
 import ReviewFormHeadline from "./reviewsForm/ReviewFormHeadline";
 import ReviewFormSubmitButton from "./reviewsForm/ReviewFormSubmitButton";
 
-import "./ReviewForm.css";
+import "./ReviewsCss/ReviewForm.css";
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
