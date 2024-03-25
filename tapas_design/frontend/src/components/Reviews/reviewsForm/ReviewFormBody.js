@@ -3,7 +3,7 @@ import React from "react";
 const ReviewFormBody = ({ body, setBody }) => {
     return (
         <label className="review-label review-edit-form">
-            Review
+           Write a review
             <br />
             <textarea
                 className="review-text"

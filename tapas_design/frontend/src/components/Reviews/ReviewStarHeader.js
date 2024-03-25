@@ -16,7 +16,7 @@ const ReviewStarHeader = () => {
             <div className="review-scores">
                 <ReviewAverage />
                 <div className="star-stats">
-                    <StarAvg className="" />
+                    <StarAvg/>
                     <div className="review-total-container">
                         Based on <ReviewTotal />
                     </div>

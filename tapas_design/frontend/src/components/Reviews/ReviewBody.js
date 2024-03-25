@@ -10,18 +10,17 @@ const selectReviews = createSelector(
     (reviews) => Object.values(reviews)
 );
 
-
-function ReviewBody() {
+const ReviewBody = () => {
     const reviews = useSelector(selectReviews);
     const sortedReviews = [...reviews].sort((a, b) => b.id - a.id);
 
     return (
         <div className="review-body-wrapper">
             {sortedReviews.map((review) => (
-                    <ReviewBodyItem review={review} key={review.id} />
+                <ReviewBodyItem review={review} key={review.id} />
             ))}
         </div>
     );
-}
+};
 
 export default ReviewBody;

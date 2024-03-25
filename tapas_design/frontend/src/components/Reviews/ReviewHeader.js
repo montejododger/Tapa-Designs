@@ -1,7 +1,7 @@
 const ReviewHeader = () => {
     return (
         <div className="review-title-container">
-            <div className="review-header">Customer Reviews</div>
+            <p className="review-header">Customer Reviews</p>
         </div>
     );
 };
