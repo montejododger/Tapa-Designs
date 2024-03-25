@@ -54,9 +54,9 @@
 }
 
 .checkout-p {
-    font-size: 16px; /* Adjust font size */
-    color: #333; /* Adjust font color */
-    margin: 0; /* Remove default margin */
+    font-size: 16px;
+    color: #333;
+    margin: 0;
 }
 
 .checkout-socials {
@@ -70,14 +70,13 @@
 .checkout-img {
     display: flex;
     padding-top: 20px;
-    width: 100%; /* Take up all available width */
-    max-width:  300px; /* Limit the maximum width */
+    width: 100%;
+    max-width: 300px;
     margin: auto;
 }
 
 .checkout-img img {
-
-    width: 100%; /* Make the image responsive */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Optional: add rounded corners to the image */
+    width: 100%; 
+    height: auto;
+    border-radius: 8px;
 }

@@ -26,7 +26,7 @@ const Checkout = ({ onClose }) => {
                     <br />
                     <br />
                     Checkout my socials to see my other projects or learn more
-                    about me
+                    about me.
                 </p>
                 <div className="checkout-socials">
                     <LinkedInIcon
@@ -36,7 +36,7 @@ const Checkout = ({ onClose }) => {
                     <GithubIcon url={`https://github.com/montejododger`} />
                 </div>
                 <div className="checkout-img">
-                    <img src={family} alt="family photo" />
+                    <img src={family} alt="family" />
                 </div>
             </div>
         </div>
