@@ -30,17 +30,15 @@ const CartIndexItem = ({ item }) => {
     };
 
     const options = item.options.split(" ");
-    const price = item.productPrice
+    const price = item.productPrice;
 
-    const photo = item.photo
-
+    const photo = item.photo;
 
     return (
         <div className="cart-index-item-wrapper">
             <div className="cart-index-info-container">
                 <ul key={item.id} className="flyout-items">
                     <li className="flyout-item-list">
-                        
                         <div className="flyout-media">
                             <img src={photo} alt="" />
                         </div>
