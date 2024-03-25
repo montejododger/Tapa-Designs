@@ -1,0 +1,30 @@
+CREATE AND SWITICHING BRANCHES
+
+git checkout new_main
+git pull origin new_main
+
+git checkout -b *add-login-feature*
+
+git add .
+git commit -m "Start working on login feature"
+
+
+git push -u origin *add-login-feature*
+
+
+MERGING BRANCHES
+
+git checkout *main*  or new_main
+
+git pull origin *main* or new_main
+
+git merge *feature-branch*
+
+git push origin *main* or new_main
+
+
+DELETING FEATURE BRANCH
+
+git branch -d *feature-branch*
+
+git push origin --delete *feature-branch*
