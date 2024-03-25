@@ -4,7 +4,7 @@
     position: relative;
 }
 
-.checkout-window{
+.checkout-window {
     position: fixed;
     overflow-y: auto;
     top: 0;
@@ -37,4 +37,47 @@
     border-color: #eee;
     background: #fff;
     padding: 10px 20px;
+}
+
+.checkout-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #eee;
+    padding: 40px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.checkout-p {
+    font-size: 16px; /* Adjust font size */
+    color: #333; /* Adjust font color */
+    margin: 0; /* Remove default margin */
+}
+
+.checkout-socials {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.checkout-img {
+    display: flex;
+    padding-top: 20px;
+    width: 100%; /* Take up all available width */
+    max-width:  300px; /* Limit the maximum width */
+    margin: auto;
+}
+
+.checkout-img img {
+
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: add rounded corners to the image */
 }
