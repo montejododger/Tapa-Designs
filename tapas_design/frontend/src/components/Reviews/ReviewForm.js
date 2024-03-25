@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import * as ReviewActions from "../../store/reviews";
-import StarRating from "./StarRating";
+
+import ReviewFormScore from "./reviewsForm/ReviewFormScore";
+import ReviewFormBody from "./reviewsForm/ReviewFormBody";
+import ReviewFormHeadline from "./reviewsForm/ReviewFormHeadline";
+
 import "./ReviewForm.css";
 
 const ReviewForm = () => {
@@ -17,9 +22,11 @@ const ReviewForm = () => {
     const currentUser = useSelector((state) => state.session.user) || null;
     const productReviews = useSelector((state) => state.reviews);
 
-    const hasReviewed = currentUser && Object.values(productReviews).some(
-        (review) => review.userId === currentUser.id
-    );
+    const hasReviewed =
+        currentUser &&
+        Object.values(productReviews).some(
+            (review) => review.userId === currentUser.id
+        );
 
     // console.log(currentUser);
 
@@ -75,26 +82,12 @@ const ReviewForm = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="review-score">
-                    <p>Rate your experience</p>
-                </div>
-                <StarRating
-                    className="review-form-star"
-                    rating={rating}
-                    setRating={setRating}
-                />
-                <label className="review-label review-edit-form">
-                    Review
-                    <br />
-                    <textarea
-                        className="review-text"
-                        placeholder=" Tell us what you like or dislike"
-                        type="text"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                    />
-                </label>
-                <label className="review-headline">
+
+                <ReviewFormScore rating={rating} setRating={setRating} />
+                <ReviewFormBody body={body} setBody={setBody} />
+                <ReviewFormHeadline title={title} setTitle={setTitle} />
+
+                {/* <label className="review-headline">
                     Add a headline
                     <br />
                     <input
@@ -104,7 +97,7 @@ const ReviewForm = () => {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                </label>
+                </label> */}
                 <div>
                     <button
                         className="review-button"
