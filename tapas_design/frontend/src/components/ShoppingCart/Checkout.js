@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import family from "../../public/duo.png";
+import family from "../../public/assests/pictures/duo.png";
 import { LinkedInIcon, GithubIcon } from "../products/ContactIcons";
 import "./Checkout.css";
 
