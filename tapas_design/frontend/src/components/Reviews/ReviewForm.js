@@ -37,22 +37,19 @@ const ReviewForm = () => {
         setErrors([]);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    const formErrors = () => {
         let newErrors = [];
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
             localStorage.setItem("prevUrl", window.location.href);
             setErrors(newErrors);
-            return;
+            return true;
         }
 
         if (hasReviewed) {
             newErrors.push("You've already reviewed this item.");
             setErrors(newErrors);
-            return;
         }
 
         if (title === "") newErrors.push("Please add a title");
@@ -63,8 +60,16 @@ const ReviewForm = () => {
 
         if (newErrors.length > 0) {
             setErrors(newErrors);
-            return;
+            return true;
         }
+
+        return false;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (formErrors()) return;
 
         const review = {
             title,
