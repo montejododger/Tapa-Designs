@@ -1,7 +1,7 @@
 import React from "react";
 import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
-import StarDisplay from "./StarDisplay";
+// import StarDisplay from "./StarDisplay";
 
 const selectReviews = createSelector(
     (state) => state.reviews,
