@@ -39,12 +39,18 @@ const ReviewForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         let newErrors = [];
 
         if (!currentUser) {
             newErrors.push("Please log in or sign up to leave a review");
             localStorage.setItem("prevUrl", window.location.href);
+            setErrors(newErrors);
+            return;
+        }
+
+        if (hasReviewed) {
+            newErrors.push("You've already reviewed this item.");
             setErrors(newErrors);
             return;
         }
