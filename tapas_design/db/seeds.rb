@@ -3,10 +3,6 @@
 #
 
 require 'open-uri'
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
@@ -180,6 +176,7 @@ require 'open-uri'
 #! This will be toggled for dev or production
 
 # AWS SEED IMAGES
+if Rails.env.production?
 
       p1_photos = [
         { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: ''},
@@ -270,99 +267,100 @@ require 'open-uri'
     ]
 
 
-
+elsif Rails.env.development?
 # LOCAL SEED IMAGES
 
-      # p1_photos = [
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'dirt_shirt_ss_mens_front.webp')), filename: 'dirt_shirt_ss_mens_front.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number2.webp')), filename: 'number2.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number3.webp')), filename: 'number3.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number4.webp')), filename: 'number4.webp'}
-      # ]
+      p1_photos = [
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'dirt_shirt_ss_mens_front.webp')), filename: 'dirt_shirt_ss_mens_front.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number2.webp')), filename: 'number2.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number3.webp')), filename: 'number3.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_shirt_ss', 'number4.webp')), filename: 'number4.webp'}
+      ]
 
-      # p2_photos = [
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front.webp')), filename: 'dirt_hoodie_front.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt_hoodie_back.webp')), filename: 'dirt_hoodie_back.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front-model.webp')), filename: 'dirt_hoodie_front_model.webp'},
-      #   { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-side-model.webp')), filename: 'dirt_hoodie_side_model.webp'}
-      #   ]
+      p2_photos = [
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front.webp')), filename: 'dirt_hoodie_front.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt_hoodie_back.webp')), filename: 'dirt_hoodie_back.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-front-model.webp')), filename: 'dirt_hoodie_front_model.webp'},
+        { io: File.open(Rails.root.join('public', 'products', 'dirt_hoodie', 'dirt-hoodie-side-model.webp')), filename: 'dirt_hoodie_side_model.webp'}
+        ]
 
-      #   p3_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number1.webp')), filename: 'number1.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number2.webp')), filename: 'number2.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
+        p3_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number1.webp')), filename: 'number1.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number2.webp')), filename: 'number2.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'ripstop', 'number4.webp')), filename: 'number4.webp'}
+        ]
 
-      #   p4_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number1.webp')), filename: 'number1.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number2.webp')), filename: 'number2.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
-
-
-      #   p5_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number1.webp')), filename: 'number1.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number2.webp')), filename: 'number2.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
-
-      #   p6_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp')), filename: 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number2.webp')), filename: 'number2.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
-
-      #   p7_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number1.webp')), filename: 'number1.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number2.webp')), filename: 'number2.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
+        p4_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number1.webp')), filename: 'number1.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number2.webp')), filename: 'number2.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_shirt_womans', 'number4.webp')), filename: 'number4.webp'}
+        ]
 
 
-      #   p8_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-      #   ]
+        p5_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number1.webp')), filename: 'number1.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number2.webp')), filename: 'number2.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'sherpa_jacket_w', 'number4.webp')), filename: 'number4.webp'}
+        ]
 
-      #   p9_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-      #   ]
+        p6_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp')), filename: 'S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number2.webp')), filename: 'number2.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_hoodie_w', 'number4.webp')), filename: 'number4.webp'}
+        ]
 
-      #   p10_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number1.progressive.png.webp')), filename: 'number1.progressive.png.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-      #   ]
+        p7_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number1.webp')), filename: 'number1.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number2.webp')), filename: 'number2.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'dirt_jacket_w', 'number4.webp')), filename: 'number4.webp'}
+        ]
 
-      #   p11_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
-      #   ]
 
-      #   p12_photos = [
-      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number3.webp')), filename: 'number3.webp'},
-      #     { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number4.webp')), filename: 'number4.webp'}
-      #   ]
+        p8_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'river_shorts-w', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+        ]
 
+        p9_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'mountains_access_bag', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+        ]
+
+        p10_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number1.progressive.png.webp')), filename: 'number1.progressive.png.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'CORDUROY_TRUCKER_HAT_STRATA_MAP', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+        ]
+
+        p11_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number3.progressive.webp')), filename: 'number3.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'global_hat', 'number4.progressive.webp')), filename: 'number4.progressive.webp'}
+        ]
+
+        p12_photos = [
+          { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number1.progressive.webp')), filename: 'number1.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number2.progressive.webp')), filename: 'number2.progressive.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number3.webp')), filename: 'number3.webp'},
+          { io: File.open(Rails.root.join('public', 'products', 'work_cap', 'number4.webp')), filename: 'number4.webp'}
+        ]
+
+end
 
 
     #object with the product as the key and the photo array as its value
-    products_with_photos = {
+  products_with_photos = {
       p1 => p1_photos,
       p2 => p2_photos,
       p3 => p3_photos,
