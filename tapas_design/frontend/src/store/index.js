@@ -30,6 +30,8 @@ if (process.env.NODE_ENV === "production") {
 
 // combine all reducers into a single reducer
 //keys will show up in the global state and are managed by the value
+
+// debugger
 const rootReducer = combineReducers({
     session: sessionReducer,
     // users: usersReducer,
@@ -38,6 +40,7 @@ const rootReducer = combineReducers({
     cartItems: cartItemsReducer,
 });
 
+// debugger
 
 // init a store
 const configureStore = (preloadedState = {}) => {

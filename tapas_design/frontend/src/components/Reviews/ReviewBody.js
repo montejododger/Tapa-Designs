@@ -11,6 +11,11 @@ const selectReviews = createSelector(
     (reviews) => Object.values(reviews)
 );
 
+
+//  grabs the reviews from the state and memo's them
+//  sorts them by newest to oldest
+// sends each of these reviews to the ReviewBodyContainer Component
+
 const ReviewBody = () => {
     const reviews = useSelector(selectReviews);
     const sortedReviews = [...reviews].sort((a, b) => b.id - a.id);

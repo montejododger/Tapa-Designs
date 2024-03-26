@@ -3,6 +3,7 @@
 // options is the body with a method: POST, GET, DELETE
 
 export const csrfFetch = async (url, options = {}) => {
+    // debugger
     options.method ||= "GET";
     options.headers ||= {};
 

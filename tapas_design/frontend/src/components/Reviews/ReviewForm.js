@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as ReviewActions from "../../store/reviews";
@@ -12,7 +13,10 @@ import ReviewFormSubmitButton from "./reviewsForm/ReviewFormSubmitButton";
 
 import "./ReviewsCss/ReviewForm.css";
 
+const onlyReviews = createSelector((state) => state.reviews)
+
 const ReviewForm = () => {
+
     const dispatch = useDispatch();
     const { productId } = useParams();
 
@@ -22,7 +26,7 @@ const ReviewForm = () => {
     const [rating, setRating] = useState(0);
 
     const currentUser = useSelector((state) => state.session.user) || null;
-    const reviews = useSelector((state) => state.reviews);
+    const reviews = useSelector(onlyReviews);
 
     const productReviews = Object.values(reviews);
 

@@ -101,20 +101,15 @@ export const deleteCartItem = (cartItemId) => async (dispatch) => {
         method: "DELETE",
     });
 
-    if (res.ok) {
-        dispatch(removeCartItem(cartItemId));
-    }
+    if (res.ok) dispatch(removeCartItem(cartItemId));
 };
-
 
 export const clearCart = () => async (dispatch) => {
     const res = await csrfFetch(`/api/cart_items/clear`, {
         method: "DELETE",
-    })
+    });
 
-    if(res.ok){
-        dispatch(clearCartAction())
-    }
+    if (res.ok) dispatch(clearCartAction());
 };
 
 const cartItemsReducer = (state = {}, action) => {
@@ -129,7 +124,7 @@ const cartItemsReducer = (state = {}, action) => {
             let newState = { ...state };
             delete newState[action.cartItemId];
             return newState;
-        case CLEAR_CART:;
+        case CLEAR_CART:
             return {};
         default:
             return state;

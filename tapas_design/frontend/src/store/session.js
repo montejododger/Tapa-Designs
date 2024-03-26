@@ -86,6 +86,8 @@ const initialState = {
 };
 
 const sessionReducer = (state = initialState, action) => {
+    Object.freeze(state);
+
     switch (action.type) {
         case SET_CURRENT_USER:
             return { ...state, user: action.user };

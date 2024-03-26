@@ -20,12 +20,12 @@ export const receiveReview = (review) => {
 };
 
 export const removeReview = (reviewId) => {
+    // debugger
     return {
         type: REMOVE_REVIEW,
         reviewId,
     };
 };
-
 
 // THUNK ACTION CREATORS
 
@@ -57,15 +57,22 @@ export const updateReview = (productId, review) => async (dispatch) => {
         }
     );
 
-
-
     if (res.ok) {
         const data = await res.json();
         dispatch(receiveReviews(data.reviews));
     }
 };
 
+// returns a function not an action for async type calls
+
+// hits this first when you dispatch deleteReview
+// hits the custom csrf fetch method
+// hit the backend endpoint with the proper method
+// reviews are nested under products routes
+// if response 200 then dispatch the action
+
 export const deleteReview = (productId, reviewId) => async (dispatch) => {
+    // debugger
     const res = await csrfFetch(
         `/api/products/${productId}/reviews/${reviewId}`,
         {
@@ -73,9 +80,7 @@ export const deleteReview = (productId, reviewId) => async (dispatch) => {
         }
     );
 
-    if (res.ok) {
-        dispatch(removeReview(reviewId));
-    }
+    if (res.ok) dispatch(removeReview(reviewId));
 };
 
 // REDUCER
@@ -86,10 +91,11 @@ const reviewsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_REVIEWS:
+            debugger;
             return { ...action.reviews };
         case RECEIVE_REVIEW:
             newState = { ...state };
-            return { ...newState, [action.review.id]: action.review };
+            return { ...state, [action.review.id]: action.review };
         case REMOVE_REVIEW:
             newState = { ...state };
             delete newState[action.reviewId];

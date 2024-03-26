@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import ReviewEditForm from "../ReviewsFormEdit";
-
 import ReviewAuthor from "./ReviewBodyAuthor";
 import ReviewBodyStars from "./ReviewBodyStars";
 import ReviewBodyEditButton from "./ReviewBodyEditButton";
@@ -19,6 +18,13 @@ const ReviewBodyContainer = ({ review }) => {
         setEditReviewId(null);
     };
 
+
+    // When edit button is clicked
+        //  Review edit form is loaded
+        //  else
+        //  Review Body is loaded
+            //  if current user matches review.userId
+                // show edit and delete buttons
     return (
         <div className="review-body-container">
             {editReviewId === review.id ? (

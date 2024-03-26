@@ -7,10 +7,16 @@ import ReviewTotal from "./ReviewTotal";
 
 const ReviewStarHeader = () => {
     const [isReviewFormnVisible, setReviewFormVisable] = useState(false);
+
     const hadnleWriteReviewClick = () => {
         setReviewFormVisable(!isReviewFormnVisible);
     };
 
+
+    //  this component is the top oif the reviews
+    //  it displays the avg score numerically and in stars
+    //  if write review button is clicked review form is displayed
+    
     return (
         <section className="review-star-header-wrapper">
             <div className="review-scores">

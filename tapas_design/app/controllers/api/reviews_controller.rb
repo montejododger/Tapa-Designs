@@ -27,12 +27,9 @@ class Api::ReviewsController < ApplicationController
 
 
     def update
-        # need to find review to edit
-        # need to grab the product so you can use the jBUILDer
         @review = current_user.reviews.find(params[:id])
         @product = Product.find_by(id: params[:product_id])
 
-        # render the show page view
         if @review.update(review_params)
             render '/api/products/show'
         else
@@ -40,6 +37,7 @@ class Api::ReviewsController < ApplicationController
         end
     end
 
+    
     def destroy
         @review = current_user.reviews.find(params[:id])
         @review.destroy
@@ -50,6 +48,6 @@ class Api::ReviewsController < ApplicationController
 
     def review_params
         params.require(:review).permit(:title, :body, :rating, :product_id)
-    end 
+    end
 
 end
