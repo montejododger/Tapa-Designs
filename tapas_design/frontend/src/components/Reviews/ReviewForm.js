@@ -13,7 +13,7 @@ import ReviewFormSubmitButton from "./reviewsForm/ReviewFormSubmitButton";
 
 import "./ReviewsCss/ReviewForm.css";
 
-const onlyReviews = createSelector((state) => state.reviews)
+const onlyReviews = createSelector((state) => state.reviews, reviews => reviews)
 
 const ReviewForm = () => {
 

@@ -91,7 +91,6 @@ const reviewsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_REVIEWS:
-            debugger;
             return { ...action.reviews };
         case RECEIVE_REVIEW:
             newState = { ...state };
