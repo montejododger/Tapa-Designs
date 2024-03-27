@@ -14,7 +14,7 @@ const selectReviews = createSelector(
 
 //  grabs the reviews from the state and memo's them
 //  sorts them by newest to oldest
-// sends each of these reviews to the ReviewBodyContainer Component
+// </s>ends each of these reviews to the ReviewBodyContainer Component
 
 const ReviewBody = () => {
     const reviews = useSelector(selectReviews);

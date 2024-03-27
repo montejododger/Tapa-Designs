@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_165040) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  #TABLE // COLUMN ->
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false

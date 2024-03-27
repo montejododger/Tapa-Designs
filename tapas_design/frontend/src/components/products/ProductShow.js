@@ -13,6 +13,8 @@ function ProductShow() {
     const { productId } = useParams();
     const product = useSelector((state) => state.products[productId]);
 
+
+    //!1 START
     useEffect(() => {
         dispatch(fetchProduct(productId));
     }, [dispatch, productId]);

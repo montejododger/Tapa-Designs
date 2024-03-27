@@ -31,6 +31,8 @@ if (process.env.NODE_ENV !== "production") {
     //window.
 }
 
+// redux provider
+
 const Root = () => {
     return (
         <Provider store={store}>
