@@ -4,7 +4,7 @@
 // import usersReducer from "./usersReducer";
 
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+import { thunk } from "redux-thunk";
 
 import productsReducer from "./productsReducer";
 import sessionReducer from "./session";
