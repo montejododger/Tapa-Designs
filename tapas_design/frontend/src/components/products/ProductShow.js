@@ -8,28 +8,28 @@ import ProductShowRight from "./ProductShowRight";
 import ReviewHome from "../Reviews/ReviewHome";
 import "./ProductShow.css";
 
-function ProductShow() {
+const ProductShow = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const product = useSelector((state) => state.products[productId]);
 
-
-    //!1 START
+    //!1 START,   2cmd + click fetch
     useEffect(() => {
         dispatch(fetchProduct(productId));
     }, [dispatch, productId]);
 
     if (product === undefined) return null;
 
+    //!4 cmd+click REVIEW HOME
     return (
         <div className="product-wrapper">
             <div className="product-show-wrapper">
                 <ProductShowImgSide photos={product.photos} />
                 <ProductShowRight product={product} />
             </div>
-                <ReviewHome />
+            <ReviewHome />
         </div>
     );
-}
+};
 
 export default ProductShow;

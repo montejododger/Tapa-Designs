@@ -10,37 +10,37 @@ import HomeSplash from "./components/HomeSplash/HomeSplash";
 import SearchPage from "./components/products/SearchPage";
 import CategoryPage from "./components/products/CategoryPage";
 
-function App() {
+//! This is what wraps the entrie React application and is responsible the entire UI
+// We include a nav bar throught the app and the react router component SWITCH  to help define different pages
+const App = () => {
     return (
-        <>
-            <div className="whole-app-wrapper">
-                <Navigation />
-                <Switch>
-                    <Route exact path="/search/:query?">
-                        <SearchPage />
-                    </Route>
-                    <Route exact path="/categories/:category">
-                        <CategoryPage />
-                    </Route>
-                    <Route exact path="/products/:productId">
-                        <ProductShow />
-                    </Route>
-                    <Route exact path="/products">
-                        <ProductHome />
-                    </Route>
-                    <Route path="/login">
-                        <LoginFormPage />
-                    </Route>
-                    <Route path="/signup">
-                        <SignupFormPage />
-                    </Route>
-                    <Route exact path="/">
-                        <HomeSplash />
-                    </Route>
-                </Switch>
-                <BottomBanner />
-            </div>
-        </>
+        <div className="whole-app-wrapper">
+            <Navigation />
+            <Switch>
+                <Route exact path="/search/:query?">
+                    <SearchPage />
+                </Route>
+                <Route exact path="/categories/:category">
+                    <CategoryPage />
+                </Route>
+                <Route exact path="/products/:productId">
+                    <ProductShow />
+                </Route>
+                <Route exact path="/products">
+                    <ProductHome />
+                </Route>
+                <Route path="/login">
+                    <LoginFormPage />
+                </Route>
+                <Route path="/signup">
+                    <SignupFormPage />
+                </Route>
+                <Route exact path="/">
+                    <HomeSplash />
+                </Route>
+            </Switch>
+            <BottomBanner />
+        </div>
     );
 }
 

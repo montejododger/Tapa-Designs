@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  # sets the root path to be under /api and teh defaulkt response as json
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] do
+      #//! FOR FUTURE USER PROFILE
       #  this allows the user to see their reviews on their profile
       resources :reviews, only: [:index]
     end
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
         get 'categories/:category', action: :category, as: 'category'
       end
 
-      # allows a product to show its reviews and create update and delete
+      # allows a product to show its reviews with full crud capabilities
       resources :reviews, only: [:index, :create, :update, :destroy]
     end
 

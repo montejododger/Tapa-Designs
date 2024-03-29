@@ -13,10 +13,10 @@ const ReviewStarHeader = () => {
     };
 
 
-    //  this component is the top oif the reviews
+    //  this component is the top of the reviews
     //  it displays the avg score numerically and in stars
-    //  if write review button is clicked review form is displayed
-    
+    //  if the write review button is clicked the review form is displayed
+
     return (
         <section className="review-star-header-wrapper">
             <div className="review-scores">

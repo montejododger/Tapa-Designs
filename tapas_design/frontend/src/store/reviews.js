@@ -1,10 +1,13 @@
 import csrfFetch from "./csrf";
 
-//  ACTION CONSTANTS
+//  ACTION TYPES
 export const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 export const RECEIVE_REVIEW = "reviews/RECEIVE_REVIEW";
 export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 
+
+// ACTION CREATORS
+    //  RETURN AN ACTION OBJECT
 export const receiveReviews = (reviews) => {
     return {
         type: RECEIVE_REVIEWS,
@@ -12,11 +15,16 @@ export const receiveReviews = (reviews) => {
     };
 };
 
+//! FROM THE THUNK
 export const receiveReview = (review) => {
+    //! USES THE ACTION CONSTANTS TO HELP FORMAT THE ACTION TYPE - NO TYPOS
     return {
+
         type: RECEIVE_REVIEW,
         review,
     };
+
+    //! THEN GOES TO THE REDUCER
 };
 
 export const removeReview = (reviewId) => {
@@ -27,10 +35,18 @@ export const removeReview = (reviewId) => {
     };
 };
 
-// THUNK ACTION CREATORS
 
+// THUNK ACTION CREATORS
+// TURNS AN ACTION INTO A FUNCTION
+
+
+//! FROM HANDLE SUBMIT ON REVIEW FORM
 export const createReview = (productId, review) => async (dispatch) => {
     // console.log(productId);
+    // debugger
+    //! HIT THE CUSTOM FETCH TO ATTATCH CSRF
+        // csrfFetch(url, options = {})
+        //JS value to JSON string
     const res = await csrfFetch(`/api/products/${productId}/reviews`, {
         method: "Post",
         headers: {
@@ -40,6 +56,7 @@ export const createReview = (productId, review) => async (dispatch) => {
     });
 
     if (res.ok) {
+        //! THEN WILL GO TO ACTION CREATOR -> TOP
         const data = await res.json();
         dispatch(receiveReview(data.review));
     }
@@ -84,14 +101,15 @@ export const deleteReview = (productId, reviewId) => async (dispatch) => {
 };
 
 // REDUCER
-
+//! FROM ACTION CREATOR
 const reviewsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
 
+
     switch (action.type) {
         case RECEIVE_REVIEWS:
-            return { ...action.reviews };
+            return { ...state, ...action.reviews };
         case RECEIVE_REVIEW:
             newState = { ...state };
             return { ...state, [action.review.id]: action.review };

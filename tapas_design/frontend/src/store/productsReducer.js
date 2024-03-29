@@ -6,6 +6,7 @@ const RECEIVE_PRODUCT = "products/RECEIVE_PRODUCT";
 
 // ACTION CREATORS
 export const receiveProducts = (products) => {
+    // debugger
     return {
         type: RECEIVE_PRODUCTS,
         products,
@@ -13,6 +14,7 @@ export const receiveProducts = (products) => {
 };
 
 export const receiveProduct = (product) => {
+    // debugger
     return {
         type: RECEIVE_PRODUCT,
         product,
@@ -20,16 +22,21 @@ export const receiveProduct = (product) => {
 };
 
 // THUNK ACTON CREATORS
+//! WHEN CATEGORY CLICKED ->
 export const fetchProducts = () => async (dispatch) => {
+
     const res = await fetch("/api/products");
 
+    // debugger
     if (res.ok) {
         const products = await res.json();
         dispatch(receiveProducts(products));
     }
 };
 
+//!4 SHOW JBUILDER
 export const fetchProduct = (productId) => async (dispatch) => {
+    // debugger
     const res = await fetch(`/api/products/${productId}`);
 
     if (res.ok) {
@@ -68,10 +75,12 @@ export const fetchCategoryProducts = (category) => async (dispatch) => {
     }
 };
 
+
+// 1.   ON LOAD
 export const productsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
-
+    // debugger
     switch (action.type) {
         case RECEIVE_PRODUCTS:
             return { ...action.products };

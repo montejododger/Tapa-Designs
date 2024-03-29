@@ -66,6 +66,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_165040) do
     t.index ["category"], name: "index_products_on_category"
   end
 
+  # SCHEMA
+  # TABLE w/ columns
+  # null: false, column cannot be null
+  # foreign keys create indexs which are added to improve query performance
+  # -> /config/routes.rb
   create_table "reviews", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false

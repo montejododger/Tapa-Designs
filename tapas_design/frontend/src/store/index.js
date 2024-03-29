@@ -1,10 +1,11 @@
 // Import your individual reducers here:
 // import session from './session'
 // import cart from './cart'
+// import usersReducer from "./usersReducer";
 
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-// import usersReducer from "./usersReducer";
+
 import productsReducer from "./productsReducer";
 import sessionReducer from "./session";
 import reviewsReducer from "./reviews";
@@ -24,12 +25,12 @@ if (process.env.NODE_ENV === "production") {
     // if dev redux tool installed it will use that or defualt to compose
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-        // compose allowys for multiple enhancers
+    // compose allowys for multiple enhancers
     enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
 // combine all reducers into a single reducer
-//keys will show up in the global state and are managed by the value
+// keys will show up in the global state and are managed by the value
 
 // debugger
 const rootReducer = combineReducers({
@@ -43,7 +44,9 @@ const rootReducer = combineReducers({
 // debugger
 
 // init a store
+
 const configureStore = (preloadedState = {}) => {
+    // debugger
     return createStore(rootReducer, preloadedState, enhancer);
 };
 

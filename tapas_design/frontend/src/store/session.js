@@ -72,6 +72,7 @@ export const logout = () => async (dispatch) => {
 };
 
 // This happens when  the page is intially loaded
+// uses cutsom fetch(csrf)
 export const restoreSession = () => async (dispatch) => {
     const res = await csrfFetch(`/api/session`);
     const data = await res.json();
@@ -98,4 +99,5 @@ const sessionReducer = (state = initialState, action) => {
     }
 };
 
-export default sessionReducer;
+
+export default sessionReducer

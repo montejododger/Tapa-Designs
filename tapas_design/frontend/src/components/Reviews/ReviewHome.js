@@ -5,6 +5,10 @@ import ReviewHeader from "./ReviewHeader";
 
 import "./ReviewsCss/Reviews.css";
 
+
+//!5 cmd + click Review Star Header
+//Multiple sub components
+
 const ReviewHome = () => {
     return (
         <section className="review-wrapper">

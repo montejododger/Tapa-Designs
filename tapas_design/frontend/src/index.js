@@ -6,32 +6,30 @@ import "./reset.css";
 import "./index.css";
 import App from "./App";
 import configureStore from "./store/index";
-import { csrfFetch } from "./store/csrf";
-import { createUser, loginUser, logoutUser } from "./store/usersReducer";
 import * as sessionActions from "./store/session";
-import * as productActions from "./store/productsReducer";
-import * as cartActions from "./store/cartItems";
-
 
 // init a new store - sets up redux store with , middelware, reducers, enhancers
+
+//! FIRST WE CREATE A STORE -> indexReducer 
 const store = configureStore();
 
 // TODO: take out after production
-if (process.env.NODE_ENV !== "production") {
-    window.store = store;
-    window.createUser = createUser;
-    window.loginUser = loginUser;
-    window.logoutUser = logoutUser;
-    window.csrfFetch = csrfFetch;
-    window.sessionActions = sessionActions;
-    window.productActions = productActions;
-    window.cartActions = cartActions;
+// if (process.env.NODE_ENV !== "production") {
+//     window.store = store;
+//     window.createUser = createUser;
+//     window.loginUser = loginUser;
+//     window.logoutUser = logoutUser;
+//     window.csrfFetch = csrfFetch;
+//     window.sessionActions = sessionActions;
+//     window.productActions = productActions;
+//     window.cartActions = cartActions;
+// }
 
-    // window.
-    //window.
-}
+// redux provider component makes the redux store available to all nested component
+//  allowing for any component to access and update global state
+// Redux - Provider, client side routing with browserRouter
 
-// redux provider
+// A <BrowserRouter> stores the current location in the browser's address bar using    clean URLs and navigates using the browser's built-in history stack.
 
 const Root = () => {
     return (
@@ -43,7 +41,9 @@ const Root = () => {
     );
 };
 
-const renderApplication = () => {
+
+// Strict mode is strictly for development
+const RenderApplication = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Root />
@@ -52,15 +52,14 @@ const renderApplication = () => {
     );
 };
 
-
 // check is there is a current user or token
-    // if it is present then restore session and then render App
-    // else just render app cause there is no curr or token present
-if (
-    sessionStorage.getItem("currentUser") === null ||
-    sessionStorage.getItem("X-CSRF-Token") === null
-) {
-    store.dispatch(sessionActions.restoreSession()).then(renderApplication);
+// tries to restore the session then render the application
+
+let currentUser = sessionStorage.getItem("currentUser") || null;
+let xToken = sessionStorage.getItem("X-CSRF-Token") || null;
+
+if (currentUser === null || xToken === null) {
+    store.dispatch(sessionActions.restoreSession()).then(RenderApplication);
 } else {
-    renderApplication();
+    RenderApplication();
 }

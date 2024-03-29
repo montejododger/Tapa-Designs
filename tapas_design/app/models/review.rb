@@ -11,6 +11,9 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+
+#   Each review belongs to a user and product
+#   Validates certain columns to ensure data integrity when saving to DB
 class Review < ApplicationRecord
     belongs_to :product
     belongs_to :user
