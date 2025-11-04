@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  # sets the root path to be under /api and teh defaulkt response as json
+  # sets the root path to be under /api and teh default response as json
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] do
       #//! FOR FUTURE USER PROFILE

@@ -8,9 +8,9 @@ import App from "./App";
 import configureStore from "./store/index";
 import * as sessionActions from "./store/session";
 
-// init a new store - sets up redux store with , middelware, reducers, enhancers
+// init a new store - sets up redux store with , middleware, reducers, enhancers
 
-//! FIRST WE CREATE A STORE -> indexReducer 
+//! FIRST WE CREATE A STORE -> indexReducer
 const store = configureStore();
 
 // TODO: take out after production
