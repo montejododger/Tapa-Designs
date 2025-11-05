@@ -21,11 +21,10 @@ if (process.env.NODE_ENV === "production") {
     enhancer = applyMiddleware(thunk);
 } else {
     const logger = require("redux-logger").default;
-
-    // if dev redux tool installed it will use that or defualt to compose
+    // if dev redux tool installed it will use that or default to compose
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    // compose allowys for multiple enhancers
+    // compose allows for multiple enhancers
     enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
