@@ -24,15 +24,20 @@ class Product < ApplicationRecord
         foreign_key: :product_id,
         class_name: :Review,
         dependent: :destroy
-        
+
     has_many :cart_items,
         foreign_key: :product_id,
         class_name: :CartItem,
         dependent: :destroy
 
-    scope :search, -> (query) { where("LOWER(name) LIKE :query OR LOWER(description) LIKE :query OR LOWER(category) LIKE :query", query: "%#{query.downcase}%") }
+scope :search, ->(query) {
+  if query.present?
+    where("to_tsvector('english', name || ' ' || description || ' ' || category) @@ plainto_tsquery(?)", query)
+  else
+    all
+  end
+}
 
     scope :by_category, -> (category) { where("LOWER(category) = ?", category.downcase) }
 
-    
 end

@@ -11,7 +11,7 @@ import * as sessionActions from './store/session';
 // Import your session and product/cart actions
 import { createUser, loginUser, logoutUser } from './store/usersReducer';
 import { csrfFetch } from './store/csrf';
-import * as productActions from './store/productsReducer';
+import * as productActions from './store/productSlice';
 import * as cartActions from './store/cartItems';
 
 // Dev-window helpers (safe for dev only)

@@ -54,48 +54,86 @@ export const fetchCategoryProducts = createAsyncThunk(
 );
 
 // ---------- SLICE ----------
-
 const productsSlice = createSlice({
 	name: 'products',
 	initialState: {
-		items: {}, // key: productId → product object
-		status: 'idle', // idle | loading | succeeded | failed
+		all: {}, // all products from /api/products
+		items: {}, // currently displayed list (category, search, etc.)
+		current: null, // single product page
+		status: 'idle',
 		error: null,
 	},
 	reducers: {
 		clearProducts: state => {
 			state.items = {};
+			state.current = null;
 			state.status = 'idle';
 			state.error = null;
 		},
 	},
 	extraReducers: builder => {
 		builder
-			// Fetch all
+			// ✅ All products (index)
 			.addCase(fetchProducts.pending, state => {
 				state.status = 'loading';
 			})
 			.addCase(fetchProducts.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-				state.items = { ...action.payload };
+				state.all = { ...action.payload };
+				state.items = { ...action.payload }; // default visible list
 			})
 			.addCase(fetchProducts.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.payload;
 			})
-			// Fetch one
-			.addCase(fetchProduct.fulfilled, (state, action) => {
-				state.items[action.payload.id] = action.payload;
+
+			// ✅ Category
+			.addCase(fetchCategoryProducts.pending, state => {
+				state.status = 'loading';
+				state.items = {}; // clear the visible list only
 			})
-			// Search
+			.addCase(fetchCategoryProducts.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+				state.items = { ...action.payload };
+			})
+			.addCase(fetchCategoryProducts.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.payload;
+			})
+
+			// ✅ Search
+			.addCase(fetchSearchResults.pending, state => {
+				state.status = 'loading';
+				state.items = {}; // clear visible list for new search
+			})
 			.addCase(fetchSearchResults.fulfilled, (state, action) => {
 				state.status = 'succeeded';
 				state.items = { ...action.payload };
 			})
-			// Category
-			.addCase(fetchCategoryProducts.fulfilled, (state, action) => {
+			.addCase(fetchSearchResults.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.payload;
+			})
+
+			// ✅ Single product page
+			.addCase(fetchProduct.pending, state => {
+				state.status = 'loading';
+				state.current = null;
+			})
+			.addCase(fetchProduct.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-				state.items = { ...action.payload };
+				const product = action.payload;
+				if (product && product.id) {
+					// store single product separately
+					state.current = product;
+					// merge into all + items cache
+					state.all[product.id] = product;
+					state.items[product.id] = product;
+				}
+			})
+			.addCase(fetchProduct.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.payload;
 			});
 	},
 });
@@ -103,13 +141,19 @@ const productsSlice = createSlice({
 export const { clearProducts } = productsSlice.actions;
 
 // ---------- SELECTORS ----------
-export const selectProductsItems = state => state.products.items;
-export const selectProductById = (state, id) => state.products.items[id];
-export const selectProductsStatus = state => state.products.status;
 
-// Memoized selector
-export const selectAllProducts = createSelector([selectProductsItems], items =>
+const selectItemsObject = s => s.products.items;
+const selectAllObject = s => s.products.all;
+
+export const selectProductsItems = createSelector([selectItemsObject], items =>
 	Object.values(items)
 );
+
+export const selectAllProducts = createSelector([selectAllObject], all =>
+	Object.values(all)
+);
+
+export const selectCurrentProduct = s => s.products.current;
+export const selectProductsStatus = s => s.products.status;
 
 export default productsSlice.reducer;

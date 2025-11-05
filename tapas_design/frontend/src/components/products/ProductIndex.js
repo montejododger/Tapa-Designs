@@ -1,26 +1,31 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import {
 	fetchProducts,
-	selectAllProducts,
+	selectProductsItems,
 	selectProductsStatus,
-} from '../../store/productSlice.js';
+} from '../../store/productSlice';
 import ProductIndexItem from './ProductIndexItem';
 import './ProductIndex.css';
 
 function ProductIndex() {
 	const dispatch = useDispatch();
-	const products = useSelector(selectAllProducts);
+	const products = useSelector(selectProductsItems);
 	const status = useSelector(selectProductsStatus);
+	const location = useLocation();
 
 	useEffect(() => {
-		if (status === 'idle') dispatch(fetchProducts());
-	}, [status, dispatch]);
+		console.log('ProductIndex mounted');
+		// Always fetch when on the main collection page
+		if (location.pathname === '/products') {
+			dispatch(fetchProducts());
+		}
+	}, [dispatch, location.pathname]);
 
-	if (status === 'loading') return <p>Loading...</p>;
+	if (status === 'loading' && !products.length) return <p>Loading...</p>;
 	if (status === 'failed') return <p>Failed to load products</p>;
-
-	if (!products?.length) return <p>No products available</p>;
+	if (!products.length) return <p>No products available</p>;
 
 	return (
 		<section className='product-index-wrapper'>

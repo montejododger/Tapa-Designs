@@ -1,36 +1,36 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import ProductIndexItem from "./ProductIndexItem";
-import { useParams } from "react-router-dom";
-import { LinkedInIcon, GithubIcon } from "../products/ContactIcons";
-
-import "./ProductIndex.css";
-
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createSelector } from 'reselect';
+import { useParams } from 'react-router-dom';
+import { fetchSearchResults } from '../../store/productSlice';
+import ProductIndexItem from './ProductIndexItem';
+import './ProductIndex.css';
+import { LinkedInIcon, GithubIcon } from '../products/ContactIcons';
 const selectProducts = createSelector(
-    (state) => state.products,
-    (products) => Object.values(products)
+	state => state.products.items,
+	items => Object.values(items || {}).filter(Boolean)
 );
 
 function SearchPage() {
-    const { query } = useParams();
-    const productsFromState = useSelector(selectProducts);
-    const [products, setProducts] = useState([]);
+	const dispatch = useDispatch();
+	const { query } = useParams();
+	const products = useSelector(selectProducts);
+	const status = useSelector(state => state.products.status);
 
-    useEffect(() => {
-        setProducts(productsFromState);
-    }, [productsFromState]);
+	useEffect(() => {
+		if (query) dispatch(fetchSearchResults(query));
+	}, [dispatch, query]);
 
-    if (products === undefined) return null;
+	if (status === 'loading') return <p>Loading search results...</p>;
 
-    return (
-        <div className="search-index">
-            <section className="product-index-wrapper">
-                {products.length > 0 ? (
-                    products.map((product) => (
-                        <ProductIndexItem product={product} key={product.id} />
-                    ))
-                ) : (
+	return (
+		<div className='search-index'>
+			<section className='product-index-wrapper'>
+				{products.length > 0 ? (
+					products.map(product => (
+						<ProductIndexItem key={product.id} product={product} />
+					))
+				) : (
                     <div className="no-items-found">
                         <div className="search-loop-head">
                             <p className="result-count">
@@ -83,9 +83,9 @@ function SearchPage() {
                         </div>
                     </div>
                 )}
-            </section>
-        </div>
-    );
+			</section>
+		</div>
+	);
 }
 
 export default SearchPage;
