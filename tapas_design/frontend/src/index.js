@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './reset.css';
 import './index.css';
 import App from './App';
-import configureStore from './store/index';
+import store from './store';
 import * as sessionActions from './store/session';
 
 // Import your session and product/cart actions
@@ -14,10 +14,7 @@ import { csrfFetch } from './store/csrf';
 import * as productActions from './store/productsReducer';
 import * as cartActions from './store/cartItems';
 
-//! FIRST WE CREATE A STORE -> indexReducer
-const store = configureStore();
-
-// TODO: take out after production
+// Dev-window helpers (safe for dev only)
 if (process.env.NODE_ENV !== 'production') {
 	window.store = store;
 	window.createUser = createUser;
@@ -29,40 +26,33 @@ if (process.env.NODE_ENV !== 'production') {
 	window.cartActions = cartActions;
 }
 
-// redux provider component makes the redux store available to all nested component
-//  allowing for any component to access and update global state
-// Redux - Provider, client side routing with browserRouter
+// ---------- React 18 root setup ----------
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
 
-// A <BrowserRouter> stores the current location in the browser's address bar using    clean URLs and navigates using the browser's built-in history stack.
+const Root = () => (
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
+);
 
-const Root = () => {
-	return (
-		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	);
-};
-
-// Strict mode is strictly for development
-const RenderApplication = () => {
-	ReactDOM.render(
+// ---------- Render with session restore ----------
+const renderApplication = () => {
+	root.render(
 		<React.StrictMode>
 			<Root />
-		</React.StrictMode>,
-		document.getElementById('root')
+		</React.StrictMode>
 	);
 };
 
-// check is there is a current user or token
-// tries to restore the session then render the application
+// ---------- Session restoration ----------
+const currentUser = sessionStorage.getItem('currentUser');
+const xToken = sessionStorage.getItem('X-CSRF-Token');
 
-let currentUser = sessionStorage.getItem('currentUser') || null;
-let xToken = sessionStorage.getItem('X-CSRF-Token') || null;
-
-if (currentUser === null || xToken === null) {
-	store.dispatch(sessionActions.restoreSession()).then(RenderApplication);
+if (!currentUser || !xToken) {
+	store.dispatch(sessionActions.restoreSession()).then(renderApplication);
 } else {
-	RenderApplication();
+	renderApplication();
 }

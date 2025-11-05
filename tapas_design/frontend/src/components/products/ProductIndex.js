@@ -1,33 +1,34 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
-import { fetchProducts } from "../../store/productsReducer";
-import ProductIndexItem from "./ProductIndexItem";
-import "./ProductIndex.css";
-
-const selectProducts = createSelector(
-    (state) => state.products,
-    (products) => Object.values(products)
-);
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	fetchProducts,
+	selectAllProducts,
+	selectProductsStatus,
+} from '../../store/productSlice.js';
+import ProductIndexItem from './ProductIndexItem';
+import './ProductIndex.css';
 
 function ProductIndex() {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const products = useSelector(selectAllProducts);
+	const status = useSelector(selectProductsStatus);
 
-    const products = useSelector(selectProducts);
+	useEffect(() => {
+		if (status === 'idle') dispatch(fetchProducts());
+	}, [status, dispatch]);
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+	if (status === 'loading') return <p>Loading...</p>;
+	if (status === 'failed') return <p>Failed to load products</p>;
 
-    if (products === undefined) return null;
+	if (!products?.length) return <p>No products available</p>;
 
-    return (
-        <section className="product-index-wrapper">
-            {products.map((product) => (
-                <ProductIndexItem product={product} key={product.id} />
-            ))}
-        </section>
-    );
+	return (
+		<section className='product-index-wrapper'>
+			{products.map(product => (
+				<ProductIndexItem key={product.id} product={product} />
+			))}
+		</section>
+	);
 }
 
 export default ProductIndex;

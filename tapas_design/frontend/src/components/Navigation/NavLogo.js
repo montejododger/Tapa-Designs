@@ -6,7 +6,7 @@ const NavLogo = () => {
 
     return (
         <div className="logo-wrapper">
-            <NavLink exact to="/">
+            <NavLink to="/">
                 <img src={logoUrl} alt="logo" />
             </NavLink>
         </div>
