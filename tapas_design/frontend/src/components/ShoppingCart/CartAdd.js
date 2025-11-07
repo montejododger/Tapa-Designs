@@ -25,7 +25,6 @@ const CartAdd = ({ product, selectedOptions, onItemAdd }) => {
             options: selectedOptions.options,
             quantity: selectedOptions.quantity,
         };
-        // debugger
         dispatch(createCartItem(item));
         setErrors("");
         onItemAdd();

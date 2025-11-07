@@ -1,136 +1,185 @@
-import csrfFetch from "./csrf";
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import csrfFetch from './csrf';
 
-// ACTION CONSTANTS
-
-export const RECEIVE_CART_ITEMS = "cartItems/RECEIVE_CART_ITEMS";
-export const RECEIVE_CART_ITEM = "cartItems/RECEIVE_CART_ITEM";
-export const REMOVE_CART_ITEM = "cartItems/REMOVE_CART_ITEM";
-export const CLEAR_CART = "cartItems/CLEAR_CART";
-
-// actions hold DATA
-// returns an object
-
-export const receiveCartItems = (cartItems) => {
-    // debugger
-    return {
-        type: RECEIVE_CART_ITEMS,
-        cartItems,
-    };
+const ensureJson = async response => {
+        try {
+                return await response.clone().json();
+        } catch (error) {
+                return {};
+        }
 };
 
-export const receiveCartItem = (cartItem) => {
-    // debugger
-    return {
-        type: RECEIVE_CART_ITEM,
-        cartItem,
-    };
+// ---------- THUNKS ----------
+export const fetchCartItems = createAsyncThunk(
+        'cartItems/fetchAll',
+        async (_, { rejectWithValue }) => {
+                const res = await fetch('/api/cart_items/');
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data.errors || 'Failed to fetch cart items');
+                }
+                return await res.json();
+        }
+);
+
+export const createCartItem = createAsyncThunk(
+        'cartItems/create',
+        async (cartItem, { rejectWithValue }) => {
+                const res = await csrfFetch('/api/cart_items/', {
+                        method: 'POST',
+                        body: JSON.stringify(cartItem),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data.errors || 'Failed to add cart item');
+                }
+                const data = await res.json();
+                return data.cartItem;
+        }
+);
+
+export const updateCartItem = createAsyncThunk(
+        'cartItems/update',
+        async (cartItem, { rejectWithValue }) => {
+                const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify(cartItem),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data.errors || 'Failed to update cart item');
+                }
+                const data = await res.json();
+                return data.cartItem;
+        }
+);
+
+export const deleteCartItem = createAsyncThunk(
+        'cartItems/delete',
+        async (cartItemId, { rejectWithValue }) => {
+                const res = await csrfFetch(`/api/cart_items/${cartItemId}`, {
+                        method: 'DELETE',
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data.errors || 'Failed to delete cart item');
+                }
+                return cartItemId;
+        }
+);
+
+export const clearCart = createAsyncThunk(
+        'cartItems/clear',
+        async (_, { rejectWithValue }) => {
+                const res = await csrfFetch('/api/cart_items/clear', {
+                        method: 'DELETE',
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data.errors || 'Failed to clear cart');
+                }
+                return true;
+        }
+);
+
+const initialState = {
+        entities: {},
+        status: 'idle',
+        error: null,
 };
 
-export const removeCartItem = (cartItemId) => {
-    return {
-        type: REMOVE_CART_ITEM,
-        cartItemId,
-    };
-};
-
-export const clearCartAction = () => {
-    return {
-        type: CLEAR_CART,
-    };
-};
-
-// Plural
-export const fetchCartItems = () => async (dispatch) => {
-    // debugger
-    const res = await fetch(`/api/cart_items/`);
-
-    if (res.ok) {
-        const cartItems = await res.json();
-        dispatch(receiveCartItems(cartItems));
-    }
-};
-
-// Singular
-export const fetchCartItem = (cartItemId) => async (dispatch) => {
-    const res = await fetch(`/api/cart_items/${cartItemId}`);
-
-    if (res.ok) {
-        const cartItem = await res.json();
-        dispatch(receiveCartItems(cartItem));
-    }
-};
-
-// CREATE
-export const createCartItem = (cartItem) => async (dispatch) => {
-    const res = await csrfFetch(`/api/cart_items/`, {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
+const cartItemsSlice = createSlice({
+        name: 'cartItems',
+        initialState,
+        reducers: {
+                resetCartState: state => {
+                        state.entities = {};
+                        state.status = 'idle';
+                        state.error = null;
+                },
         },
-        body: JSON.stringify(cartItem),
-    });
-
-    if (res.ok) {
-        const data = await res.json();
-        // debugger
-        dispatch(receiveCartItem(data.cartItem));
-    }
-};
-
-// UPDATE
-export const updateCartItem = (cartItem) => async (dispatch) => {
-    // debugger
-    const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
-        method: "PATCH",
-        header: {
-            "Content-Type": "application/json",
+        extraReducers: builder => {
+                builder
+                        .addCase(fetchCartItems.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(fetchCartItems.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                state.entities = action.payload ? { ...action.payload } : {};
+                        })
+                        .addCase(fetchCartItems.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(createCartItem.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(createCartItem.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                const item = action.payload;
+                                if (item && item.id) {
+                                        state.entities[item.id] = item;
+                                }
+                        })
+                        .addCase(createCartItem.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(updateCartItem.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(updateCartItem.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                const item = action.payload;
+                                if (item && item.id) {
+                                        state.entities[item.id] = item;
+                                }
+                        })
+                        .addCase(updateCartItem.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(deleteCartItem.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(deleteCartItem.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                delete state.entities[action.payload];
+                        })
+                        .addCase(deleteCartItem.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(clearCart.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(clearCart.fulfilled, state => {
+                                state.status = 'succeeded';
+                                state.entities = {};
+                        })
+                        .addCase(clearCart.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        });
         },
-        body: JSON.stringify(cartItem),
-    });
+});
 
-    if (res.ok) {
-        const data = await res.json();
-        // debugger
-        dispatch(receiveCartItem(data.cartItem));
-    }
-};
+export const { resetCartState } = cartItemsSlice.actions;
 
-// DELETE
-export const deleteCartItem = (cartItemId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/cart_items/${cartItemId}`, {
-        method: "DELETE",
-    });
+// ---------- SELECTORS ----------
+const selectCartSlice = state => state.cartItems;
+const selectCartEntities = createSelector([selectCartSlice], cart => cart.entities);
 
-    if (res.ok) dispatch(removeCartItem(cartItemId));
-};
+export const selectCartItemsArray = createSelector([selectCartEntities], entities =>
+        Object.values(entities)
+);
 
-export const clearCart = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/cart_items/clear`, {
-        method: "DELETE",
-    });
+export const selectCartItemsStatus = state => state.cartItems.status;
+export const selectCartItemsError = state => state.cartItems.error;
 
-    if (res.ok) dispatch(clearCartAction());
-};
-
-const cartItemsReducer = (state = {}, action) => {
-    Object.freeze(state);
-
-    switch (action.type) {
-        case RECEIVE_CART_ITEMS:
-            return { ...action.cartItems }; // returns index and changed to camelCase
-        case RECEIVE_CART_ITEM:
-            return { ...state, [action.cartItem.id]: action.cartItem };
-        case REMOVE_CART_ITEM:
-            let newState = { ...state };
-            delete newState[action.cartItemId];
-            return newState;
-        case CLEAR_CART:
-            return {};
-        default:
-            return state;
-    }
-};
-
-export default cartItemsReducer;
-
-////////////////////////////////////////////////////////////////////////////////////////
+export default cartItemsSlice.reducer;
