@@ -1,24 +1,18 @@
-
-// will use in place of fetch, for non-get requests
-// options is the body with a method: POST, GET, DELETE
-
 export const csrfFetch = async (url, options = {}) => {
-    // debugger
-    options.method ||= "GET";
-    options.headers ||= {};
+	options.method ||= 'GET';
+	options.headers ||= {};
 
-    // ANYTHING BUT A GET - SET THE HEADERS
-    if (options.method.toUpperCase() !== "GET") {
-        options.headers["Content-Type"] = "application/json";
-        options.headers["X-CSRF-Token"] =
-            sessionStorage.getItem("X-CSRF-Token");
-    }
+	// ANYTHING BUT A GET - SET THE HEADERS
+	if (options.method.toUpperCase() !== 'GET') {
+		options.headers['Content-Type'] = 'application/json';
+		options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
+	}
 
+	console.log({ url, options });
 
-    const res = await fetch(url, options);
-
-    return res;
+	const res = await fetch(url, options);
+	console.log({ res });
+	return res;
 };
-
 
 export default csrfFetch;

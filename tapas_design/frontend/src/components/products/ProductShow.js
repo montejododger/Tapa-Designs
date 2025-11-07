@@ -20,8 +20,8 @@ const ProductShow = () => {
 			dispatch(fetchProduct(id));
 		}
 	}, [dispatch, id]);
-	console.log('Redux items:', Object.keys(useSelector(s => s.products.items)));
-	console.log('Looking for id:', id);
+	// console.log('Redux items:', Object.keys(useSelector(s => s.products.items)));
+	// console.log('Looking for id:', id);
 	if (status === 'loading' || !product) return <p>Loading...</p>;
 
 	return (

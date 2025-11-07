@@ -75,9 +75,11 @@ const productsSlice = createSlice({
 		builder
 			// ✅ All products (index)
 			.addCase(fetchProducts.pending, state => {
+				console.log(state.items);
 				state.status = 'loading';
 			})
 			.addCase(fetchProducts.fulfilled, (state, action) => {
+				console.log({ state, action });
 				state.status = 'succeeded';
 				state.all = { ...action.payload };
 				state.items = { ...action.payload }; // default visible list

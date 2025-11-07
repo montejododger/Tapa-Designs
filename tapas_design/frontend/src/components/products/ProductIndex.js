@@ -16,7 +16,6 @@ function ProductIndex() {
 	const location = useLocation();
 
 	useEffect(() => {
-		console.log('ProductIndex mounted');
 		// Always fetch when on the main collection page
 		if (location.pathname === '/products') {
 			dispatch(fetchProducts());

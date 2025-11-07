@@ -10,7 +10,6 @@ import HomeSplash from './components/HomeSplash/HomeSplash';
 import SearchPage from './components/products/SearchPage';
 import CategoryPage from './components/products/CategoryPage';
 
-//! Root of the React application
 const App = () => {
 	return (
 		<div className='whole-app-wrapper'>
