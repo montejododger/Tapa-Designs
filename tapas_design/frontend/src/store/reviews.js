@@ -1,120 +1,150 @@
-import csrfFetch from "./csrf";
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { csrfFetch } from './csrf';
 
-//  ACTION TYPES
-export const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
-export const RECEIVE_REVIEW = "reviews/RECEIVE_REVIEW";
-export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
-
-
-// ACTION CREATORS
-    //  RETURN AN ACTION OBJECT
-export const receiveReviews = (reviews) => {
-    return {
-        type: RECEIVE_REVIEWS,
-        reviews,
-    };
+const ensureJson = async response => {
+        try {
+                return await response.clone().json();
+        } catch (error) {
+                return {};
+        }
 };
 
-//! FROM THE THUNK
-export const receiveReview = (review) => {
-    //! USES THE ACTION CONSTANTS TO HELP FORMAT THE ACTION TYPE - NO TYPOS
-    return {
-        type: RECEIVE_REVIEW,
-        review,
-    };
+const normalizeReviews = reviews => {
+        if (!reviews) return {};
+        if (Array.isArray(reviews)) {
+                return reviews.reduce((acc, review) => {
+                        if (review && review.id) acc[review.id] = review;
+                        return acc;
+                }, {});
+        }
+        return { ...reviews };
 
-    //! THEN GOES TO THE REDUCER
+// ---------- THUNKS ----------
+export const createReview = createAsyncThunk(
+        'reviews/create',
+        async ({ productId, review }, { rejectWithValue }) => {
+                const res = await csrfFetch(`/api/products/${productId}/reviews`, {
+                        method: 'POST',
+                        body: JSON.stringify(review),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                const data = await res.json();
+                return data.review;
+        }
+);
+
+export const updateReview = createAsyncThunk(
+        'reviews/update',
+        async ({ productId, review }, { rejectWithValue }) => {
+                const res = await csrfFetch(`/api/products/${productId}/reviews/${review.id}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify(review),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                const data = await res.json();
+                return data.reviews;
+        }
+);
+
+export const deleteReview = createAsyncThunk(
+        'reviews/delete',
+        async ({ productId, reviewId }, { rejectWithValue }) => {
+                const res = await csrfFetch(`/api/products/${productId}/reviews/${reviewId}`, {
+                        method: 'DELETE',
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                const data = await res.json();
+                return data.review?.id ?? reviewId;
+        }
+);
+
+const initialState = {
+        entities: {},
+        status: 'idle',
+        error: null,
 };
 
-export const removeReview = (reviewId) => {
-    return {
-        type: REMOVE_REVIEW,
-        reviewId,
-    };
-};
-
-
-// THUNK ACTION CREATORS
-// TURNS AN ACTION INTO A FUNCTION
-
-
-//! FROM HANDLE SUBMIT ON REVIEW FORM
-export const createReview = (productId, review) => async (dispatch) => {
-    //! HIT THE CUSTOM FETCH TO ATTATCH CSRF
-        // csrfFetch(url, options = {})
-        //JS value to JSON string
-    const res = await csrfFetch(`/api/products/${productId}/reviews`, {
-        method: "Post",
-        headers: {
-            "Content-Type": "application/json",
+const reviewsSlice = createSlice({
+        name: 'reviews',
+        initialState,
+        reducers: {
+                receiveReviews: (state, action) => {
+                        state.entities = normalizeReviews(action.payload);
+                        state.status = 'succeeded';
+                        state.error = null;
+                },
+                clearReviews: state => {
+                        state.entities = {};
+                        state.status = 'idle';
+                        state.error = null;
+                },
         },
-        body: JSON.stringify(review),
-    });
-
-    if (res.ok) {
-        //! THEN WILL GO TO ACTION CREATOR -> TOP
-        const data = await res.json();
-        dispatch(receiveReview(data.review));
-    }
-};
-
-export const updateReview = (productId, review) => async (dispatch) => {
-    const res = await csrfFetch(
-        `/api/products/${productId}/reviews/${review.id}`,
-        {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(review),
-        }
-    );
-
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(receiveReviews(data.reviews));
-    }
-};
-
-// returns a function not an action for async type calls
-
-// hits this first when you dispatch deleteReview
-// hits the custom csrf fetch method
-// hit the backend endpoint with the proper method
-// reviews are nested under products routes
-// if response 200 then dispatch the action
-
-export const deleteReview = (productId, reviewId) => async (dispatch) => {
-    const res = await csrfFetch(
-        `/api/products/${productId}/reviews/${reviewId}`,
-        {
-            method: "DELETE",
-        }
-    );
-
-    if (res.ok) dispatch(removeReview(reviewId));
-};
-
-// REDUCER
-//! FROM ACTION CREATOR
-const reviewsReducer = (state = {}, action) => {
-    Object.freeze(state);
-    let newState;
+        extraReducers: builder => {
+                builder
+                        .addCase(createReview.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(createReview.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                const review = action.payload;
+                                if (review && review.id) {
+                                        state.entities[review.id] = review;
+                                }
+                        })
+                        .addCase(createReview.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(updateReview.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(updateReview.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                const reviews = normalizeReviews(action.payload);
+                                state.entities = reviews;
+                        })
+                        .addCase(updateReview.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(deleteReview.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(deleteReview.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                delete state.entities[action.payload];
+                        })
+                        .addCase(deleteReview.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        });
+        },
+});
 
 
-    switch (action.type) {
-        case RECEIVE_REVIEWS:
-            return { ...state, ...action.reviews };
-        case RECEIVE_REVIEW:
-            newState = { ...state };
-            return { ...state, [action.review.id]: action.review };
-        case REMOVE_REVIEW:
-            newState = { ...state };
-            delete newState[action.reviewId];
-            return newState;
-        default:
-            return state;
-    }
-};
+export const { receiveReviews, clearReviews } = reviewsSlice.actions;
 
-export default reviewsReducer;
+// ---------- SELECTORS ----------
+const selectReviewsSlice = state => state.reviews;
+const selectReviewEntities = createSelector([selectReviewsSlice], reviews => reviews.entities);
+
+export const selectAllReviews = createSelector([selectReviewEntities], entities =>
+        Object.values(entities)
+);
+
+export const selectReviewsStatus = state => state.reviews.status;
+export const selectReviewsError = state => state.reviews.error;
+
+export default reviewsSlice.reducer;

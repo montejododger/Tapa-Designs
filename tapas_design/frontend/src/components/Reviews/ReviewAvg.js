@@ -1,14 +1,9 @@
 import React from "react";
-import { createSelector } from "reselect";
 import { useSelector } from "react-redux";
-
-const selectReviews = createSelector(
-    (state) => state.reviews,
-    (reviews) => Object.values(reviews)
-);
+import { selectAllReviews } from "../../store/reviews";
 
 const ReviewAverage = () => {
-    const reviews = useSelector(selectReviews);
+    const reviews = useSelector(selectAllReviews);
     const ratings = reviews.map((review) => review.rating);
 
     if (ratings.length === 0) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import * as ReviewActions from "../../../store/reviews";
+import { deleteReview } from "../../../store/reviews";
 
 const ReviewBodyEditButton = ({ id, productId, setEditId }) => {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const ReviewBodyEditButton = ({ id, productId, setEditId }) => {
             <button
                 className="delete-review"
                 onClick={() =>
-                    dispatch(ReviewActions.deleteReview(productId, id))
+                    dispatch(deleteReview({ productId, reviewId: id }))
                 }
             >
                 Delete

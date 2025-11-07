@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import StarRating from "./ReviewStars/StarRating";
-import * as ReviewActions from "../../store/reviews";
+import { updateReview } from "../../store/reviews";
 
 import "./ReviewsCss/ReviewFormEdit.css";
 
@@ -19,7 +19,7 @@ function ReviewEditForm({ review, onFinishEdit }) {
             body: body,
             rating: rating,
         };
-        dispatch(ReviewActions.updateReview(review.productId, editedReview));
+        dispatch(updateReview({ productId: review.productId, review: editedReview }));
         onFinishEdit();
     };
 

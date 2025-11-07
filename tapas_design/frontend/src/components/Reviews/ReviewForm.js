@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as ReviewActions from "../../store/reviews";
+import { createReview, selectAllReviews } from "../../store/reviews";
 
 import ReviewFormErrors from "./reviewsForm/ReviewFormErrors";
 import ReviewFormScore from "./reviewsForm/ReviewFormScore";
@@ -12,8 +11,6 @@ import ReviewFormHeadline from "./reviewsForm/ReviewFormHeadline";
 import ReviewFormSubmitButton from "./reviewsForm/ReviewFormSubmitButton";
 
 import "./ReviewsCss/ReviewForm.css";
-
-const onlyReviews = createSelector((state) => state.reviews, reviews => reviews)
 
 const ReviewForm = () => {
 
@@ -26,9 +23,11 @@ const ReviewForm = () => {
     const [rating, setRating] = useState(0);
 
     const currentUser = useSelector((state) => state.session.user) || null;
-    const reviews = useSelector(onlyReviews);
+    const reviews = useSelector(selectAllReviews);
 
-    const productReviews = Object.values(reviews);
+    const productReviews = reviews.filter(
+        (review) => review.productId === Number(productId)
+    );
 
     const hasReviewed =
         currentUser &&
@@ -81,7 +80,7 @@ const ReviewForm = () => {
             rating,
         };
 
-        dispatch(ReviewActions.createReview(productId, review));
+        dispatch(createReview({ productId, review }));
 
         // Reset the form
         formReset();

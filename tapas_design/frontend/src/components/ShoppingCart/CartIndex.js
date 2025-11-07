@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCartItems } from "../../store/cartItems";
+import { fetchCartItems, selectCartItemsArray } from "../../store/cartItems";
 import CartIndexItem from "./CartIndexItem";
 
 import "../Navigation/NavBarCart.css";
@@ -9,13 +9,11 @@ import CartFooter from "./CartFooter";
 
 const CartIndex = ({ toggleCart, toggleCheckout }) => {
     const dispatch = useDispatch();
-    const cartItemsObj = useSelector((state) => state.cartItems);
+    const cartItems = useSelector(selectCartItemsArray);
 
     useEffect(() => {
         dispatch(fetchCartItems());
     }, [dispatch]);
-
-    const cartItems = Object.values(cartItemsObj);
 
     const totalItems = cartItems.reduce(
         (total, item) => total + item.quantity,
