@@ -19,7 +19,6 @@ export const receiveReviews = (reviews) => {
 export const receiveReview = (review) => {
     //! USES THE ACTION CONSTANTS TO HELP FORMAT THE ACTION TYPE - NO TYPOS
     return {
-
         type: RECEIVE_REVIEW,
         review,
     };
@@ -28,7 +27,6 @@ export const receiveReview = (review) => {
 };
 
 export const removeReview = (reviewId) => {
-    // debugger
     return {
         type: REMOVE_REVIEW,
         reviewId,
@@ -42,8 +40,6 @@ export const removeReview = (reviewId) => {
 
 //! FROM HANDLE SUBMIT ON REVIEW FORM
 export const createReview = (productId, review) => async (dispatch) => {
-    // console.log(productId);
-    // debugger
     //! HIT THE CUSTOM FETCH TO ATTATCH CSRF
         // csrfFetch(url, options = {})
         //JS value to JSON string
@@ -89,7 +85,6 @@ export const updateReview = (productId, review) => async (dispatch) => {
 // if response 200 then dispatch the action
 
 export const deleteReview = (productId, reviewId) => async (dispatch) => {
-    // debugger
     const res = await csrfFetch(
         `/api/products/${productId}/reviews/${reviewId}`,
         {

@@ -14,15 +14,12 @@ const ProductShow = () => {
 	const product = useSelector(s => s.products.items[id]);
 	const status = useSelector(s => s.products.status);
 
-	useEffect(() => {
-		console.log('ProductShow mounted', productId);
-		if (id) {
-			dispatch(fetchProduct(id));
-		}
-	}, [dispatch, id]);
-	// console.log('Redux items:', Object.keys(useSelector(s => s.products.items)));
-	// console.log('Looking for id:', id);
-	if (status === 'loading' || !product) return <p>Loading...</p>;
+        useEffect(() => {
+                if (id) {
+                        dispatch(fetchProduct(id));
+                }
+        }, [dispatch, id]);
+        if (status === 'loading' || !product) return <p>Loading...</p>;
 
 	return (
 		<div className='product-wrapper'>

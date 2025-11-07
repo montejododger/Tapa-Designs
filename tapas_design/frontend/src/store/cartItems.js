@@ -11,7 +11,6 @@ export const CLEAR_CART = "cartItems/CLEAR_CART";
 // returns an object
 
 export const receiveCartItems = (cartItems) => {
-    // debugger
     return {
         type: RECEIVE_CART_ITEMS,
         cartItems,
@@ -19,7 +18,6 @@ export const receiveCartItems = (cartItems) => {
 };
 
 export const receiveCartItem = (cartItem) => {
-    // debugger
     return {
         type: RECEIVE_CART_ITEM,
         cartItem,
@@ -41,7 +39,6 @@ export const clearCartAction = () => {
 
 // Plural
 export const fetchCartItems = () => async (dispatch) => {
-    // debugger
     const res = await fetch(`/api/cart_items/`);
 
     if (res.ok) {
@@ -72,14 +69,12 @@ export const createCartItem = (cartItem) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        // debugger
         dispatch(receiveCartItem(data.cartItem));
     }
 };
 
 // UPDATE
 export const updateCartItem = (cartItem) => async (dispatch) => {
-    // debugger
     const res = await csrfFetch(`/api/cart_items/${cartItem.id}`, {
         method: "PATCH",
         header: {
@@ -90,7 +85,6 @@ export const updateCartItem = (cartItem) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        // debugger
         dispatch(receiveCartItem(data.cartItem));
     }
 };

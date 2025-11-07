@@ -8,11 +8,7 @@ export const csrfFetch = async (url, options = {}) => {
 		options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
 	}
 
-	console.log({ url, options });
-
-	const res = await fetch(url, options);
-	console.log({ res });
-	return res;
+        return await fetch(url, options);
 };
 
 export default csrfFetch;

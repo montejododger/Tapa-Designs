@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { fetchSearchResults } from '../../store/productsReducer';
+import { useNavigate } from 'react-router-dom';
+import { fetchSearchResults } from '../../store/productSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './SearchBar.css';
