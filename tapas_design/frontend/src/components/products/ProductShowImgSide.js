@@ -1,5 +1,4 @@
-const ProductShowImgSide = ({photos}) => {
-    // console.log(photos);
+const ProductShowImgSide = ({ photos }) => {
     return (
         <section className="show-img-wrapper">
             <div className="show-img-container">

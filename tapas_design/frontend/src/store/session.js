@@ -1,103 +1,162 @@
-import { csrfFetch } from "./csrf";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { csrfFetch } from './csrf';
 
-// Set and Remove Current User ACTIONS
-
-// ACTION CONSTANTS
-const SET_CURRENT_USER = "session/SET_CURRENT_USER";
-const REMOVE_CURRENT_USER = "session/REMOVE_CURRENT_USER";
-
-// ACTION CREATORS
-export const setCurrentUser = (user) => {
-    return {
-        type: SET_CURRENT_USER,
-        user,
-    };
+const storeCSRFToken = response => {
+        const csrfToken = response.headers.get('X-CSRF-Token');
+        if (csrfToken) sessionStorage.setItem('X-CSRF-Token', csrfToken);
 };
 
-export const removeCurrentUser = () => {
-    return {
-        type: REMOVE_CURRENT_USER,
-    };
+const storeCurrentUser = user => {
+        if (user) {
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+        } else {
+                sessionStorage.removeItem('currentUser');
+        }
 };
 
-const storeCSRFToken = (response) => {
-    const csrfToken = response.headers.get("X-CSRF-Token");
-    if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
+const ensureJson = async response => {
+        try {
+                return await response.clone().json();
+        } catch (error) {
+                return {};
+        }
 };
 
-// is user is not null store it as a key value pair in sessionStorage
-const storeCurrentUser = (user) => {
-    if (user) {
-        sessionStorage.setItem("currentUser", JSON.stringify(user));
-    } else {
-        sessionStorage.removeItem("currentUser");
-    }
-};
+export const login = createAsyncThunk(
+        'session/login',
+        async ({ email, password }, { rejectWithValue }) => {
+                const res = await csrfFetch('/api/session', {
+                        method: 'POST',
+                        body: JSON.stringify({ email, password }),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                const data = await res.json();
+                storeCurrentUser(data.user);
+                return data.user;
+        }
+);
 
-// THUNK ACTIONS
-export const login =
-    ({ email, password }) =>
-    async (dispatch) => {
-        const res = await csrfFetch("/api/session", {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
+export const signup = createAsyncThunk(
+        'session/signup',
+        async ({ email, password, firstName, lastName }, { rejectWithValue }) => {
+                const res = await csrfFetch('/api/users', {
+                        method: 'POST',
+                        body: JSON.stringify({ email, firstName, lastName, password }),
+                });
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                const data = await res.json();
+                storeCurrentUser(data.user);
+                return data.user;
+        }
+);
+
+export const logout = createAsyncThunk('session/logout', async (_, { rejectWithValue }) => {
+        const res = await csrfFetch('/api/session', {
+                method: 'DELETE',
         });
+        if (!res.ok) {
+                const data = await ensureJson(res);
+                return rejectWithValue(data);
+        }
+        storeCurrentUser(null);
+        return null;
+});
 
-        const data = await res.clone().json();
-        storeCurrentUser(data.user);
-        dispatch(setCurrentUser(data.user));
-        return res;
-    };
-
-export const signup =
-    ({ email, password, firstName, lastName }) =>
-    async (dispatch) => {
-        const res = await csrfFetch("/api/users", {
-            method: "POST",
-            body: JSON.stringify({ email, firstName, lastName, password }),
-        });
-        const data = await res.clone().json();
-        storeCurrentUser(data.user);
-        dispatch(setCurrentUser(data.user));
-        return res;
-    };
-
-export const logout = () => async (dispatch) => {
-    const response = await csrfFetch("/api/session", {
-        method: "DELETE",
-    });
-    storeCurrentUser(null);
-    dispatch(removeCurrentUser());
-    return response;
-};
-
-// This happens when  the page is intially loaded
-// uses cutsom fetch(csrf)
-export const restoreSession = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/session`);
-    const data = await res.json();
-    storeCSRFToken(res);
-    storeCurrentUser(data.user);
-    dispatch(setCurrentUser(data.user));
-    return res;
-};
+export const restoreSession = createAsyncThunk(
+        'session/restore',
+        async (_, { rejectWithValue }) => {
+                const res = await csrfFetch('/api/session');
+                if (!res.ok) {
+                        const data = await ensureJson(res);
+                        return rejectWithValue(data);
+                }
+                storeCSRFToken(res);
+                const data = await res.json();
+                storeCurrentUser(data.user);
+                return data.user;
+        }
+);
 
 const initialState = {
-    user: JSON.parse(sessionStorage.getItem("currentUser")),
+        user: JSON.parse(sessionStorage.getItem('currentUser')),
+        status: 'idle',
+        error: null,
 };
 
-const sessionReducer = (state = initialState, action) => {
-    Object.freeze(state);
+const sessionSlice = createSlice({
+        name: 'session',
+        initialState,
+        reducers: {
+                setCurrentUser: (state, action) => {
+                        state.user = action.payload;
+                        state.error = null;
+                },
+                removeCurrentUser: state => {
+                        state.user = null;
+                        state.error = null;
+                },
+                clearSessionError: state => {
+                        state.error = null;
+                },
+        },
+        extraReducers: builder => {
+                builder
+                        .addCase(login.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(login.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                state.user = action.payload;
+                        })
+                        .addCase(login.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(signup.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(signup.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                state.user = action.payload;
+                        })
+                        .addCase(signup.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(logout.pending, state => {
+                                state.status = 'loading';
+                                state.error = null;
+                        })
+                        .addCase(logout.fulfilled, state => {
+                                state.status = 'succeeded';
+                                state.user = null;
+                        })
+                        .addCase(logout.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        })
+                        .addCase(restoreSession.pending, state => {
+                                state.status = 'loading';
+                        })
+                        .addCase(restoreSession.fulfilled, (state, action) => {
+                                state.status = 'succeeded';
+                                state.user = action.payload;
+                        })
+                        .addCase(restoreSession.rejected, (state, action) => {
+                                state.status = 'failed';
+                                state.error = action.payload || action.error?.message || null;
+                        });
+        },
+});
 
-    switch (action.type) {
-        case SET_CURRENT_USER:
-            return { ...state, user: action.user };
-        case REMOVE_CURRENT_USER:
-            return { ...state, user: null };
-        default:
-            return state;
-    }
-};
+export const { setCurrentUser, removeCurrentUser, clearSessionError } = sessionSlice.actions;
 
-
-export default sessionReducer
+export default sessionSlice.reducer;

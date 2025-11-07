@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ProductIndexItem({ product }) {
-    const photo = product.photos[0];
-    
+const photo = product.photos?.[0];
+
     return (
         <div className="product-item-wrapper">
             <div className="product-img-container">

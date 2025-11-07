@@ -1,65 +1,58 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import "./reset.css";
-import "./index.css";
-import App from "./App";
-import configureStore from "./store/index";
-import * as sessionActions from "./store/session";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import './reset.css';
+import './index.css';
+import App from './App';
+import store from './store';
+import * as sessionActions from './store/session';
 
-// init a new store - sets up redux store with , middelware, reducers, enhancers
+// Import your session and product/cart actions
+import { createUser, loginUser, logoutUser } from './store/usersReducer';
+import { csrfFetch } from './store/csrf';
+import * as productActions from './store/productSlice';
+import * as cartActions from './store/cartItems';
 
-//! FIRST WE CREATE A STORE -> indexReducer 
-const store = configureStore();
+// Dev-window helpers (safe for dev only)
+if (process.env.NODE_ENV !== 'production') {
+	window.store = store;
+	window.createUser = createUser;
+	window.loginUser = loginUser;
+	window.logoutUser = logoutUser;
+	window.csrfFetch = csrfFetch;
+	window.sessionActions = sessionActions;
+	window.productActions = productActions;
+	window.cartActions = cartActions;
+}
 
-// TODO: take out after production
-// if (process.env.NODE_ENV !== "production") {
-//     window.store = store;
-//     window.createUser = createUser;
-//     window.loginUser = loginUser;
-//     window.logoutUser = logoutUser;
-//     window.csrfFetch = csrfFetch;
-//     window.sessionActions = sessionActions;
-//     window.productActions = productActions;
-//     window.cartActions = cartActions;
-// }
+// ---------- React 18 root setup ----------
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
 
-// redux provider component makes the redux store available to all nested component
-//  allowing for any component to access and update global state
-// Redux - Provider, client side routing with browserRouter
+const Root = () => (
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
+);
 
-// A <BrowserRouter> stores the current location in the browser's address bar using    clean URLs and navigates using the browser's built-in history stack.
-
-const Root = () => {
-    return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </Provider>
-    );
+// ---------- Render with session restore ----------
+const renderApplication = () => {
+	root.render(
+		<React.StrictMode>
+			<Root />
+		</React.StrictMode>
+	);
 };
 
+// ---------- Session restoration ----------
+const currentUser = sessionStorage.getItem('currentUser');
+const xToken = sessionStorage.getItem('X-CSRF-Token');
 
-// Strict mode is strictly for development
-const RenderApplication = () => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <Root />
-        </React.StrictMode>,
-        document.getElementById("root")
-    );
-};
-
-// check is there is a current user or token
-// tries to restore the session then render the application
-
-let currentUser = sessionStorage.getItem("currentUser") || null;
-let xToken = sessionStorage.getItem("X-CSRF-Token") || null;
-
-if (currentUser === null || xToken === null) {
-    store.dispatch(sessionActions.restoreSession()).then(RenderApplication);
+if (!currentUser || !xToken) {
+	store.dispatch(sessionActions.restoreSession()).then(renderApplication);
 } else {
-    RenderApplication();
+	renderApplication();
 }

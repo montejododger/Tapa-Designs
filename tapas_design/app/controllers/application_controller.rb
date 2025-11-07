@@ -42,7 +42,7 @@ class ApplicationController < ActionController::API
         end
     end
 
-    # Test Methodwith custom route
+    # Test Method with custom route
     def test
         if params.has_key?(:login)
           login!(User.first)

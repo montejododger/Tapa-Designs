@@ -1,35 +1,35 @@
-import React from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "../../store/productsReducer";
-import ProductShowImgSide from "./ProductShowImgSide";
-import ProductShowRight from "./ProductShowRight";
-import ReviewHome from "../Reviews/ReviewHome";
-import "./ProductShow.css";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProduct } from '../../store/productSlice';
+import ProductShowImgSide from './ProductShowImgSide';
+import ProductShowRight from './ProductShowRight';
+import ReviewHome from '../Reviews/ReviewHome';
+import './ProductShow.css';
 
 const ProductShow = () => {
-    const dispatch = useDispatch();
-    const { productId } = useParams();
-    const product = useSelector((state) => state.products[productId]);
+	const { productId } = useParams();
+	const id = Number(productId);
+	const dispatch = useDispatch();
+	const product = useSelector(s => s.products.items[id]);
+	const status = useSelector(s => s.products.status);
 
-    //!1 START,   2cmd + click fetch
-    useEffect(() => {
-        dispatch(fetchProduct(productId));
-    }, [dispatch, productId]);
+        useEffect(() => {
+                if (id) {
+                        dispatch(fetchProduct(id));
+                }
+        }, [dispatch, id]);
+        if (status === 'loading' || !product) return <p>Loading...</p>;
 
-    if (product === undefined) return null;
-
-    //!4 cmd+click REVIEW HOME
-    return (
-        <div className="product-wrapper">
-            <div className="product-show-wrapper">
-                <ProductShowImgSide photos={product.photos} />
-                <ProductShowRight product={product} />
-            </div>
-            <ReviewHome />
-        </div>
-    );
+	return (
+		<div className='product-wrapper'>
+			<div className='product-show-wrapper'>
+				<ProductShowImgSide photos={product.photos} />
+				<ProductShowRight product={product} />
+			</div>
+			<ReviewHome />
+		</div>
+	);
 };
 
 export default ProductShow;

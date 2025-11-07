@@ -1,6 +1,6 @@
 class Api::CartItemsController < ApplicationController
 
-  before_action :require_logged_in, only: [:create, :update, :destory]
+  before_action :require_logged_in, only: [:create, :update, :destroy]
   # include Rails.application.routes.url_helpers
 
 

@@ -46,11 +46,11 @@ export const logoutUser = (userId) => async (dispatch) => {
 };
 
 export const createUser = (user) => async (dispatch) => {
-    let res = await csrfFetch("/api/users", {
+    const res = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify(user),
     });
-    let data = await res.json();
+    const data = await res.json();
     sessionStorage.setItem("currentUser", JSON.stringify(data.user)); // add s_token to browser storage
     dispatch(receiveUser(data.user)); // updates the store
 };
