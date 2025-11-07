@@ -18,7 +18,6 @@ const normalizeReviews = reviews => {
                 }, {});
         }
         return { ...reviews };
-};
 
 // ---------- THUNKS ----------
 export const createReview = createAsyncThunk(
@@ -133,6 +132,7 @@ const reviewsSlice = createSlice({
                         });
         },
 });
+
 
 export const { receiveReviews, clearReviews } = reviewsSlice.actions;
 
