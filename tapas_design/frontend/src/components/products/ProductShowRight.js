@@ -31,7 +31,6 @@ const ProductShowRight = ({ product }) => {
     const handleQuantityChange = (e) => {
         const value = parseInt(e.target.value, 10);
 
-        // debugger
         if (value === "") {
             setQuantity("");
         } else {
