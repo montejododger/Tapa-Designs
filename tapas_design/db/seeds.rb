@@ -265,7 +265,6 @@ end
     { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number4.webp'), filename: 'work_cap_number4.webp' }
   ]
 
-end
 elsif Rails.env.development?
 # LOCAL SEED IMAGES
 
