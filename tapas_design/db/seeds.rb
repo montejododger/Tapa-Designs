@@ -179,7 +179,8 @@ end
 #! TODO: change the seeds back to aws when mergin with new-main again
 #! This will be toggled for dev or production
 
-# AWS SEED Iif Rails.env.production?
+# AWS SEED 
+if Rails.env.production?
 
   p1_photos = [
     { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: 'dirt_shirt_ss_mens_front.webp' },
