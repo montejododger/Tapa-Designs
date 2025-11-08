@@ -42,7 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_165040) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  #TABLE // COLUMN ->
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
@@ -66,11 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_165040) do
     t.index ["category"], name: "index_products_on_category"
   end
 
-  # SCHEMA
-  # TABLE w/ columns
-  # null: false, column cannot be null
-  # foreign keys create indexs which are added to improve query performance
-  # -> /config/routes.rb
   create_table "reviews", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false

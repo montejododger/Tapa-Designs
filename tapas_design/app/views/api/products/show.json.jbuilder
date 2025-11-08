@@ -1,9 +1,9 @@
     #! Go to reviews home via product show
     json.product do
         json.extract! @product, :id, :name, :description, :price, :category, :size, :color
-        json.photos @product.photos.map { |photo|  url_for(photo.url) }
+        json.photos @product.photos.map { |photo|  photo.url }
     end
-
+2
 
     json.reviews do
          @product.reviews.each do |review|

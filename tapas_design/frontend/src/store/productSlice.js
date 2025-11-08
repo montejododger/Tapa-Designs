@@ -8,6 +8,7 @@ import { receiveReviews } from './reviews';
 export const fetchProducts = createAsyncThunk(
 	'products/fetchAll',
 	async (_, { rejectWithValue }) => {
+		console.log(`hitting thunk`)
 		const res = await fetch('/api/products');
 		if (!res.ok) return rejectWithValue('Failed to fetch products');
 		return await res.json();

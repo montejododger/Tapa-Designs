@@ -26,16 +26,20 @@ require 'open-uri'
       email: 'demo@user.io',
       password: 'password'
     )
-
-    # More users
-    10.times do
-      User.create!({
-        email: Faker::Internet.unique.email,
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        password: 'password'
-      })
-    end
+10.times do
+  begin
+    first = Faker::Name.first_name.gsub(/[^a-zA-Z]/, '')
+    last  = Faker::Name.last_name.gsub(/[^a-zA-Z]/, '')
+    User.create!(
+      email: Faker::Internet.unique.email,
+      first_name: first,
+      last_name: last,
+      password: 'password'
+    )
+  rescue ActiveRecord::RecordInvalid => e
+    puts "Skipped invalid user: #{e.message}"
+  end
+end
 
     puts 'Done Creating Users"'
 
