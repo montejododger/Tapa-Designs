@@ -179,98 +179,93 @@ end
 #! TODO: change the seeds back to aws when mergin with new-main again
 #! This will be toggled for dev or production
 
-# AWS SEED IMAGES
-if Rails.env.production?
+# AWS SEED Iif Rails.env.production?
 
-      p1_photos = [
-        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: ''},
-        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number2.webp'), filename: ''},
-        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number3.webp'), filename: ''},
-        { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number4.webp'), filename: ''}
-      ]
+  p1_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/dirt_shirt_ss_mens_front.webp'), filename: 'dirt_shirt_ss_mens_front.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number2.webp'), filename: 'dirt_shirt_ss_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number3.webp'), filename: 'dirt_shirt_ss_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_shirt_ss/number4.webp'), filename: 'dirt_shirt_ss_number4.webp' }
+  ]
 
-      p2_photos = [
-      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_front.webp' },
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp' },
-      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp' },
-      { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp' }
-    ]
+  p2_photos = [
+    { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front.webp'), filename: 'dirt_hoodie_front.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_hoodie/dirt_hoodie_back.webp'), filename: 'dirt_hoodie_back.webp' },
+    { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-front-model.webp'), filename: 'dirt_hoodie_front_model.webp' },
+    { io: URI.open('https://tapadesigns-dev.s3.us-west-1.amazonaws.com/dirt_hoodie/dirt-hoodie-side-model.webp'), filename: 'dirt_hoodie_side_model.webp' }
+  ]
 
-    p3_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number1.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number2.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number4.webp'), filename: ''}
-    ]
+  p3_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number1.webp'), filename: 'ripstop_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number2.webp'), filename: 'ripstop_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number3.webp'), filename: 'ripstop_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/ripstop/number4.webp'), filename: 'ripstop_number4.webp' }
+  ]
 
-    p4_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number1.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number2.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number4.webp'), filename: ''}
-    ]
+  p4_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number1.webp'), filename: 'global_shirt_womans_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number2.webp'), filename: 'global_shirt_womans_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number3.webp'), filename: 'global_shirt_womans_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global+shirt+womans/number4.webp'), filename: 'global_shirt_womans_number4.webp' }
+  ]
 
+  p5_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number1.webp'), filename: 'sherpa_jacket_w_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number2.webp'), filename: 'sherpa_jacket_w_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number3.webp'), filename: 'sherpa_jacket_w_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number4.webp'), filename: 'sherpa_jacket_w_number4.webp' }
+  ]
 
-    p5_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number1.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number2.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/sherpa_jacket_w/number4.webp'), filename: ''}
-    ]
+  p6_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'), filename: 'river_hoodie_w_front.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number2.webp'), filename: 'river_hoodie_w_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number3.webp'), filename: 'river_hoodie_w_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number4.webp'), filename: 'river_hoodie_w_number4.webp' }
+  ]
 
+  p7_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number1.webp'), filename: 'dirt_jacket_w_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number2.webp'), filename: 'dirt_jacket_w_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number3.webp'), filename: 'dirt_jacket_w_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number4.webp'), filename: 'dirt_jacket_w_number4.webp' }
+  ]
 
+  p8_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number1.progressive.webp'), filename: 'river_shorts_w_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number2.progressive.webp'), filename: 'river_shorts_w_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number3.progressive.webp'), filename: 'river_shorts_w_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number4.progressive.webp'), filename: 'river_shorts_w_number4.webp' }
+  ]
 
-    p6_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/S23-W-RiverHoodie-PastelCamo-121202455970-Front-1_3bc08884-036f-418a-83d5-6530633a2757_800x800_crop_center.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number2.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_hoodie_w/number4.webp'), filename: ''}
-    ]
+  p9_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number1.progressive.webp'), filename: 'mountains_access_bag_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number2.progressive.webp'), filename: 'mountains_access_bag_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number3.progressive.webp'), filename: 'mountains_access_bag_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number4.progressive.webp'), filename: 'mountains_access_bag_number4.webp' }
+  ]
 
-    p7_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number1.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number2.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/dirt_jacket_w/number4.webp'), filename: ''}
-    ]
+  p10_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number1.progressive.png.webp'), filename: 'corduroy_trucker_hat_strata_map_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number2.progressive.webp'), filename: 'corduroy_trucker_hat_strata_map_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number3.progressive.webp'), filename: 'corduroy_trucker_hat_strata_map_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number4.progressive.webp'), filename: 'corduroy_trucker_hat_strata_map_number4.webp' }
+  ]
 
-    p8_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number1.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number2.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number3.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/river_shorts-w/number4.progressive.webp'), filename: ''}
-    ]
+  p11_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number1.progressive.webp'), filename: 'global_hat_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number2.progressive.webp'), filename: 'global_hat_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number3.progressive.webp'), filename: 'global_hat_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number4.progressive.webp'), filename: 'global_hat_number4.webp' }
+  ]
 
-    p9_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number1.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number2.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number3.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/mountains_access_bag/number4.progressive.webp'), filename: ''}
-    ]
+  p12_photos = [
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number1.progressive.webp'), filename: 'work_cap_number1.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number2.progressive.webp'), filename: 'work_cap_number2.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number3.webp'), filename: 'work_cap_number3.webp' },
+    { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number4.webp'), filename: 'work_cap_number4.webp' }
+  ]
 
-    p10_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number1.progressive.png.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number2.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number3.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/CORDUROY+TRUCKER+HAT+-+STRATA+MAP/number4.progressive.webp'), filename: ''}
-    ]
-
-
-    p11_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number1.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number2.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number3.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/global_hat/number4.progressive.webp'), filename: ''}
-    ]
-
-    p12_photos = [
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number1.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number2.progressive.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number3.webp'), filename: ''},
-      { io: URI.open('https://tapadesigns.s3.us-west-1.amazonaws.com/product_images/products/work_cap/number4.webp'), filename: ''}
-    ]
-
-
+end
 elsif Rails.env.development?
 # LOCAL SEED IMAGES
 
